@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
+Route::match(['get', 'post'], '/company/company-info', [CompanyController::class, 'index'])->name('companyinfo');
+
+Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function () {
     Route::view('/dashboard', "dashboard")->name('dashboard');
 
     Route::get('/user', [ UserController::class, "index_view" ])->name('user');
