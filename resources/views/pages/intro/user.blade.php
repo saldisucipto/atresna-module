@@ -1,8 +1,15 @@
 <x-backend-layout>
     <x-slot name="container">
+        @if (Session::has('message'))
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <i class="fa fa-check-circle"></i> {!! session('pesan_sukses') !!}
+        </div>
+        @endif
         <div class="container mt-15 select-none">
             <div class="row text-white bg-primary">
-                <div class="col-xl-8 py-4 ">
+                <div class="col-xl-8 py-2 ">
                     <h3 class="text-md uppercase"> <span
                             class="bg-white px-4 py-3 rounded-full text-primary font-bold text-lg shadow">1</span>
                         INFORMASI PERUSAHAAN
@@ -11,7 +18,7 @@
             </div>
             <div class="row text-white mt-3 bg-primary">
                 <div class="col-xl-8 py-2 mx-auto text-center uppercase">
-                    <h1 class="py-4 text-lg">ISI FORM INFORMASI PERUSAHAAN
+                    <h1 class="py-2">ISI FORM INFORMASI PERUSAHAAN
                         DIBAWAH</h1>
                     <form class="text-left" action="{{route('companyinfo')}}" enctype="multipart/form-data"
                         method="POST">

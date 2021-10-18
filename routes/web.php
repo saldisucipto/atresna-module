@@ -20,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::match(['get', 'post'], '/company/company-info', [CompanyController::class, 'index'])->name('companyinfo');
+Route::match(['get', 'post'], '/company/user-info', [CompanyController::class, 'userInfo'])->name('userinfo');
+
 
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function () {
     Route::view('/dashboard', "dashboard")->name('dashboard');
