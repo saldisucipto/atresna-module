@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 // use app\Models\CompanyInfo;
 use App\Models\CompanyInfo;
 use App\Classes\Files;
+use App\Classes\Penomoran;
 
 class CompanyController extends Controller
 {
@@ -17,6 +18,12 @@ class CompanyController extends Controller
             $data = $request->all();
             $cretaeCompany = new CompanyInfo();
             $imagesFiles = new Files;
+            $nomorID = new Penomoran();
+            $nomorTerakhir = CompanyInfo::latest()->first();
+            $lastId = $nomorTerakhir->id_company_info;
+            // echo($nomorTerakhir->id_company_info);
+            // die;
+            $cretaeCompany->id_company_info = $nomorID->numbering('CI', $lastId);
             $cretaeCompany->company_name_info = $data['company_name_info'];
             $cretaeCompany->company_phone_info = $data['company_phone_info'];
             $cretaeCompany->company_email_info = $data['company_email_info'];

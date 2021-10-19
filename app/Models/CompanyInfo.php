@@ -9,5 +9,6 @@ class CompanyInfo extends Model
 {
     protected $table = 'company_info';
     protected $primaryKey = 'id_company_info';
+    public $incrementing = false;
     use HasFactory;
 }

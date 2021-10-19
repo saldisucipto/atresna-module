@@ -1,10 +1,14 @@
 <?php
 
+namespace App\Classes;
 
-class Nomor
+class Penomoran
 {
-    public function numbering(String $transksiName, String $nomorUrurtanTerakhir)
+    public function numbering(String $transksiName, $nomorUrurtanTerakhir)
     {
+        if ($nomorUrurtanTerakhir == null) {
+            $nomorUrurtanTerakhir = 0000;
+        }
         $nomorUrurtan = (int) substr($nomorUrurtanTerakhir, 6, 4);
         $nomorUrurtan++;
         $formaturutan = sprintf('%04s', $nomorUrurtan);

@@ -10,7 +10,7 @@ class Files
         // rename uploaded images
         $renameImages = preg_replace('/\s+/', '', $uploadedFiles->getClientOriginalName());
         // target directory
-        $folderDirectory = 'storage /'. $directory_tujuan . '/';
+        $folderDirectory = 'storage/'. $directory_tujuan . '/';
         // image name baru
         $nama_image = $image_name."-".time()."-".$renameImages;
         // move to folder
