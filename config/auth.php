@@ -40,7 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+        'user_module' => [
+            'redirectTo' => 'module.index',
+            'driver' => 'session',
+            'provider' => 'user_module',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -70,6 +74,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'user_module' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\UserModule::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

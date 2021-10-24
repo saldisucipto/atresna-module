@@ -64,7 +64,7 @@ class CompanyController extends Controller
         $userModel->user_role = 'administrator';
         $userModel->password = Hash::make($data['password']);
         $userModel->save();
-        return "Sucessfully Create User Administrator";
-
+        // return "Sucessfully Create User Administrator";
+        return redirect('/module/index')->with('menyapa', 'Hallo Selamat Datang !');
     }
 }
