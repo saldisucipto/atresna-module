@@ -19,7 +19,7 @@
             <div class="row text-white mt-3 bg-primary">
                 <div class="col-xl-8 py-2 mx-auto text-center uppercase">
                     <h1 class="py-2">USER ADMINISTRATOR</h1>
-                    <form class="text-left" action="{{route('companyinfo')}}" enctype="multipart/form-data"
+                    <form class="text-left" action="{{route('createUserAdministrator')}}" enctype="multipart/form-data"
                         method="POST">
                         @csrf
                         <div class="form-row py-1">
@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-row py-1">
                             <label class="font-bold" for="email">Email</label>
-                            <input class="form-control form-control-sm" type="email" placeholder="Email" maxlength="13"
+                            <input class="form-control form-control-sm" type="email" placeholder="Email"
                                 required name="email" id="email">
                         </div>
                         <div class="form-row py-1">

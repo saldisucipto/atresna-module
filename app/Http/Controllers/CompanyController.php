@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CompanyInfo;
-use App\Models\{Files, Penomoran};
+use App\Models\UserModule;
+use App\Classes\Files;
+use App\Classes\Penomoran;
+use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
 {
@@ -41,5 +44,27 @@ class CompanyController extends Controller
     {
         # code...
         return view('pages.intro.user');
+    }
+
+    public function userCreateAdministrator(Request $createUserAdmin){
+        $data = $createUserAdmin->all();
+        $nomorID = new Penomoran;
+        $nomorTerakhir = UserModule::latest()->first();
+        $nomorTerakhirci = CompanyInfo::latest()->first();
+        if ($nomorTerakhir) {
+            $lastId = $nomorTerakhir->id_company_info;
+        } else {
+            $lastId = 0000;
+        }
+        $userModel = new UserModule();
+        $userModel->id_user_module = $nomorID->numbering('US', $lastId);
+        $userModel->id_company_info = $nomorTerakhirci->id_company_info;
+        $userModel->name = $data['name'];
+        $userModel->email = $data['email'];
+        $userModel->user_role = 'administrator';
+        $userModel->password = Hash::make($data['password']);
+        $userModel->save();
+        return "Sucessfully Create User Administrator";
+
     }
 }
