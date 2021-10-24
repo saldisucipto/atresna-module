@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use app\Models\CompanyInfo;
 use App\Models\CompanyInfo;
-use App\Classes\Files;
-use App\Classes\Penomoran;
+use App\Models\{Files, Penomoran};
 
 class CompanyController extends Controller
 {
