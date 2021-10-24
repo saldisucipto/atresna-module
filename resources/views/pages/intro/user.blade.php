@@ -1,6 +1,6 @@
 <x-backend-layout>
     <x-slot name="container">
-        <div class="container mt-15 select-none">
+        <div class="container mt-28 select-none">
             @if (Session::has('message'))
             <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
@@ -9,16 +9,16 @@
             </div>
             @endif
             <div class="row text-white bg-primary">
-                <div class="col-xl-8 py-2 ">
+                <div class="col-xl-8 py-4 ">
                     <h3 class="text-md uppercase"> <span
                             class="bg-white px-4 py-3 rounded-full text-primary font-bold text-lg shadow">2</span>
-                        MAKE ADMINISTRATOR USER
+                        MEMBUAT USER AKUN <strong>ADMINISTRATOR</strong>
                     </h3>
                 </div>
             </div>
             <div class="row text-white mt-3 bg-primary">
                 <div class="col-xl-8 py-2 mx-auto text-center uppercase">
-                    <h1 class="py-2">ADMINISTRATOR USER</h1>
+                    <h1 class="py-2">USER ADMINISTRATOR</h1>
                     <form class="text-left" action="{{route('companyinfo')}}" enctype="multipart/form-data"
                         method="POST">
                         @csrf
@@ -44,6 +44,21 @@
                                     &nbsp; <i class="fas fa-arrow-right"></i></a></button>
                         </div>
                     </form>
+                </div>
+                <div class="col-xl-4">
+                    <div class="py-2 leading-kecil">
+                        <h1 class="py-2">USER ADMINISTRATOR</h1>
+                        <span class="font-italic">User Adiminstrator Untuk Module Software</span>
+
+                        <div class="py-4 leading-4">
+                            <h1 class="text-uppercase"> HAK DAN OTORITAS USER ADMINISTRATOR</h1>
+                            <ul>
+                                <li>1. Otoritas Akses Semua Module</li>
+                                <li>2. Otoritas CRUD (CREATE, READ, UPDATE & DELETE) Semua Module Aplikasi</li>
+                                <li>3. Otoritas Manajemen User Aplikasi</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

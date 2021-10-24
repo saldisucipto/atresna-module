@@ -20,9 +20,13 @@ class CompanyController extends Controller
             $imagesFiles = new Files;
             $nomorID = new Penomoran();
             $nomorTerakhir = CompanyInfo::latest()->first();
-            $lastId = $nomorTerakhir->id_company_info;
             // echo($nomorTerakhir->id_company_info);
             // die;
+            if ($nomorTerakhir) {
+                $lastId = $nomorTerakhir->id_company_info;
+            } else {
+                $lastId = 0000;
+            }
             $cretaeCompany->id_company_info = $nomorID->numbering('CI', $lastId);
             $cretaeCompany->company_name_info = $data['company_name_info'];
             $cretaeCompany->company_phone_info = $data['company_phone_info'];
