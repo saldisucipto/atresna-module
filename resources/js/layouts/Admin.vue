@@ -4,9 +4,10 @@
         <div class="relative md:ml-64">
             <admin-navbar />
             <header-stats />
-            <div class="px-4 md:px-10 mx-auto w-full -m-24">
+        </div>
+        <div class="z-10 relative md:ml-64 md:mt-28">
+            <div class="absolute px-4 md:px-12 mx-auto w-full -m-24">
                 <slot></slot>
-                <footer-admin />
             </div>
         </div>
     </div>

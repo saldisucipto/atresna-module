@@ -10,6 +10,7 @@ module.exports = {
             colors: {
                 "primary-color": "#f5821f",
                 "secondary-color": "#283681",
+                "dark-secondary": "#0040a1",
             },
             minHeight: {
                 "screen-75": "75vh",

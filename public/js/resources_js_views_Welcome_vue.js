@@ -3588,7 +3588,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "relative md:pt-32 pb-32 pt-12"
+  "class": "relative md:pt-24 pt-24 bg-dark-secondary pb-4"
 };
 var _hoisted_2 = {
   "class": "px-4 md:px-10 mx-auto w-full"
@@ -3667,20 +3667,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4"
+  "class": "absolute top-0 left-0 w-full z-10 md:flex-row md:flex-nowrap md:justify-start flex items-center p-4"
 };
 var _hoisted_2 = {
   "class": "w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "text-secondary-color font-bold text-md uppercase hidden lg:inline-block",
+  "class": "text-white font-bold text-md uppercase hidden lg:inline-block",
   href: "/"
 }, " Dashboard ", -1
 /* HOISTED */
 );
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<form class=\"md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3\"><div class=\"relative flex w-full flex-wrap items-stretch\"><span class=\"z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3\"><i class=\"fas fa-search\"></i></span><input type=\"text\" placeholder=\"Search here...\" class=\"border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10\"></div></form>", 1);
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<form class=\"md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3\"><div class=\"relative flex w-full flex-wrap items-stretch\"><span class=\"z-10 h-full leading-snug font-normal absolute text-center bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3\"><i class=\"fas fa-search\"></i></span><input type=\"text\" placeholder=\"Search here...\" class=\"border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10\"></div></form>", 1);
 
 var _hoisted_5 = {
   "class": "flex-col md:flex-row list-none items-center hidden md:flex"
@@ -3708,7 +3708,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-gray-100 flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
+  "class": "bg-gray-100 md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
 };
 var _hoisted_2 = {
   "class": "md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
@@ -3776,19 +3776,19 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
   type: "text",
   placeholder: "Search",
-  "class": "border-0 px-3 py-2 h-12 border border-solid border-secondary-color-500 placeholder-secondary-color-300 text-secondary-color-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+  "class": "border-0 px-3 py-2 h-12 border-solid border-secondary-color-500 placeholder-secondary-color-300 text-secondary-color-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
 })])], -1
 /* HOISTED */
 );
 
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
-  "class": "my-4 md:min-w-full"
+  "class": "mt-4 md:min-w-full"
 }, null, -1
 /* HOISTED */
 );
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
-  "class": "md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+  "class": "md:min-w-full text-gray-700 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
 }, " Admin Layout Pages ", -1
 /* HOISTED */
 );
@@ -3803,118 +3803,11 @@ var _hoisted_21 = ["href", "onClick"];
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Dashboard ");
 
-var _hoisted_23 = {
-  "class": "items-center"
-};
-var _hoisted_24 = ["href", "onClick"];
-
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Settings ");
-
-var _hoisted_26 = {
-  "class": "items-center"
-};
-var _hoisted_27 = ["href", "onClick"];
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tables ");
-
-var _hoisted_29 = {
-  "class": "items-center"
-};
-var _hoisted_30 = ["href", "onClick"];
-
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Maps ");
-
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
   "class": "my-4 md:min-w-full"
 }, null, -1
 /* HOISTED */
 );
-
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
-  "class": "md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-}, " Auth Layout Pages ", -1
-/* HOISTED */
-);
-
-var _hoisted_34 = {
-  "class": "md:flex-col md:min-w-full flex flex-col list-none md:mb-4"
-};
-var _hoisted_35 = {
-  "class": "items-center"
-};
-
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fingerprint text-secondary-color-300 mr-2 text-sm"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Login ");
-
-var _hoisted_38 = {
-  "class": "items-center"
-};
-
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-clipboard-list text-secondary-color-300 mr-2 text-sm"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
-
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
-  "class": "my-4 md:min-w-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
-  "class": "md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-}, " No Layout Pages ", -1
-/* HOISTED */
-);
-
-var _hoisted_43 = {
-  "class": "md:flex-col md:min-w-full flex flex-col list-none md:mb-4"
-};
-var _hoisted_44 = {
-  "class": "items-center"
-};
-
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-newspaper text-secondary-color-300 mr-2 text-sm"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Landing Page ");
-
-var _hoisted_47 = {
-  "class": "items-center"
-};
-
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-user-circle text-secondary-color-300 mr-2 text-sm"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile Page ");
-
-var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
-  "class": "my-4 md:min-w-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
-  "class": "md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-}, " Documentation ", -1
-/* HOISTED */
-);
-
-var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"md:flex-col md:min-w-full flex flex-col list-none md:mb-4\"><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/vue/colors/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fas fa-paint-brush mr-2 text-secondary-color-300 text-base\"></i> Styles </a></li><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/vue/alerts/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fab fa-css3-alt mr-2 text-secondary-color-300 text-base\"></i> CSS Components </a></li><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fab fa-angular mr-2 text-secondary-color-300 text-base\"></i> Angular </a></li><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fab fa-js-square mr-2 text-secondary-color-300 text-base\"></i> Javascript </a></li><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fab fa-react mr-2 text-secondary-color-300 text-base\"></i> NextJS </a></li><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fab fa-react mr-2 text-secondary-color-300 text-base\"></i> React </a></li><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fas fa-link mr-2 text-secondary-color-300 text-base\"></i> Svelte </a></li><li class=\"inline-flex\"><a href=\"https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus\" target=\"_blank\" class=\"text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold\"><i class=\"fab fa-vuejs mr-2 text-secondary-color-300 text-base\"></i> VueJS </a></li></ul>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -3930,7 +3823,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.toggleCollapseShow('bg-white m-2 py-3 px-6');
     })
   }, _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Brand "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "md:block text-left md:pb-2 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0",
+    "class": "md:block text-left mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold md:pt-2 px-0",
     to: "/"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -3967,9 +3860,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         href: href,
         onClick: navigate,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-xs uppercase py-3 font-bold block", [isActive ? 'text-emerald-500 hover:text-emerald-600' : 'text-secondary-color hover:text-secondary-color']])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-xs uppercase py-3 font-bold block", [isActive ? 'text-primary-color hover:text-gray-700' : 'text-secondary-color hover:text-primary-color']])
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fas fa-tv mr-2 text-sm", [isActive ? 'opacity-75' : 'text-secondary-color-300']])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fas fa-tv mr-2 text-sm", [isActive ? 'opacity-75' : 'text-dark-secondary']])
       }, null, 2
       /* CLASS */
       ), _hoisted_22], 10
@@ -3979,113 +3872,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/admin/settings"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref2) {
-      var href = _ref2.href,
-          navigate = _ref2.navigate,
-          isActive = _ref2.isActive;
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        href: href,
-        onClick: navigate,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-xs uppercase py-3 font-bold block", [isActive ? 'text-emerald-500 hover:text-emerald-600' : 'text-secondary-color-700 hover:text-secondary-color-500']])
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fas fa-tools mr-2 text-sm", [isActive ? 'opacity-75' : 'text-secondary-color-300']])
-      }, null, 2
-      /* CLASS */
-      ), _hoisted_25], 10
-      /* CLASS, PROPS */
-      , _hoisted_24)];
-    }),
-    _: 1
-    /* STABLE */
-
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/admin/tables"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref3) {
-      var href = _ref3.href,
-          navigate = _ref3.navigate,
-          isActive = _ref3.isActive;
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        href: href,
-        onClick: navigate,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-xs uppercase py-3 font-bold block", [isActive ? 'text-emerald-500 hover:text-emerald-600' : 'text-secondary-color-700 hover:text-secondary-color-500']])
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fas fa-table mr-2 text-sm", [isActive ? 'opacity-75' : 'text-secondary-color-300']])
-      }, null, 2
-      /* CLASS */
-      ), _hoisted_28], 10
-      /* CLASS, PROPS */
-      , _hoisted_27)];
-    }),
-    _: 1
-    /* STABLE */
-
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/admin/maps"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref4) {
-      var href = _ref4.href,
-          navigate = _ref4.navigate,
-          isActive = _ref4.isActive;
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        href: href,
-        onClick: navigate,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-xs uppercase py-3 font-bold block", [isActive ? 'text-emerald-500 hover:text-emerald-600' : 'text-secondary-color-700 hover:text-secondary-color-500']])
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fas fa-map-marked mr-2 text-sm", [isActive ? 'opacity-75' : 'text-secondary-color-300']])
-      }, null, 2
-      /* CLASS */
-      ), _hoisted_31], 10
-      /* CLASS, PROPS */
-      , _hoisted_30)];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Divider "), _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heading "), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Navigation "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block",
-    to: "/auth/login"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_36, _hoisted_37];
-    }),
-    _: 1
-    /* STABLE */
-
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block",
-    to: "/auth/register"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_39, _hoisted_40];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Divider "), _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heading "), _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Navigation "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block",
-    to: "/landing"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_45, _hoisted_46];
-    }),
-    _: 1
-    /* STABLE */
-
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block",
-    to: "/profile"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_48, _hoisted_49];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Divider "), _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Heading "), _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Navigation "), _hoisted_52], 2
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Divider "), _hoisted_23], 2
   /* CLASS */
   )])]);
 }
@@ -4108,7 +3895,10 @@ var _hoisted_1 = {
   "class": "relative md:ml-64"
 };
 var _hoisted_2 = {
-  "class": "px-4 md:px-10 mx-auto w-full -m-24"
+  "class": "z-10 relative md:ml-64 md:mt-28"
+};
+var _hoisted_3 = {
+  "class": "absolute px-4 md:px-12 mx-auto w-full -m-24"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_sidebar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("sidebar");
@@ -4117,9 +3907,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_header_stats = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("header-stats");
 
-  var _component_footer_admin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("footer-admin");
-
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_sidebar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_admin_navbar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_header_stats), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_footer_admin)])])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_sidebar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_admin_navbar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_header_stats)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
 }
 
 /***/ }),
@@ -4137,14 +3925,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-gray-200"
+  "class": ""
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "relative md:pt-2 max-h-full h-full"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "px-2 md:px-3 mx-auto w-full"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Card stats "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, esse? Qui velit praesentium debitis neque culpa assumenda soluta omnis molestiae voluptate necessitatibus quam iste accusamus ipsam sunt quis animi consequuntur, esse vero iusto obcaecati nobis voluptates veniam tenetur. Ut a itaque exercitationem labore nulla ab praesentium inventore pariatur natus eaque saepe harum iure voluptate aspernatur neque iste laboriosam, magnam quos, ex quasi corrupti nihil dolorem consequatur deleniti. Magnam iusto rem, ipsum magni incidunt maiores minus explicabo, temporibus pariatur porro eveniet necessitatibus recusandae debitis. Culpa esse alias corrupti earum. Nostrum, temporibus cumque molestiae incidunt adipisci nemo recusandae perspiciatis. Temporibus voluptas velit quibusdam optio possimus provident cumque excepturi, voluptates rem quo, sed odit voluptatum iusto perspiciatis distinctio tempore amet porro quasi? Libero soluta suscipit iure? Sapiente, eum. Cupiditate accusamus qui placeat labore ducimus voluptas, iusto deleniti tempore numquam nemo voluptatibus velit dicta odit molestiae, dolorum suscipit nesciunt eum? Est blanditiis inventore, distinctio consequatur laboriosam placeat. Rem quaerat fugiat illo magni, maxime fuga et tenetur aliquam recusandae inventore nobis velit nihil, quisquam nemo natus ullam sed numquam tempore, odio molestias omnis aspernatur dolorem eius. Beatae, aperiam eaque libero tempora sint ipsa similique voluptatem laudantium eum ipsum officiis asperiores quisquam, ex aliquid, quos odio quis. Quisquam quidem voluptatibus consequuntur beatae. Sed id blanditiis eveniet ad praesentium minus optio excepturi facilis nobis est tempore sit iste officiis, amet placeat sequi rerum ullam ipsum velit. Voluptas perspiciatis consectetur voluptates necessitatibus vero sint id deserunt ducimus ea quod! Nesciunt ut placeat explicabo, praesentium obcaecati temporibus ratione unde, dolores consequatur vero necessitatibus, tenetur laborum excepturi porro harum perferendis sed voluptates facere fugit. Maiores soluta quisquam ullam voluptate ut laborum illum molestiae officiis. Quaerat enim qui et doloribus deleniti blanditiis similique aperiam ratione iste doloremque, adipisci beatae sint saepe, cum eos? Tempore quisquam sed pariatur eum, quidem ratione necessitatibus iure assumenda inventore odio dolore odit saepe veritatis magnam praesentium, nobis officiis aut in ipsum fuga excepturi nostrum architecto. Officiis quisquam consequuntur delectus odio, beatae et minima aliquid, obcaecati at, nemo nobis minus eum perferendis maxime. Quod velit, repellat quam quasi nihil quaerat minus in et soluta, fugit officia corrupti aliquam perspiciatis ad maxime? Ea cumque repudiandae odit voluptas quos excepturi, ullam nesciunt. Animi, veniam doloremque hic quod laborum accusantium totam repellat excepturi accusamus voluptatem exercitationem delectus, consequatur corporis obcaecati tempora similique quisquam ad magnam aliquam nulla? Dolorum modi placeat nobis reprehenderit laudantium et ex repudiandae! Eligendi, vel ad! Soluta quibusdam omnis quam nulla velit? Tenetur, eos quo eius impedit soluta ab quod delectus laboriosam repellat. Commodi voluptatibus a aspernatur laudantium, odit eveniet iusto nihil nam perspiciatis velit quo corrupti in dolor laboriosam dolore corporis nostrum enim rerum quod similique vel. Iste quod sapiente delectus veritatis nesciunt neque est animi? Ipsa, possimus odit. Dolor veritatis laboriosam beatae velit iusto. Inventore totam soluta temporibus officiis, atque incidunt qui rem corrupti et non vitae consectetur deserunt vero ea eligendi iste assumenda distinctio nam dolorem. Nulla ab asperiores, voluptates dignissimos numquam doloribus voluptatibus odio obcaecati placeat eum, eos animi neque laboriosam pariatur! Laborum natus debitis error sunt obcaecati! Mollitia quo voluptas doloribus exercitationem deserunt iusto pariatur numquam perspiciatis, corporis maxime aut ratione necessitatibus tempore architecto possimus ullam impedit, omnis non quos. Nesciunt sunt sint aliquam quisquam assumenda dolorum veniam at earum nostrum sapiente temporibus doloribus iusto laborum similique aliquid, quo natus dignissimos quis officia nulla dolor, quasi, mollitia libero. Inventore ab quibusdam dolor soluta nam, culpa quo excepturi doloremque illum autem eius consequatur eveniet voluptates reiciendis repellat quidem et tempora sequi officiis provident! Sit, minus consequuntur? Suscipit culpa quasi sed quidem nemo delectus ipsam doloribus saepe vitae qui perspiciatis accusantium id, soluta dolore sunt doloremque odit nobis error iure. Quaerat sit porro cupiditate culpa! Deleniti adipisci eligendi cupiditate. Labore architecto modi, praesentium ad veniam, animi quasi quia voluptatibus molestiae aperiam, distinctio aliquid enim. Vero expedita, saepe dolorem, a sint dolore, quas nisi temporibus exercitationem suscipit voluptatem maiores nam facilis libero ipsam assumenda. Dolorum, corrupti laboriosam rerum quae consequuntur natus accusamus excepturi eaque id mollitia ipsam beatae officia impedit. Odio delectus, tenetur cupiditate quos modi voluptas iste nulla, sequi itaque consectetur veritatis? Nesciunt aspernatur architecto, saepe sit magnam porro soluta, repudiandae neque alias eum cumque nostrum consequatur iure? Doloribus assumenda, dicta ducimus ab illo iusto aut architecto dolorum. Ut possimus, dolore omnis quis placeat quaerat aspernatur. Nihil iusto distinctio fugit vitae inventore odit consectetur explicabo asperiores vel, pariatur facere autem eos minima tenetur porro nesciunt incidunt ex ipsum architecto enim cupiditate voluptatum natus. Itaque error nulla, iusto asperiores ipsam tempore voluptatum! Ad, veniam illo ratione recusandae exercitationem eligendi eum consequatur ducimus! Nam nulla accusantium dolor expedita totam earum. Ratione, tempore officia? Eligendi accusamus odit vitae totam. Rerum quo itaque voluptate eaque voluptatibus odit voluptatum quisquam. Nihil minima eum ea assumenda delectus maxime culpa obcaecati quae vero fugiat laboriosam veniam odit enim, porro expedita, perspiciatis, ipsum ullam et consequuntur dicta. Iusto quo, fugiat quia autem placeat quisquam nisi impedit! Aspernatur illum, quibusdam neque eos recusandae, quidem quia optio placeat a, ipsam saepe! Illum fuga ratione consequuntur explicabo magnam tenetur eaque pariatur, praesentium sed eligendi nam aperiam ullam dolores necessitatibus ea nihil, aliquid asperiores molestiae, voluptatibus incidunt doloribus! Quos quae consectetur maxime non eaque distinctio consequatur aperiam dolor eum! Minima deserunt beatae repudiandae eaque error quae, alias porro dolor vero, repellat vel doloribus adipisci cupiditate esse ducimus nesciunt harum molestiae? Odit nisi eaque libero. Pariatur voluptatibus, saepe nulla corrupti odio nemo quisquam dolore? Rem inventore animi in ullam est consequatur vel! Voluptas quibusdam excepturi nihil, officia ipsam libero provident ab consectetur repudiandae, dolor incidunt non sint magni minima ipsum temporibus reprehenderit voluptatem suscipit illum? Voluptatum aliquid, laborum, quisquam iste expedita ex perspiciatis ut maiores amet qui quasi dicta ipsa fuga. Quaerat eius consequuntur adipisci dignissimos consequatur iste, praesentium illo alias magnam quos neque id qui quidem dolorem unde debitis repudiandae labore autem obcaecati sit officiis. Quia saepe ipsam nostrum necessitatibus quaerat doloremque. Fugiat assumenda, dolorum animi facilis, iste et molestias exercitationem excepturi repudiandae quisquam quam autem eius nulla! Voluptates perferendis vitae natus alias quibusdam neque tempore? ")])])], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Card stats "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Lorem ipsum dolor sit amet consectetur adipisicing elit. Error optio ex ullam beatae deleniti aliquid at eius eligendi maiores eveniet, asperiores qui nesciunt quas deserunt, assumenda corporis ad laboriosam quod. ")])])], -1
 /* HOISTED */
 );
 

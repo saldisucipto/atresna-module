@@ -1,6 +1,6 @@
 <template>
     <nav
-        class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-gray-100 flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
+        class="bg-gray-100 md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
     >
         <div
             class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
@@ -15,7 +15,7 @@
             </button>
             <!-- Brand -->
             <router-link
-                class="md:block text-left md:pb-2 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                class="md:block text-left mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold md:pt-2 px-0"
                 to="/"
             >
                 <div class="flex justify-center gap-2">
@@ -72,16 +72,16 @@
                         <input
                             type="text"
                             placeholder="Search"
-                            class="border-0 px-3 py-2 h-12 border border-solid border-secondary-color-500 placeholder-secondary-color-300 text-secondary-color-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                            class="border-0 px-3 py-2 h-12 border-solid border-secondary-color-500 placeholder-secondary-color-300 text-secondary-color-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
                         />
                     </div>
                 </form>
 
                 <!-- Divider -->
-                <hr class="my-4 md:min-w-full" />
+                <hr class="mt-4 md:min-w-full" />
                 <!-- Heading -->
                 <h6
-                    class="md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+                    class="md:min-w-full text-gray-700 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
                 >
                     Admin Layout Pages
                 </h6>
@@ -99,8 +99,8 @@
                                 class="text-xs uppercase py-3 font-bold block"
                                 :class="[
                                     isActive
-                                        ? 'text-emerald-500 hover:text-emerald-600'
-                                        : 'text-secondary-color hover:text-secondary-color',
+                                        ? 'text-primary-color hover:text-gray-700'
+                                        : 'text-secondary-color hover:text-primary-color',
                                 ]"
                             >
                                 <i
@@ -108,291 +108,17 @@
                                     :class="[
                                         isActive
                                             ? 'opacity-75'
-                                            : 'text-secondary-color-300',
+                                            : 'text-dark-secondary',
                                     ]"
                                 ></i>
                                 Dashboard
                             </a>
                         </router-link>
                     </li>
-
-                    <li class="items-center">
-                        <router-link
-                            to="/admin/settings"
-                            v-slot="{ href, navigate, isActive }"
-                        >
-                            <a
-                                :href="href"
-                                @click="navigate"
-                                class="text-xs uppercase py-3 font-bold block"
-                                :class="[
-                                    isActive
-                                        ? 'text-emerald-500 hover:text-emerald-600'
-                                        : 'text-secondary-color-700 hover:text-secondary-color-500',
-                                ]"
-                            >
-                                <i
-                                    class="fas fa-tools mr-2 text-sm"
-                                    :class="[
-                                        isActive
-                                            ? 'opacity-75'
-                                            : 'text-secondary-color-300',
-                                    ]"
-                                ></i>
-                                Settings
-                            </a>
-                        </router-link>
-                    </li>
-
-                    <li class="items-center">
-                        <router-link
-                            to="/admin/tables"
-                            v-slot="{ href, navigate, isActive }"
-                        >
-                            <a
-                                :href="href"
-                                @click="navigate"
-                                class="text-xs uppercase py-3 font-bold block"
-                                :class="[
-                                    isActive
-                                        ? 'text-emerald-500 hover:text-emerald-600'
-                                        : 'text-secondary-color-700 hover:text-secondary-color-500',
-                                ]"
-                            >
-                                <i
-                                    class="fas fa-table mr-2 text-sm"
-                                    :class="[
-                                        isActive
-                                            ? 'opacity-75'
-                                            : 'text-secondary-color-300',
-                                    ]"
-                                ></i>
-                                Tables
-                            </a>
-                        </router-link>
-                    </li>
-
-                    <li class="items-center">
-                        <router-link
-                            to="/admin/maps"
-                            v-slot="{ href, navigate, isActive }"
-                        >
-                            <a
-                                :href="href"
-                                @click="navigate"
-                                class="text-xs uppercase py-3 font-bold block"
-                                :class="[
-                                    isActive
-                                        ? 'text-emerald-500 hover:text-emerald-600'
-                                        : 'text-secondary-color-700 hover:text-secondary-color-500',
-                                ]"
-                            >
-                                <i
-                                    class="fas fa-map-marked mr-2 text-sm"
-                                    :class="[
-                                        isActive
-                                            ? 'opacity-75'
-                                            : 'text-secondary-color-300',
-                                    ]"
-                                ></i>
-                                Maps
-                            </a>
-                        </router-link>
-                    </li>
                 </ul>
 
                 <!-- Divider -->
                 <hr class="my-4 md:min-w-full" />
-                <!-- Heading -->
-                <h6
-                    class="md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-                >
-                    Auth Layout Pages
-                </h6>
-                <!-- Navigation -->
-
-                <ul
-                    class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4"
-                >
-                    <li class="items-center">
-                        <router-link
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block"
-                            to="/auth/login"
-                        >
-                            <i
-                                class="fas fa-fingerprint text-secondary-color-300 mr-2 text-sm"
-                            ></i>
-                            Login
-                        </router-link>
-                    </li>
-
-                    <li class="items-center">
-                        <router-link
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block"
-                            to="/auth/register"
-                        >
-                            <i
-                                class="fas fa-clipboard-list text-secondary-color-300 mr-2 text-sm"
-                            ></i>
-                            Register
-                        </router-link>
-                    </li>
-                </ul>
-
-                <!-- Divider -->
-                <hr class="my-4 md:min-w-full" />
-                <!-- Heading -->
-                <h6
-                    class="md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-                >
-                    No Layout Pages
-                </h6>
-                <!-- Navigation -->
-
-                <ul
-                    class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4"
-                >
-                    <li class="items-center">
-                        <router-link
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block"
-                            to="/landing"
-                        >
-                            <i
-                                class="fas fa-newspaper text-secondary-color-300 mr-2 text-sm"
-                            ></i>
-                            Landing Page
-                        </router-link>
-                    </li>
-
-                    <li class="items-center">
-                        <router-link
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-xs uppercase py-3 font-bold block"
-                            to="/profile"
-                        >
-                            <i
-                                class="fas fa-user-circle text-secondary-color-300 mr-2 text-sm"
-                            ></i>
-                            Profile Page
-                        </router-link>
-                    </li>
-                </ul>
-
-                <!-- Divider -->
-                <hr class="my-4 md:min-w-full" />
-                <!-- Heading -->
-                <h6
-                    class="md:min-w-full text-secondary-color-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-                >
-                    Documentation
-                </h6>
-                <!-- Navigation -->
-                <ul
-                    class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4"
-                >
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/vue/colors/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fas fa-paint-brush mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            Styles
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/vue/alerts/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fab fa-css3-alt mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            CSS Components
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fab fa-angular mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            Angular
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fab fa-js-square mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            Javascript
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fab fa-react mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            NextJS
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fab fa-react mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            React
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fas fa-link mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            Svelte
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a
-                            href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus"
-                            target="_blank"
-                            class="text-secondary-color-700 hover:text-secondary-color-500 text-sm block mb-4 no-underline font-semibold"
-                        >
-                            <i
-                                class="fab fa-vuejs mr-2 text-secondary-color-300 text-base"
-                            ></i>
-                            VueJS
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
     </nav>

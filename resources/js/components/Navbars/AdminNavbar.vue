@@ -1,14 +1,14 @@
 <template>
     <!-- Navbar -->
     <nav
-        class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4"
+        class="absolute top-0 left-0 w-full z-10 md:flex-row md:flex-nowrap md:justify-start flex items-center p-4"
     >
         <div
             class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
         >
             <!-- Brand -->
             <a
-                class="text-secondary-color font-bold text-md uppercase hidden lg:inline-block"
+                class="text-white font-bold text-md uppercase hidden lg:inline-block"
                 href="/"
             >
                 Dashboard
@@ -19,7 +19,7 @@
             >
                 <div class="relative flex w-full flex-wrap items-stretch">
                     <span
-                        class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"
+                        class="z-10 h-full leading-snug font-normal absolute text-center bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"
                     >
                         <i class="fas fa-search"></i>
                     </span>
