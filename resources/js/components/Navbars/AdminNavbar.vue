@@ -7,12 +7,20 @@
             class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
         >
             <!-- Brand -->
-            <a
-                class="text-white font-bold text-md uppercase hidden lg:inline-block"
-                href="/"
-            >
-                Dashboard
-            </a>
+            <div class="flex flex-col">
+                <div>
+                    <a
+                        class="text-white font-bold text-md uppercase hidden lg:inline-block"
+                        href="/"
+                    >
+                        Dashboard Area
+                    </a>
+                </div>
+                <div class="text-white text-lg">
+                    <i class="fas fa-hand-sparkles"></i> Hai Saldi Sucipto,
+                    Selamat Pagi :)
+                </div>
+            </div>
             <!-- Form -->
             <form
                 class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"

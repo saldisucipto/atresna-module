@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-gray-100">
         <sidebar />
         <div class="relative md:ml-64">
             <admin-navbar />
