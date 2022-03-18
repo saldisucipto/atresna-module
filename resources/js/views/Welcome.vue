@@ -9,6 +9,9 @@
             </section>
         </admin>
     </div>
+    <footer>
+        <hr />
+    </footer>
 </template>
 
 <script>
