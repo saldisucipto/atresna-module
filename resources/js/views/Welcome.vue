@@ -70,6 +70,7 @@
                                     >
                                     <textarea
                                         cols="10"
+                                        rows="5"
                                         class="focus:outline-none p-2 text-sm"
                                         placeholder="Company Address"
                                     ></textarea>
