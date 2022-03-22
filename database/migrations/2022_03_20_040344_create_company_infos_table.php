@@ -18,7 +18,8 @@ class CreateCompanyInfosTable extends Migration
             $table->string('company_name', 100);
             $table->string('company_phone', 13);
             $table->string('company_wa_number', 13);
-            $table->string('comapny_email', 50);
+            $table->string('company_email', 50);
+            $table->string('company_image_logo', 100);
             $table->text('company_address');
             $table->timestamps();
         });
