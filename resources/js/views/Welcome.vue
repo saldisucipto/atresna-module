@@ -110,20 +110,18 @@
                                 alt=""
                                 class="mx-auto py-3 px-9 max-h-48"
                             />
-
                             <img
                                 v-else
                                 src="/images/logo.svg"
                                 alt=""
                                 class="mx-auto py-3 px-9 max-h-48"
                             />
+                            <input
+                                type="file"
+                                name="images"
+                                ref="imagesInput"
+                            />
                         </div>
-                        <button
-                            type="submit"
-                            class="bg-blue-700 text-white text-sm py-2 px-8 ml-3 drop-shadow-lg hover:bg-blue-400"
-                        >
-                            Change Logo
-                        </button>
                     </div>
                 </div>
             </section>

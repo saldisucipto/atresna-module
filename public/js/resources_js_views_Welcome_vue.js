@@ -6497,13 +6497,11 @@ var _hoisted_22 = {
   alt: "",
   "class": "mx-auto py-3 px-9 max-h-48"
 };
-
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "submit",
-  "class": "bg-blue-700 text-white text-sm py-2 px-8 ml-3 drop-shadow-lg hover:bg-blue-400"
-}, " Change Logo ", -1
-/* HOISTED */
-);
+var _hoisted_23 = {
+  type: "file",
+  name: "images",
+  ref: "imagesInput"
+};
 
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr")], -1
 /* HOISTED */
@@ -6570,7 +6568,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, ["prevent"])),
         type: "submit",
         "class": "bg-blue-700 text-white text-sm py-2 px-8 drop-shadow-lg hover:bg-blue-400"
-      }, " Save ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$data.company_image_logo === '/path/images/images.png' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_21)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_22))]), _hoisted_23])])])];
+      }, " Save ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$data.company_image_logo === '/path/images/images.png' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_21)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_22)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", _hoisted_23, null, 512
+      /* NEED_PATCH */
+      )])])])])];
     }),
     _: 1
     /* STABLE */
