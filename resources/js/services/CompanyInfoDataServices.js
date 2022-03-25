@@ -4,7 +4,7 @@ class CompanyInfoDataServices {
         return http.get("/com-info/index");
     }
     editCompanyInfo(data) {
-        return http.put("/com-info/update", data);
+        return http.post("/com-info/update", data);
     }
 }
 export default new CompanyInfoDataServices();

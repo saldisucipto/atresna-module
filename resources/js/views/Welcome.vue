@@ -102,25 +102,57 @@
                         </div>
                         <div class="flex flex-col justify-center w-full">
                             <img
+                                id="parent"
                                 v-if="
                                     company_image_logo ===
                                     '/path/images/images.png'
                                 "
-                                src="/images/logo.svg"
+                                :src="previewImage"
                                 alt=""
                                 class="mx-auto py-3 px-9 max-h-48"
                             />
                             <img
-                                v-else
-                                src="/images/logo.svg"
+                                id="parent1"
+                                v-else-if="company_image_logo === currentImage"
+                                :src="previewImage"
                                 alt=""
                                 class="mx-auto py-3 px-9 max-h-48"
                             />
-                            <input
-                                type="file"
-                                name="images"
-                                ref="imagesInput"
+
+                            <img
+                                id="parent1"
+                                v-else
+                                :src="`logo-images\\` + company_image_logo"
+                                alt=""
+                                class="mx-auto py-3 px-9 max-h-48"
                             />
+                            <div class="py-3 px-4">
+                                <form
+                                    class="flex"
+                                    action=""
+                                    enctype="multipart/form-data"
+                                >
+                                    <div class="flex-1">
+                                        <input
+                                            class=""
+                                            type="file"
+                                            accept="image/*"
+                                            ref="imagesInput"
+                                            @change="selectImage()"
+                                        />
+                                    </div>
+                                    <div
+                                        class="flex justify-center flex-1 h-10"
+                                    >
+                                        <button
+                                            class="bg-blue-600 px-5 py-2 text-white rounded-xl"
+                                            @click.prevent="changeImages()"
+                                        >
+                                            Change Logo
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,6 +169,7 @@ import Admin from "../layouts/Admin.vue";
 import SalesChart from "../components/Chart/SalesChart.vue";
 import PieChart from "../components/Chart/PieChart.vue";
 import CompanyInfoDataServices from "../services/CompanyInfoDataServices";
+import UploadImageServices from "../services/UploadImageServices";
 
 export default {
     name: "Welcome",
@@ -148,6 +181,11 @@ export default {
             company_email: "",
             company_image_logo: "",
             company_address: "",
+            currentImage: undefined,
+            previewImage: "/images/logo.svg",
+            progress: 0,
+            message: "",
+            imageInfos: [],
         };
     },
     components: {
@@ -156,6 +194,11 @@ export default {
         PieChart,
     },
     methods: {
+        selectImage() {
+            this.currentImage = this.$refs.imagesInput.files.item(0);
+            this.company_image_logo = this.$refs.imagesInput.files.item(0);
+            this.previewImage = URL.createObjectURL(this.currentImage);
+        },
         getCompanyInfo() {
             CompanyInfoDataServices.getCompanyInfo()
                 .then((response) => {
@@ -187,6 +230,17 @@ export default {
                 .catch((e) => {
                     console.log(e);
                 });
+        },
+        changeImages() {
+            // alert("Upload Method");
+            // console.log(this.currentImage);
+            this.progress = 0;
+            UploadImageServices.upload(this.currentImage);
+            // CompanyInfoDataServices.editCompanyInfo(this.currentImage).then(
+            //     (response) => {
+            //         console.log(response);
+            //     }
+            // );
         },
     },
     mounted() {

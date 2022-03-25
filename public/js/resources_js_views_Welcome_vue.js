@@ -5639,6 +5639,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Chart_SalesChart_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Chart/SalesChart.vue */ "./resources/js/components/Chart/SalesChart.vue");
 /* harmony import */ var _components_Chart_PieChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Chart/PieChart.vue */ "./resources/js/components/Chart/PieChart.vue");
 /* harmony import */ var _services_CompanyInfoDataServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/CompanyInfoDataServices */ "./resources/js/services/CompanyInfoDataServices.js");
+/* harmony import */ var _services_UploadImageServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/UploadImageServices */ "./resources/js/services/UploadImageServices.js");
+
 
 
 
@@ -5652,7 +5654,12 @@ __webpack_require__.r(__webpack_exports__);
       company_wa_number: "",
       company_email: "",
       company_image_logo: "",
-      company_address: ""
+      company_address: "",
+      currentImage: undefined,
+      previewImage: "/images/logo.svg",
+      progress: 0,
+      message: "",
+      imageInfos: []
     };
   },
   components: {
@@ -5661,6 +5668,11 @@ __webpack_require__.r(__webpack_exports__);
     PieChart: _components_Chart_PieChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
+    selectImage: function selectImage() {
+      this.currentImage = this.$refs.imagesInput.files.item(0);
+      this.company_image_logo = this.$refs.imagesInput.files.item(0);
+      this.previewImage = URL.createObjectURL(this.currentImage);
+    },
     getCompanyInfo: function getCompanyInfo() {
       var _this = this;
 
@@ -5683,6 +5695,16 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.log(e);
       });
+    },
+    changeImages: function changeImages() {
+      // alert("Upload Method");
+      // console.log(this.currentImage);
+      this.progress = 0;
+      _services_UploadImageServices__WEBPACK_IMPORTED_MODULE_4__["default"].upload(this.currentImage); // CompanyInfoDataServices.editCompanyInfo(this.currentImage).then(
+      //     (response) => {
+      //         console.log(response);
+      //     }
+      // );
     }
   },
   mounted: function mounted() {
@@ -6485,25 +6507,25 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_20 = {
   "class": "flex flex-col justify-center w-full"
 };
-var _hoisted_21 = {
-  key: 0,
-  src: "/images/logo.svg",
-  alt: "",
-  "class": "mx-auto py-3 px-9 max-h-48"
+var _hoisted_21 = ["src"];
+var _hoisted_22 = ["src"];
+var _hoisted_23 = ["src"];
+var _hoisted_24 = {
+  "class": "py-3 px-4"
 };
-var _hoisted_22 = {
-  key: 1,
-  src: "/images/logo.svg",
-  alt: "",
-  "class": "mx-auto py-3 px-9 max-h-48"
+var _hoisted_25 = {
+  "class": "flex",
+  action: "",
+  enctype: "multipart/form-data"
 };
-var _hoisted_23 = {
-  type: "file",
-  name: "images",
-  ref: "imagesInput"
+var _hoisted_26 = {
+  "class": "flex-1"
+};
+var _hoisted_27 = {
+  "class": "flex justify-center flex-1 h-10"
 };
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr")], -1
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr")], -1
 /* HOISTED */
 );
 
@@ -6568,14 +6590,51 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, ["prevent"])),
         type: "submit",
         "class": "bg-blue-700 text-white text-sm py-2 px-8 drop-shadow-lg hover:bg-blue-400"
-      }, " Save ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$data.company_image_logo === '/path/images/images.png' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_21)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_22)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", _hoisted_23, null, 512
-      /* NEED_PATCH */
-      )])])])])];
+      }, " Save ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$data.company_image_logo === '/path/images/images.png' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+        key: 0,
+        id: "parent",
+        src: $data.previewImage,
+        alt: "",
+        "class": "mx-auto py-3 px-9 max-h-48"
+      }, null, 8
+      /* PROPS */
+      , _hoisted_21)) : $data.company_image_logo === $data.currentImage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+        key: 1,
+        id: "parent1",
+        src: $data.previewImage,
+        alt: "",
+        "class": "mx-auto py-3 px-9 max-h-48"
+      }, null, 8
+      /* PROPS */
+      , _hoisted_22)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+        key: 2,
+        id: "parent1",
+        src: "logo-images\\" + $data.company_image_logo,
+        alt: "",
+        "class": "mx-auto py-3 px-9 max-h-48"
+      }, null, 8
+      /* PROPS */
+      , _hoisted_23)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        "class": "",
+        type: "file",
+        accept: "image/*",
+        ref: "imagesInput",
+        onChange: _cache[6] || (_cache[6] = function ($event) {
+          return $options.selectImage();
+        })
+      }, null, 544
+      /* HYDRATE_EVENTS, NEED_PATCH */
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        "class": "bg-blue-600 px-5 py-2 text-white rounded-xl",
+        onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $options.changeImages();
+        }, ["prevent"]))
+      }, " Change Logo ")])])])])])])])];
     }),
     _: 1
     /* STABLE */
 
-  })]), _hoisted_24], 64
+  })]), _hoisted_28], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -6709,7 +6768,7 @@ var CompanyInfoDataServices = /*#__PURE__*/function () {
   }, {
     key: "editCompanyInfo",
     value: function editCompanyInfo(data) {
-      return _http_config__WEBPACK_IMPORTED_MODULE_0__["default"].put("/com-info/update", data);
+      return _http_config__WEBPACK_IMPORTED_MODULE_0__["default"].post("/com-info/update", data);
     }
   }]);
 
@@ -6717,6 +6776,50 @@ var CompanyInfoDataServices = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new CompanyInfoDataServices());
+
+/***/ }),
+
+/***/ "./resources/js/services/UploadImageServices.js":
+/*!******************************************************!*\
+  !*** ./resources/js/services/UploadImageServices.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _http_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http-config */ "./resources/js/services/http-config.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+
+
+var uploadImagesServices = /*#__PURE__*/function () {
+  function uploadImagesServices() {
+    _classCallCheck(this, uploadImagesServices);
+  }
+
+  _createClass(uploadImagesServices, [{
+    key: "upload",
+    value: function upload(file) {
+      console.log("This Is Form Upload Images Class");
+      console.log(file);
+      var data = new FormData();
+      data.append("files", file); // console.log(file);
+
+      return _http_config__WEBPACK_IMPORTED_MODULE_0__["default"].post("/com-info/update", data);
+    }
+  }]);
+
+  return uploadImagesServices;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new uploadImagesServices());
 
 /***/ }),
 
@@ -6737,7 +6840,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   baseURL: "http://cms.test/api/",
   headers: {
-    "Content-type": "application/json"
+    "Content-type": "multipart/form-data"
   }
 }));
 

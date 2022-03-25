@@ -28,7 +28,7 @@ class FilesHandling
         /**
          * Update Images Files
          */
-        $image_path = public_path($path. "\\") . $old_images;
+        $image_path = public_path($path. '\\') . $old_images;
         if (file_exists($image_path)) {
             @unlink($image_path);
         }
