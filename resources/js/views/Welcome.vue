@@ -1,5 +1,8 @@
 <template>
     <div class="">
+        <succes-notifications>
+            Berhasil Melakukan Operasi
+        </succes-notifications>
         <admin>
             <section>
                 <div class="grid md:grid-cols-2 my-3 gap-4">
@@ -170,6 +173,7 @@ import SalesChart from "../components/Chart/SalesChart.vue";
 import PieChart from "../components/Chart/PieChart.vue";
 import CompanyInfoDataServices from "../services/CompanyInfoDataServices";
 import UploadImageServices from "../services/UploadImageServices";
+import SuccesNotifications from "../components/Notifications/SuccesNotifications.vue";
 
 export default {
     name: "Welcome",
@@ -192,6 +196,7 @@ export default {
         Admin,
         SalesChart,
         PieChart,
+        SuccesNotifications,
     },
     methods: {
         selectImage() {
