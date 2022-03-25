@@ -27,15 +27,13 @@ class CompanyInfoController extends Controller
         $data = $update->all();
         $image = $update->file('files');
         $file_images = new FilesHandling;
-        // // return response()->json(['message' => 'data di upload', 'data' => $update->file()]);
-        // dd($image);
-        // // dd($update);
+        // dd($update);
         // die;
         if ($image) {
             $file_images->update($companyInfo->company_image_logo, 'logo-images');
             $companyInfo->company_image_logo = $file_images->upload($update->file('files'), 'logo-images', 'logo-images');
             $companyInfo->save();
-            return response()->json(['message' => 'Update Data Berhasil'], 201);
+            return response()->json(['message' => 'Berhasil Memperbaharui Logo'], 201);
         } else {
             $companyInfo->company_name = $data['company_name'];
             $companyInfo->company_phone = $data['company_phone'];

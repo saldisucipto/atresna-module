@@ -1,8 +1,11 @@
 <template>
     <div class="">
-        <succes-notifications>
-            Berhasil Melakukan Operasi
-        </succes-notifications>
+        <Transition v-if="notif" name="slide-fade">
+            <succes-notifications>
+                {{ message }}
+            </succes-notifications>
+        </Transition>
+
         <admin>
             <section>
                 <div class="grid md:grid-cols-2 my-3 gap-4">
@@ -142,13 +145,16 @@
                                             accept="image/*"
                                             ref="imagesInput"
                                             @change="selectImage()"
+                                            required="true"
                                         />
                                     </div>
                                     <div
+                                        v-if="currentImage !== undefined"
                                         class="flex justify-center flex-1 h-10"
                                     >
                                         <button
-                                            class="bg-blue-600 px-5 py-2 text-white rounded-xl"
+                                            class="bg-blue-600 px-5 py-2 text-white rounded-xl hover:bg-secondary-color"
+                                            type="submit"
                                             @click.prevent="changeImages()"
                                         >
                                             Change Logo
@@ -187,9 +193,8 @@ export default {
             company_address: "",
             currentImage: undefined,
             previewImage: "/images/logo.svg",
-            progress: 0,
+            notif: false,
             message: "",
-            imageInfos: [],
         };
     },
     components: {
@@ -230,22 +235,25 @@ export default {
             };
             CompanyInfoDataServices.editCompanyInfo(data)
                 .then((response) => {
-                    console.log(response.data);
+                    this.notif = true;
+                    this.message = response.data.message;
+                    setTimeout(() => {
+                        this.notif = false;
+                    }, 2000);
                 })
                 .catch((e) => {
                     console.log(e);
                 });
         },
         changeImages() {
-            // alert("Upload Method");
-            // console.log(this.currentImage);
-            this.progress = 0;
-            UploadImageServices.upload(this.currentImage);
-            // CompanyInfoDataServices.editCompanyInfo(this.currentImage).then(
-            //     (response) => {
-            //         console.log(response);
-            //     }
-            // );
+            UploadImageServices.upload(this.currentImage).then((response) => {
+                this.notif = true;
+                this.message = response.data.message;
+                this.$refs.imagesInput.value = null;
+                setTimeout(() => {
+                    this.notif = false;
+                }, 2000);
+            });
         },
     },
     mounted() {
@@ -255,4 +263,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+}
+</style>
