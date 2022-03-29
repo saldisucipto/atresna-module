@@ -108,8 +108,8 @@
                                     class="fas fa-tv mr-2 text-sm"
                                     :class="[
                                         isActive
-                                            ? 'opacity-75'
-                                            : 'text-dark-secondary',
+                                            ? 'opacity-75 hover:text-gray-700'
+                                            : ' hover:text-gray-700',
                                     ]"
                                 ></i>
                                 Dashboard
@@ -152,7 +152,7 @@
                     <!-- Navigation -->
                     <li class="items-center">
                         <router-link
-                            to="/user-management"
+                            to="/static"
                             v-slot="{ href, navigate, isActive }"
                         >
                             <a
