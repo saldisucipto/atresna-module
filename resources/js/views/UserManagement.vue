@@ -7,7 +7,7 @@
         </Transition>
         <admin>
             <section>
-                <div class="grid md:grid-cols-2 my-2 gap-2">
+                <div class="grid md:grid-cols-2 my-4 gap-2">
                     <div class="h-full rounded-md">
                         <div class="flex flex-col gap-3">
                             <div class="mx-auto">
@@ -48,90 +48,8 @@
                         </div>
                     </div>
                     <div class="h-full rounded-md bg-gray-100">
-                        <div class="flex flex-col gap-2 justify-start p-1">
-                            <div class="bg-white h-10 rounded-xl my-1">
-                                <div class="flex justify-between h-full mx-4">
-                                    <div class="flex-1 my-auto">
-                                        Table Header
-                                    </div>
-                                    <div
-                                        class="flex-1 my-auto justify-end gap-1 flex"
-                                    >
-                                        <span
-                                            class="text-xs font-semibold my-auto"
-                                            >Search</span
-                                        >
-                                        <input
-                                            class="bg-gray-100 rounded-xl px-2 m-1 text-sm py-1 active:outline-none focus:outline-none"
-                                            type="text"
-                                            placeholder="Search data"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-white w-full rounded-xl">
-                                <div class="mx-2 py-1">
-                                    <table class="table-auto w-full">
-                                        <tr class="border-b-2 my-2">
-                                            <th
-                                                class="font-semibold text-sm text-gray-800 w-4"
-                                            >
-                                                No
-                                            </th>
-                                            <th
-                                                class="font-semibold text-sm text-gray-800 w-4"
-                                            >
-                                                Nama
-                                            </th>
-                                            <th
-                                                class="font-semibold text-sm text-gray-800 w-4"
-                                            >
-                                                Email
-                                            </th>
-                                            <th
-                                                class="font-semibold text-sm text-gray-800 w-4"
-                                            >
-                                                User Role
-                                            </th>
-                                            <th
-                                                class="font-semibold text-sm text-gray-800 w-4"
-                                            >
-                                                Action
-                                            </th>
-                                        </tr>
-                                        <tr class="w-full border-b-2">
-                                            <td
-                                                class="font-thin py-2 text-xs text-gray-800 text-center"
-                                            >
-                                                1
-                                            </td>
-                                            <td
-                                                class="font-thin py-2 text-xs text-gray-800 text-center"
-                                            >
-                                                Saldi Sucipto
-                                            </td>
-                                            <td
-                                                class="font-thin py-2 text-xs text-gray-800 text-center"
-                                            >
-                                                saldisucipto@gmail.com
-                                            </td>
-                                            <td
-                                                class="font-thin py-2 text-xs text-gray-800 text-center"
-                                            >
-                                                Super Admin
-                                            </td>
-                                            <td
-                                                class="font-thin py-2 text-xs text-secondary-color cursor-pointer text-center"
-                                            >
-                                                <i
-                                                    class="fas fa-plus-circle"
-                                                ></i>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- table -->
+                        <table-user></table-user>  
                     </div>
                 </div>
             </section>
@@ -142,12 +60,14 @@
 <script>
 import Admin from "../layouts/Admin.vue";
 import SuccesNotifications from "../components/Notifications/SuccesNotifications.vue";
+import TableUser from "../components/Table/TableUser.vue";
 
 export default {
     name: "UserManagement",
     components: {
         Admin,
         SuccesNotifications,
+        TableUser,
     },
 };
 </script>
