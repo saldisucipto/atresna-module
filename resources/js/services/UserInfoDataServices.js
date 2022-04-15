@@ -11,6 +11,14 @@ class UserInfoDataServices {
         };
         return http.post("/user-info/create", data, config);
     }
+    showUserDetails(id) {
+        const config = {
+            headers: {
+                "Content-type": "application/json",
+            },
+        };
+        return http.get("/user-info/user/" + id);
+    }
     editCompanyInfo(data) {
         const config = {
             headers: {

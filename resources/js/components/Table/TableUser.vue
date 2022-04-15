@@ -22,7 +22,7 @@
                 </div>
             </div>
             <button
-                @click.prevent="modalController"
+                @click.prevent="modalController('createNew')"
                 class="my-1 bg-secondary-color text-xs w-20 text-white py-1 rounded-lg drop-shadow-lg"
             >
                 New Data
@@ -52,14 +52,14 @@
                             </th>
                         </tr>
                         <tr
-                            v-for="userInfo in userData"
+                            v-for="(userInfo, index) in userData"
                             :key="userInfo.id"
                             class="w-full border-b-2"
                         >
                             <td
                                 class="font-thin py-2 text-xs text-gray-800 text-center"
                             >
-                                {{ userInfo.id }}
+                                {{ ++index }}
                             </td>
                             <td
                                 class="font-thin py-2 text-xs text-gray-800 text-center"
@@ -77,9 +77,16 @@
                                 {{ userInfo.user_role }}
                             </td>
                             <td
-                                class="font-thin py-2 text-xs text-secondary-color cursor-pointer text-center"
+                                class="font-thin py-2 text-xs text-secondary-color cursor-pointer text-centern flex justify-center gap-2"
                             >
-                                <i class="fas fa-plus-circle"></i>
+                                <button
+                                    @click.prevent="
+                                        modalController('edit', userInfo.id)
+                                    "
+                                >
+                                    <i class="fas fa-eye text-yellow-500"></i>
+                                </button>
+                                <i class="fas fa-trash-alt text-red-600"></i>
                             </td>
                         </tr>
                     </table>
@@ -114,7 +121,7 @@
                             <p class="text-2xl font-bold">User Account</p>
                             <!-- Modal Close Button -->
                             <div class="modal-close cursor-pointer z-50">
-                                <button @click.prevent="modalController">
+                                <button @click.prevent="closedModal">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
@@ -155,20 +162,24 @@
                                     name="userRole"
                                     id=""
                                     class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                                    aria-placeholder="Select User Role"
                                     v-model="this.user_role"
                                 >
-                                    <option disabled selected>
-                                        Select User Role
+                                    <option value="null" disabled selected>
+                                        Choose User Role
                                     </option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
+                                    <option
+                                        v-for="pilihan in option"
+                                        :value="pilihan"
+                                        :selected="pilihan == this.user_role"
+                                    >
+                                        {{ pilihan }}
+                                    </option>
                                 </select>
                             </div>
                             <!-- Password -->
                             <div class="mb-3">
                                 <label class="inline-block mb-2"
-                                    >Password</label
+                                    >Ganti Password</label
                                 >
                                 <input
                                     type="password"
@@ -228,14 +239,36 @@ export default {
             message: false,
             notif: false,
             message: "",
+            numbering: 1,
+            selected: null,
+            option: ["Admin", "User"],
         };
     },
     components: {
         SuccesNotifications,
     },
     methods: {
-        modalController() {
-            this.modalCreate = !this.modalCreate;
+        modalController(typeModal, Id = null) {
+            if (typeModal === "createNew") {
+                this.name = null;
+                this.email = null;
+                this.user_role = null;
+                this.password = null;
+                this.modalCreate = !this.modalCreate;
+            } else if (typeModal === "edit") {
+                this.modalCreate = !this.modalCreate;
+                UserInfoDataServices.showUserDetails(Id)
+                    .then((resp) => {
+                        // console.log(resp.data.name);
+                        this.name = resp.data.name;
+                        this.email = resp.data.email;
+                        this.user_role = resp.data.user_role;
+                        this.password = resp.data.password;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         },
         getUserInfo() {
             UserInfoDataServices.getUserData().then((resp) => {
@@ -251,10 +284,10 @@ export default {
                 user_role: this.user_role,
             };
             if (
-                data.name == null &&
-                data.email == null &&
-                data.password == null &&
-                data.user_role == null
+                data.name === null &&
+                data.email === null &&
+                data.password === null &&
+                data.user_role === null
             ) {
                 this.modalCreate = true;
                 this.message = true;
@@ -285,6 +318,9 @@ export default {
             // console.log(data);
             this.modalCreate = !this.modalCreate;
             this.getUserInfo();
+        },
+        closedModal() {
+            return (this.modalCreate = !this.modalCreate);
         },
     },
     mounted() {
