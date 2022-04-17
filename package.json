@@ -26,6 +26,8 @@
         "@popperjs/core": "^2.11.4",
         "chart.js": "^2.9.4",
         "vue": "^3.2.31",
-        "vue-router": "^4.0.14"
+        "vue-router": "^4.0.14",
+        "vuex": "^4.0.2",
+        "vuex-persistedstate": "^4.1.0"
     }
 }

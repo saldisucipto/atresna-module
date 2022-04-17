@@ -152,7 +152,7 @@
                     <!-- Navigation -->
                     <li class="items-center">
                         <router-link
-                            to="/static"
+                            to="/"
                             v-slot="{ href, navigate, isActive }"
                         >
                             <a

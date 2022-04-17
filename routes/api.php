@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CompanyInfoController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\AuthController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -23,3 +24,7 @@ Route::prefix('user-info')->group(function () {
     Route::put('/update/{id}', [UserController::class, 'update'])->name('userUpdate');
     Route::match(['get', 'DELETE'], '/user/{id}', [UserController::class, 'show'])->name('userShow');
 });
+
+
+// login
+Route::post('user-login', [AuthController::class, 'login'])->name('loginUser');
