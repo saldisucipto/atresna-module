@@ -14,6 +14,9 @@ class UserInfoDataServices {
     showUserDetails(id) {
         return http.get("/user-info/user/" + id);
     }
+    delUserDetails(id) {
+        return http.delete("/user-info/user/" + id);
+    }
     editUserInfo(data, id) {
         const config = {
             headers: {

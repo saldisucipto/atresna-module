@@ -86,7 +86,11 @@
                                 >
                                     <i class="fas fa-eye text-yellow-500"></i>
                                 </button>
-                                <i class="fas fa-trash-alt text-red-600"></i>
+                                <button @click="modalDelete(userInfo.id)">
+                                    <i
+                                        class="fas fa-trash-alt text-red-600"
+                                    ></i>
+                                </button>
                             </td>
                         </tr>
                     </table>
@@ -240,18 +244,29 @@
             </div>
         </div>
         <!-- End Modal -->
+        <!-- Alert Confrim -->
+        <confirm-alert
+            v-if="modalConfirm"
+            @closedButton="this.modalConfirm = false"
+            @deleteConfirm="deleteUser"
+        >
+            {{ this.name }} || {{ this.email }}
+        </confirm-alert>
+        <!-- End Confirm Alert -->
     </div>
 </template>
 
 <script>
 import UserInfoDataServices from "../../services/UserInfoDataServices";
 import SuccesNotifications from "../Notifications/SuccesNotifications.vue";
+import ConfirmAlert from "../Alert/ConfirmAlert.vue";
 
 export default {
     name: "TableUser",
     data() {
         return {
             userData: [],
+            modalConfirm: false,
             modalCreate: false,
             idUser: null,
             name: null,
@@ -270,6 +285,7 @@ export default {
     },
     components: {
         SuccesNotifications,
+        ConfirmAlert,
     },
     methods: {
         modalController(typeModal, Id = null) {
@@ -390,6 +406,30 @@ export default {
             });
             this.modalCreate = !this.modalCreate;
             this.getUserInfo();
+        },
+        modalDelete(id) {
+            this.modalConfirm = !this.modalConfirm;
+            UserInfoDataServices.showUserDetails(id)
+                .then((resp) => {
+                    // console.log(resp.data);
+                    this.idUser = resp.data.id;
+                    this.name = resp.data.name;
+                    this.email = resp.data.email;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        deleteUser() {
+            UserInfoDataServices.delUserDetails(this.idUser).then((resp) => {
+                this.notif = true;
+                this.message = resp.data.message;
+                setTimeout(() => {
+                    this.notif = false;
+                    this.getUserInfo();
+                }, 1000);
+                this.modalConfirm = !this.modalConfirm;
+            });
         },
     },
     mounted() {

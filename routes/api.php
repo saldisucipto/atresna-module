@@ -20,6 +20,6 @@ Route::prefix('user-info')->group(function () {
     // User Info
     Route::get('/users', [UserController::class, 'index'])->name('userInfo');
     Route::post('/create', [UserController::class, 'create'])->name('createUser');
-    Route::get('/user/{id}', [UserController::class, 'show'])->name('userShow');
     Route::put('/update/{id}', [UserController::class, 'update'])->name('userUpdate');
+    Route::match(['get', 'DELETE'], '/user/{id}', [UserController::class, 'show'])->name('userShow');
 });

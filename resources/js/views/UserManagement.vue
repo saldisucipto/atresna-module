@@ -49,7 +49,7 @@
                     </div>
                     <div class="h-full rounded-md bg-gray-100">
                         <!-- table -->
-                        <table-user></table-user>  
+                        <table-user></table-user>
                     </div>
                 </div>
             </section>
@@ -61,6 +61,7 @@
 import Admin from "../layouts/Admin.vue";
 import SuccesNotifications from "../components/Notifications/SuccesNotifications.vue";
 import TableUser from "../components/Table/TableUser.vue";
+import ConfirmAlert from "../components/Alert/ConfirmAlert.vue";
 
 export default {
     name: "UserManagement",
@@ -68,6 +69,7 @@ export default {
         Admin,
         SuccesNotifications,
         TableUser,
+        ConfirmAlert,
     },
 };
 </script>

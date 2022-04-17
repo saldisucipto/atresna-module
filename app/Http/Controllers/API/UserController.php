@@ -19,10 +19,15 @@ class UserController extends Controller
         return response()->json($data, 200);
     }
 
-    public function show($id=null)
+    public function show(Request $request, $id=null)
     {
         $data = User::find($id);
-        return response()->json($data, 200);
+        if ($request->isMethod('get')) {
+            return response()->json($data, 200);
+        } elseif ($request->isMethod('DELETE')) {
+            $data->delete();
+            return response()->json(['message' => 'Berhasil Dihapus'], 200);
+        }
     }
 
     public function create(Request $request)
