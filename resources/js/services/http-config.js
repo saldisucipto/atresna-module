@@ -1,4 +1,4 @@
 import axios from "axios";
 export default axios.create({
-    baseURL: "http://atresna-module.test/api/",
+    baseURL: "http://cms.test/api/",
 });

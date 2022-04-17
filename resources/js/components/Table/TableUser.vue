@@ -177,15 +177,29 @@
                                 </select>
                             </div>
                             <!-- Password -->
-                            <div class="mb-3">
+                            <div v-if="formTypeNew" class="mb-3">
                                 <label class="inline-block mb-2"
-                                    >Ganti Password</label
+                                    >Create Password</label
                                 >
                                 <input
                                     type="password"
                                     class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                                     placeholder="Password"
                                     v-model="this.password"
+                                    name="password"
+                                />
+                            </div>
+                            <!-- Password -->
+                            <div v-else class="mb-3">
+                                <label class="inline-block mb-2"
+                                    >Update Password</label
+                                >
+                                <input
+                                    type="password"
+                                    class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                                    placeholder="Password"
+                                    v-model="this.password"
+                                    name="password"
                                 />
                             </div>
                             <!-- Confirm Password -->
@@ -207,10 +221,18 @@
                                 </span>
                             </div>
                             <button
+                                v-if="formTypeNew"
                                 @click.prevent="createNewUser"
                                 class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
                             >
                                 Submit
+                            </button>
+                            <button
+                                v-else
+                                @click.prevent="updateUser(this.idUser)"
+                                class="block w-full bg-yellow-600 text-white py-1.5 px-3 rounded transition hover:bg-yellow-700"
+                            >
+                                update
                             </button>
                         </form>
                     </div>
@@ -231,6 +253,7 @@ export default {
         return {
             userData: [],
             modalCreate: false,
+            idUser: null,
             name: null,
             email: null,
             password: null,
@@ -242,6 +265,7 @@ export default {
             numbering: 1,
             selected: null,
             option: ["Admin", "User"],
+            formTypeNew: true,
         };
     },
     components: {
@@ -255,11 +279,14 @@ export default {
                 this.user_role = null;
                 this.password = null;
                 this.modalCreate = !this.modalCreate;
+                this.formTypeNew = true;
             } else if (typeModal === "edit") {
                 this.modalCreate = !this.modalCreate;
                 UserInfoDataServices.showUserDetails(Id)
                     .then((resp) => {
-                        // console.log(resp.data.name);
+                        // console.log(resp.data);
+                        this.formTypeNew = false;
+                        this.idUser = resp.data.id;
                         this.name = resp.data.name;
                         this.email = resp.data.email;
                         this.user_role = resp.data.user_role;
@@ -321,6 +348,48 @@ export default {
         },
         closedModal() {
             return (this.modalCreate = !this.modalCreate);
+        },
+        updateUser(id) {
+            // data
+            let data = {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                user_role: this.user_role,
+            };
+            if (
+                data.name === null &&
+                data.email === null &&
+                data.user_role === null
+            ) {
+                this.modalCreate = true;
+                this.message = true;
+                this.message_error =
+                    "Hai.. Ada Data Yang kosong di Kolomnya, Tolong lengkapi ya!";
+                return;
+            }
+            // validated
+            if (this.password !== this.confirm_password && this.name === null) {
+                this.modalCreate = true;
+                this.message = true;
+                this.message_error =
+                    "Passwordnya Nggas Sama Nih, Periksa Lagi ya";
+                return;
+            }
+            UserInfoDataServices.editUserInfo(data, id).then((res) => {
+                this.notif = true;
+                this.message = res.data.message;
+                setTimeout(() => {
+                    this.notif = false;
+                    this.getUserInfo();
+                }, 1000);
+                this.name = null;
+                this.email = null;
+                this.password = null;
+                this.user_role = null;
+            });
+            this.modalCreate = !this.modalCreate;
+            this.getUserInfo();
         },
     },
     mounted() {

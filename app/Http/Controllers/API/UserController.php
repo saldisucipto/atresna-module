@@ -43,8 +43,25 @@ class UserController extends Controller
         $user->name = $dataInput['name'];
         $user->email = $dataInput['email'];
         $user->user_role = $dataInput['user_role'];
-        $user->password = Hash::make($dataInput['email']);
+        $user->password = Hash::make($dataInput['password']);
         $user->save();
         return response()->json(['message' => 'Berhasil Input User Baru'], 201);
+    }
+
+    // function update
+    public function update(Request $request, $id = null)
+    {
+        $dataInput = $request->all();
+        $user = User::find($id);
+        $user->name = $dataInput['name'];
+        $user->email = $dataInput['email'];
+        $user->user_role = $dataInput['user_role'];
+        if ($request->password) {
+            $user->password = Hash::make($dataInput['password']);
+        } else {
+            $user->password = $user->password;
+        }
+        $user->save();
+        return response()->json(['message' => 'Berhasil Input Update User'], 201);
     }
 }
