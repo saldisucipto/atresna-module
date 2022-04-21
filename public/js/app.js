@@ -25396,7 +25396,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
           commit = _ref.commit;
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_1___default().post("api/user-login", data).then(function (response) {
-          var token = response.data.token;
+          var token = response.data.access_token;
           localStorage.setItem("token", token);
           _auth__WEBPACK_IMPORTED_MODULE_2__["default"].setHeaderToken(token);
           dispatch("get_user");
@@ -25472,8 +25472,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var _module_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../module/store */ "./resources/js/module/store/index.js");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
+
 
 var routes = [{
   path: "/login",
@@ -25484,17 +25486,35 @@ var routes = [{
   path: "/",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_views_Welcome_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Welcome.vue */ "./resources/js/views/Welcome.vue"));
+  },
+  name: "Home",
+  meta: {
+    auth: true
   }
 }, {
   path: "/user-management",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_views_UserManagement_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/UserManagement.vue */ "./resources/js/views/UserManagement.vue"));
+  },
+  meta: {
+    auth: true
   }
 }];
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.createWebHistory)(process.env.BASE_URL),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createWebHistory)(process.env.BASE_URL),
   routes: routes,
   linkActiveClass: ""
+});
+router.beforeEach(function (to, from, next) {
+  if (to.meta.auth) {
+    if (!_module_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.isLoggedIn) {
+      next("/login");
+      return;
+    } // next();
+
+  }
+
+  next(); // return;
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 

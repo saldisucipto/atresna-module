@@ -33,7 +33,7 @@ const store = createStore({
                 axios
                     .post("api/user-login", data)
                     .then((response) => {
-                        const token = response.data.token;
+                        const token = response.data.access_token;
                         localStorage.setItem("token", token);
                         auth.setHeaderToken(token);
                         dispatch("get_user");

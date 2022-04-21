@@ -20,8 +20,12 @@ class AuthController extends Controller
         $user = Auth::user();
         $user->save();
         $token = $user->createToken('auth_token')->plainTextToken;
+        $response = [
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ];
 
         return response()
-            ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', ]);
+            ->json($response, 200);
     }
 }

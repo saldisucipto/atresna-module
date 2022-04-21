@@ -16,6 +16,7 @@
                             <div>
                                 <h1 class="text-gray-800 font-semibold text-lg">
                                     Company Information
+                                    {{ users }}
                                 </h1>
                             </div>
                             <div class="flex flex-col gap-3">
@@ -180,6 +181,7 @@ import PieChart from "../components/Chart/PieChart.vue";
 import CompanyInfoDataServices from "../services/CompanyInfoDataServices";
 import UploadImageServices from "../services/UploadImageServices";
 import SuccesNotifications from "../components/Notifications/SuccesNotifications.vue";
+import { mapState } from "vuex";
 
 export default {
     name: "Welcome",
@@ -195,6 +197,7 @@ export default {
             previewImage: "/images/logo.svg",
             notif: false,
             message: "",
+            userInfo: [],
         };
     },
     components: {
@@ -202,6 +205,12 @@ export default {
         SalesChart,
         PieChart,
         SuccesNotifications,
+    },
+    computed: {
+        ...mapState({
+            isLoggedIn: "isLoggedIn",
+            users: "users",
+        }),
     },
     methods: {
         selectImage() {
@@ -259,6 +268,7 @@ export default {
     mounted() {
         // get the company info
         this.getCompanyInfo();
+        // this.getUserInfo();
     },
 };
 </script>

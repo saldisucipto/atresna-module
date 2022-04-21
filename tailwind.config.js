@@ -68,6 +68,9 @@ module.exports = {
             backgroundSize: {
                 full: "100%",
             },
+            screens: {
+                hape: { max: "400px" },
+            },
         },
     },
     variants: [

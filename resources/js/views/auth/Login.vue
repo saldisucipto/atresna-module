@@ -15,7 +15,7 @@
                             />
                         </div>
                     </div>
-                    <div class="flex-auto lg:px-10 py-10 pt-0">
+                    <div class="flex-auto lg:px-10 py-10 pt-0 hape:mx-3">
                         <div class="mb-3 font-bold">
                             <small class="text-secondary-color uppercase">
                                 <i class="fas fa-key"></i> Login Into Your
@@ -85,7 +85,7 @@ export default {
             this.$store
                 .dispatch("login", this.form)
                 .then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     this.$router.push("/");
                 })
                 .catch((err) => {

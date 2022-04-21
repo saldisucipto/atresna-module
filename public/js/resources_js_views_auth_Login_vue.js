@@ -26,8 +26,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$store.dispatch("login", this.form).then(function (response) {
-        console.log(response);
-
+        // console.log(response);
         _this.$router.push("/");
       })["catch"](function (err) {
         _this.errors = err.response.data.errors;
@@ -76,7 +75,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_6 = {
-  "class": "flex-auto lg:px-10 py-10 pt-0"
+  "class": "flex-auto lg:px-10 py-10 pt-0 hape:mx-3"
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {

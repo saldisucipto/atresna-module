@@ -3495,6 +3495,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_CompanyInfoDataServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/CompanyInfoDataServices */ "./resources/js/services/CompanyInfoDataServices.js");
 /* harmony import */ var _services_UploadImageServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/UploadImageServices */ "./resources/js/services/UploadImageServices.js");
 /* harmony import */ var _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Notifications/SuccesNotifications.vue */ "./resources/js/components/Notifications/SuccesNotifications.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -3514,7 +3522,8 @@ __webpack_require__.r(__webpack_exports__);
       currentImage: undefined,
       previewImage: "/images/logo.svg",
       notif: false,
-      message: ""
+      message: "",
+      userInfo: []
     };
   },
   components: {
@@ -3523,6 +3532,10 @@ __webpack_require__.r(__webpack_exports__);
     PieChart: _components_Chart_PieChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     SuccesNotifications: _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)({
+    isLoggedIn: "isLoggedIn",
+    users: "users"
+  })),
   methods: {
     selectImage: function selectImage() {
       this.currentImage = this.$refs.imagesInput.files.item(0);
@@ -3573,7 +3586,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     // get the company info
-    this.getCompanyInfo();
+    this.getCompanyInfo(); // this.getUserInfo();
   }
 });
 
@@ -4340,15 +4353,9 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "p-3 flex flex-col justify-start gap-2"
 };
-
-var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-    "class": "text-gray-800 font-semibold text-lg"
-  }, " Company Information ")], -1
-  /* HOISTED */
-  );
-});
-
+var _hoisted_5 = {
+  "class": "text-gray-800 font-semibold text-lg"
+};
 var _hoisted_6 = {
   "class": "flex flex-col gap-3"
 };
@@ -4484,7 +4491,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_admin, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_5, " Company Information " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.users), 1
+      /* TEXT */
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         "class": "focus:outline-none focus-within:ring-0 focus:ring-0 focus:border-0 p-2 text-sm",
         type: "text",
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
