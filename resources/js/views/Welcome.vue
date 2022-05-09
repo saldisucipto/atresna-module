@@ -7,7 +7,7 @@
         </Transition>
 
         <admin>
-            <section>
+            <section class="hape:mt-16">
                 <div class="grid md:grid-cols-2 my-3 gap-4">
                     <div
                         class="w-full h-full bg-gray-50 rounded-lg drop-shadow-lg"

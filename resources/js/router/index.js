@@ -31,11 +31,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.auth) {
-        if (!store.getters.isLoggedIn) {
+        let token = localStorage.getItem("token");
+        // console.log(token);
+        if (token === null) {
             next("/login");
             return;
         }
-        // next();
     }
     next();
     // return;

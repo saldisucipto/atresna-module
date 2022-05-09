@@ -15,6 +15,21 @@
                             />
                         </div>
                     </div>
+                    <div
+                        v-if="errors != null"
+                        class="my-2 bg-red-600 text-white hape:mx-3 rounded-md text-center mx-10"
+                    >
+                        <span class="py-1 text-sm">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            {{ errors }}
+                        </span>
+                    </div>
+                    <div
+                        v-if="loading"
+                        class="flex items-center justify-center"
+                    >
+                        <div class="loader"></div>
+                    </div>
                     <div class="flex-auto lg:px-10 py-10 pt-0 hape:mx-3">
                         <div class="mb-3 font-bold">
                             <small class="text-secondary-color uppercase">
@@ -31,6 +46,7 @@
                                     Email
                                 </label>
                                 <input
+                                    required
                                     type="email"
                                     class="border-0 px-3 py-3 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Email"
@@ -46,6 +62,7 @@
                                     Password
                                 </label>
                                 <input
+                                    required
                                     type="password"
                                     class="border-0 px-3 py-3 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Password"
@@ -78,22 +95,47 @@ export default {
                 password: "",
             },
             errors: null,
+            loading: false,
         };
     },
     methods: {
-        userLogin() {
-            this.$store
+        async userLogin() {
+            this.errors = null;
+            this.loading = true;
+            await this.$store
                 .dispatch("login", this.form)
                 .then((response) => {
-                    // console.log(response);
-                    this.$router.push("/");
+                    setTimeout(() => {
+                        this.$router.push({ name: "Home" });
+                    }, 500);
                 })
                 .catch((err) => {
-                    this.errors = err.response.data.errors;
+                    this.loading = false;
+                    this.errors =
+                        "Sepertinya Email dan Passwordnya Salah, Mohon dicek Kembali";
                 });
+            this.loading = false;
         },
     },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.loader {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #f5821f; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>

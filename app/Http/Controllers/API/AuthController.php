@@ -18,11 +18,13 @@ class AuthController extends Controller
             ->json(['message' => 'Unauthorized'], 401);
         }
         $user = Auth::user();
-        $user->save();
         $token = $user->createToken('auth_token')->plainTextToken;
+        $user->remember_token = $token;
+        $user->update();
         $response = [
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'user' => $user,
         ];
 
         return response()
