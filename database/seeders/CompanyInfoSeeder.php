@@ -16,7 +16,7 @@ class CompanyInfoSeeder extends Seeder
     {
         // make seeder COmpany Info
         DB::table('company_info')->insert([
-            'company_name' => 'PT.BERKAS SELALU SEJAHTERA',
+            'company_name' => 'PT.BERKAH SELALU SEJAHTERA',
             'company_phone' => '08557541551',
             'company_wa_number' => '08557541551',
             'company_email' => 'companyemail@email.com',
