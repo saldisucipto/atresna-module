@@ -21,6 +21,14 @@ const routes = [
             auth: true,
         },
     },
+    {
+        path: "/static-management",
+        component: () => import("../views/StaticManagement.vue"),
+        name: "StaticManagement",
+        meta: {
+            auth: true,
+        },
+    },
 ];
 
 const router = createRouter({

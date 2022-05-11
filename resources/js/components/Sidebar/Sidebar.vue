@@ -18,7 +18,16 @@
                 class="md:block text-left mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold md:pt-2 px-0"
                 to="/"
             >
-                <div class="flex justify-center gap-2">
+                <div v-if="imgesFile != null" class="mx-auto">
+                    <div>
+                        <img
+                            :src="'/logo-images/' + imgesFile"
+                            alt=""
+                            class="object-cover"
+                        />
+                    </div>
+                </div>
+                <div v-else class="flex justify-center gap-2">
                     <div>
                         <img src="/images/logo.svg" alt="" class="w-12" />
                     </div>
@@ -152,7 +161,7 @@
                     <!-- Navigation -->
                     <li class="items-center">
                         <router-link
-                            to="/"
+                            :to="{ name: 'StaticManagement' }"
                             v-slot="{ href, navigate, isActive }"
                         >
                             <a
@@ -190,21 +199,32 @@
 <script>
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.vue";
 import UserDropdown from "../Dropdowns/UserDropdown.vue";
+import CompanyInfoDataServices from "../../services/CompanyInfoDataServices";
 
 export default {
     data() {
         return {
             collapseShow: "hidden",
+            imgesFile: null,
         };
     },
     methods: {
         toggleCollapseShow: function (classes) {
             this.collapseShow = classes;
         },
+        getCompanyInfo() {
+            CompanyInfoDataServices.getCompanyInfo().then((response) => {
+                // console.log(response);
+                this.imgesFile = response.data.company_image_logo;
+            });
+        },
     },
     components: {
         NotificationDropdown,
         UserDropdown,
+    },
+    mounted() {
+        this.getCompanyInfo();
     },
 };
 </script>
