@@ -7,6 +7,14 @@
         </Transition>
         <admin>
             <section>
+                <div>
+                    <button
+                        @click="modalController()"
+                        class="bg-dark-secondary text-white text-sm my-2 py-1 px-3 rounded-lg"
+                    >
+                        <i class="fas fa-plus"></i> Buat Statik Konten Baru
+                    </button>
+                </div>
                 <div class="grid grid-cols-4 gap-2">
                     <card-static class="overflow-hidden">
                         <template v-slot:images>
@@ -22,14 +30,91 @@
                             <div
                                 class="h-28 flex flex-col justify-center text-white"
                             >
-                                <h1>Welcome</h1>
-                                <p>Introduction</p>
+                                <h1 class="font-bold">Welcome</h1>
+                                <p class="text-thin text-xs">Introduction</p>
+                                <button
+                                    class="my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary"
+                                >
+                                    update
+                                </button>
                             </div>
                         </template>
                     </card-static>
                 </div>
             </section>
         </admin>
+        <!-- Modal -->
+        <div
+            v-if="modalCreate"
+            class="fixed z-10 inset-0 overflow-y-auto"
+            id="modal"
+        >
+            <div
+                class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            >
+                <div class="fixed inset-0 transition-opacity">
+                    <div class="absolute inset-0 bg-gray-800 opacity-75"></div>
+                </div>
+
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                    >&#8203;</span
+                >
+
+                <div
+                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
+                >
+                    <!-- Add margin if you want to see some of the overlay behind the modal-->
+                    <div class="py-4 text-left px-6">
+                        <!--Title-->
+                        <div class="flex justify-between items-center pb-4">
+                            <p class="text-2xl font-bold">Statik Konten</p>
+                            <!-- Modal Close Button -->
+                            <div class="modal-close cursor-pointer z-50">
+                                <button @click.prevent="modalController()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <form>
+                            <span
+                                v-if="this.message"
+                                class="text-xs text-red-600 my-3"
+                            >
+                                {{ message_error }}
+                            </span>
+
+                            <div
+                                class="w-full bg-gray-200 h-auto mb-4 rounded-md flex flex-col justify-evenly text-center"
+                            >
+                                <div class="mx-auto mt-5">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Tambahkan Gambar Utama</span>
+                                </div>
+                                <input type="file" class="mx-1 mb-5" />
+                            </div>
+
+                            <button
+                                @click.prevent="updateUser(this.idUser)"
+                                class="block w-full bg-dark-secondary text-white py-1.5 px-3 rounded transition hover:bg-primary-color"
+                            >
+                                Create Konten
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+        <!-- Alert Confrim -->
+        <confirm-alert
+            v-if="modalConfirm"
+            @closedButton="this.modalConfirm = false"
+            @deleteConfirm="deleteUser"
+        >
+            {{ this.name }} || {{ this.email }}
+        </confirm-alert>
+        <!-- End Confirm Alert -->
     </div>
 </template>
 
@@ -41,11 +126,21 @@ import CardStatic from "../components/Cards/CardStatic.vue";
 
 export default {
     name: "StaticManagement",
+    data() {
+        return {
+            modalCreate: false,
+        };
+    },
     components: {
         Admin,
         SuccesNotifications,
         ConfirmAlert,
         CardStatic,
+    },
+    methods: {
+        modalController() {
+            this.modalCreate = !this.modalCreate;
+        },
     },
 };
 </script>
