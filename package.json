@@ -23,6 +23,8 @@
         "vue-loader": "^17.0.0"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^34.0.0",
+        "@ckeditor/ckeditor5-vue": "^4.0.0",
         "@nuxtjs/axios": "^5.13.6",
         "@popperjs/core": "^2.11.4",
         "chart.js": "^2.9.4",

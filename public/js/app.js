@@ -12,6 +12,21 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
+/***/ "./node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js ***!
+  \***************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/*!
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+!function(t,e){ true?module.exports=e(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js")):0}(window,(function(t){return function(t){var e={};function n(o){if(e[o])return e[o].exports;var r=e[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)n.d(o,r,function(e){return t[e]}.bind(null,r));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=3)}([function(e,n){e.exports=t},function(t,e,n){"use strict";(function(t){var n="object"==typeof t&&t&&t.Object===Object&&t;e.a=n}).call(this,n(2))},function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){"use strict";n.r(e);var o=n(0),r=n.n(o);var i=function(t){var e=typeof t;return null!=t&&("object"==e||"function"==e)},a=n(1),u="object"==typeof self&&self&&self.Object===Object&&self,c=a.a||u||Function("return this")(),s=function(){return c.Date.now()},l=/\s/;var d=function(t){for(var e=t.length;e--&&l.test(t.charAt(e)););return e},f=/^\s+/;var p=function(t){return t?t.slice(0,d(t)+1).replace(f,""):t},v=c.Symbol,m=Object.prototype,h=m.hasOwnProperty,b=m.toString,y=v?v.toStringTag:void 0;var g=function(t){var e=h.call(t,y),n=t[y];try{t[y]=void 0;var o=!0}catch(t){}var r=b.call(t);return o&&(e?t[y]=n:delete t[y]),r},j=Object.prototype.toString;var O=function(t){return j.call(t)},w=v?v.toStringTag:void 0;var E=function(t){return null==t?void 0===t?"[object Undefined]":"[object Null]":w&&w in Object(t)?g(t):O(t)};var S=function(t){return null!=t&&"object"==typeof t};var x=function(t){return"symbol"==typeof t||S(t)&&"[object Symbol]"==E(t)},T=/^[-+]0x[0-9a-f]+$/i,V=/^0b[01]+$/i,N=/^0o[0-7]+$/i,$=parseInt;var D=function(t){if("number"==typeof t)return t;if(x(t))return NaN;if(i(t)){var e="function"==typeof t.valueOf?t.valueOf():t;t=i(e)?e+"":e}if("string"!=typeof t)return 0===t?t:+t;t=p(t);var n=V.test(t);return n||N.test(t)?$(t.slice(2),n?2:8):T.test(t)?NaN:+t},I=Math.max,M=Math.min;var C=function(t,e,n){var o,r,a,u,c,l,d=0,f=!1,p=!1,v=!0;if("function"!=typeof t)throw new TypeError("Expected a function");function m(e){var n=o,i=r;return o=r=void 0,d=e,u=t.apply(i,n)}function h(t){return d=t,c=setTimeout(y,e),f?m(t):u}function b(t){var n=t-l;return void 0===l||n>=e||n<0||p&&t-d>=a}function y(){var t=s();if(b(t))return g(t);c=setTimeout(y,function(t){var n=e-(t-l);return p?M(n,a-(t-d)):n}(t))}function g(t){return c=void 0,v&&o?m(t):(o=r=void 0,u)}function j(){var t=s(),n=b(t);if(o=arguments,r=this,l=t,n){if(void 0===c)return h(l);if(p)return clearTimeout(c),c=setTimeout(y,e),m(l)}return void 0===c&&(c=setTimeout(y,e)),u}return e=D(e)||0,i(n)&&(f=!!n.leading,a=(p="maxWait"in n)?I(D(n.maxWait)||0,e):a,v="trailing"in n?!!n.trailing:v),j.cancel=function(){void 0!==c&&clearTimeout(c),d=0,o=l=r=c=void 0},j.flush=function(){return void 0===c?u:g(s())},j};var R={name:"ckeditor",created(){const{CKEDITOR_VERSION:t}=window;if(t){const[e]=t.split(".").map(Number);e<34&&console.warn("The <CKEditor> component requires using CKEditor 5 in version 34 or higher.")}else console.warn('Cannot find the "CKEDITOR_VERSION" in the "window" scope.')},render(){return Object(o.h)(this.tagName)},model:{prop:"modelValue",event:"update:modelValue"},props:{editor:{type:Function,default:null},modelValue:{type:String,default:""},config:{type:Object,default:()=>({})},tagName:{type:String,default:"div"},disabled:{type:Boolean,default:!1}},data:()=>({instance:null,lastEditorData:{type:String,default:""}}),mounted(){const t=Object.assign({},this.config);this.modelValue&&(t.initialData=this.modelValue),this.editor.create(this.$el,t).then(t=>{this.instance=Object(o.markRaw)(t),this.disabled&&t.enableReadOnlyMode("Integration Sample"),this.setUpEditorEvents(),this.$emit("ready",t)}).catch(t=>{console.error(t)})},beforeUnmount(){this.instance&&(this.instance.destroy(),this.instance=null),this.$emit("destroy",this.instance)},watch:{modelValue(t,e){t!==e&&t!==this.lastEditorData&&this.instance.setData(t)},disabled(t){t?this.instance.enableReadOnlyMode("Integration Sample"):this.instance.disableReadOnlyMode("Integration Sample")}},methods:{setUpEditorEvents(){const t=this.instance,e=C(e=>{const n=this.lastEditorData=t.getData();this.$emit("update:modelValue",n,e,t),this.$emit("input",n,e,t)},300,{leading:!0});t.model.document.on("change:data",e),t.editing.view.document.on("focus",e=>{this.$emit("focus",e,t)}),t.editing.view.document.on("blur",e=>{this.$emit("blur",e,t)})}}};const _=r.a?r.a.version:o.version,[k]=_.split(".").map(t=>parseInt(t,10));if(k<3)throw new Error("The CKEditor plugin works only with Vue 3+. For more information, please refer to https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/vuejs-v3.html");const K={install(t){t.component("ckeditor",R)},component:R};e.default=K}]).default}));
+//# sourceMappingURL=ckeditor.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/fontawesome-free/js/all.js":
 /*!**************************************************************!*\
   !*** ./node_modules/@fortawesome/fontawesome-free/js/all.js ***!
@@ -25293,9 +25308,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /* harmony import */ var _module_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/store */ "./resources/js/module/store/index.js");
 /* harmony import */ var vuex_persistedstate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex-persistedstate */ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
-/* harmony import */ var _fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/fontawesome-free/css/all.css */ "./node_modules/@fortawesome/fontawesome-free/css/all.css");
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _ckeditor_ckeditor5_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ckeditor/ckeditor5-vue */ "./node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_vue__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_vue__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/fontawesome-free/css/all.css */ "./node_modules/@fortawesome/fontawesome-free/css/all.css");
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -25307,6 +25325,7 @@ __webpack_require__.r(__webpack_exports__);
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
 app.use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 app.use(_module_store__WEBPACK_IMPORTED_MODULE_3__["default"]);
+app.use((_ckeditor_ckeditor5_vue__WEBPACK_IMPORTED_MODULE_5___default()));
 app.use(vuex_persistedstate__WEBPACK_IMPORTED_MODULE_4__["default"]);
 app.mount("#app");
 

@@ -16,7 +16,7 @@
                     </button>
                 </div>
                 <div class="grid grid-cols-4 gap-2">
-                    <card-static class="overflow-hidden">
+                    <!-- <card-static class="overflow-hidden">
                         <template v-slot:images>
                             <div class="flex flex-col justify-center h-28">
                                 <img
@@ -39,7 +39,7 @@
                                 </button>
                             </div>
                         </template>
-                    </card-static>
+                    </card-static> -->
                 </div>
             </section>
         </admin>
@@ -85,13 +85,68 @@
                             </span>
 
                             <div
-                                class="w-full bg-gray-200 h-auto mb-4 rounded-md flex flex-col justify-evenly text-center"
+                                class="w-full bg-gray-200 h-full mb-4 rounded-md flex flex-col justify-evenly text-center"
                             >
-                                <div class="mx-auto mt-5">
+                                <div
+                                    v-if="previewImage == null"
+                                    class="mx-auto mt-5"
+                                >
                                     <i class="fas fa-plus"></i>
                                     <span>Tambahkan Gambar Utama</span>
                                 </div>
-                                <input type="file" class="mx-1 mb-5" />
+                                <div
+                                    v-else
+                                    class="flex justify-center gap-2 mx-3 my-2"
+                                >
+                                    <div class="">
+                                        <img
+                                            :src="previewImage"
+                                            alt="Image"
+                                            class="max-h-52"
+                                        />
+                                    </div>
+                                    <div
+                                        class="flex h-52 flex-col justify-center"
+                                    >
+                                        <h1
+                                            class="text-gray-900 text-sm font-bold"
+                                        >
+                                            <i class="fas fa-info"></i> Image
+                                            Preview Sbelum di Upload Server
+                                        </h1>
+                                    </div>
+                                </div>
+                                <input
+                                    type="file"
+                                    class="mx-3 mb-1"
+                                    accept="image/*"
+                                    ref="imagesInput"
+                                    @change="selectImage()"
+                                />
+                                <div class="my-2 flex flex-col mx-3">
+                                    <div class="flex flex-col text-left">
+                                        <label for="title">Judul Posting</label>
+                                        <input
+                                            class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
+                                            placeholder="Judul Posting Konten"
+                                            type="text"
+                                            name=""
+                                            id=""
+                                        />
+                                    </div>
+                                    <div class="flex flex-col text-left">
+                                        <label for="title"
+                                            >Isi Konten Posting</label
+                                        >
+
+                                        <ckeditor
+                                            class="h-28"
+                                            :editor="editor"
+                                            v-model="editorData"
+                                            :config="editorConfig"
+                                        ></ckeditor>
+                                    </div>
+                                </div>
                             </div>
 
                             <button
@@ -123,12 +178,21 @@ import Admin from "../layouts/Admin.vue";
 import SuccesNotifications from "../components/Notifications/SuccesNotifications.vue";
 import ConfirmAlert from "../components/Alert/ConfirmAlert.vue";
 import CardStatic from "../components/Cards/CardStatic.vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default {
     name: "StaticManagement",
     data() {
         return {
-            modalCreate: false,
+            modalCreate: true,
+            editor: ClassicEditor,
+            editorData: "<p>Content of the editor.</p>",
+            editorConfig: {
+                // The configuration of the editor.
+                width: 850,
+            },
+            currentImage: undefined,
+            previewImage: null,
         };
     },
     components: {
@@ -140,6 +204,10 @@ export default {
     methods: {
         modalController() {
             this.modalCreate = !this.modalCreate;
+        },
+        selectImage() {
+            this.currentImage = this.$refs.imagesInput.files.item(0);
+            this.previewImage = URL.createObjectURL(this.currentImage);
         },
     },
 };
