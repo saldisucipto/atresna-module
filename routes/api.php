@@ -5,11 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CompanyInfoController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\StaticController;
 
 Route::prefix('com-info')->group(function () {
     // Company Info
     Route::get('/index', [CompanyInfoController::class, 'getCompanyInfo'])->name('companyInfo');
     Route::post('/update', [CompanyInfoController::class, 'editCompanyInfo'])->name('editCompanyInfo');
+});
+
+Route::prefix('static-content')->group(function () {
+    // create static-content
+    Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
 });
 
 Route::prefix('user-info')->group(function () {

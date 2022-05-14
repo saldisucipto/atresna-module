@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Transition v-if="notif" name="slide-fade">
+        <Transition v-if="message !== null" name="slide-fade">
             <succes-notifications>
                 {{ message }}
             </succes-notifications>
@@ -76,12 +76,16 @@
                                 </button>
                             </div>
                         </div>
-                        <form>
+                        <form
+                            enctype="multipart/form-data"
+                            method="POST"
+                            ref="formCreate"
+                        >
                             <span
-                                v-if="this.message"
+                                v-if="this.message != null"
                                 class="text-xs text-red-600 my-3"
                             >
-                                {{ message_error }}
+                                {{ message }}
                             </span>
 
                             <div
@@ -122,6 +126,7 @@
                                     accept="image/*"
                                     ref="imagesInput"
                                     @change="selectImage()"
+                                    required
                                 />
                                 <div class="my-2 flex flex-col mx-3">
                                     <div class="flex flex-col text-left">
@@ -132,6 +137,8 @@
                                             type="text"
                                             name=""
                                             id=""
+                                            v-model="title"
+                                            required
                                         />
                                     </div>
                                     <div class="flex flex-col text-left">
@@ -144,13 +151,15 @@
                                             :editor="editor"
                                             v-model="editorData"
                                             :config="editorConfig"
+                                            aria-required="true"
                                         ></ckeditor>
                                     </div>
                                 </div>
                             </div>
 
                             <button
-                                @click.prevent="updateUser(this.idUser)"
+                                @click="createPOST()"
+                                type="button"
                                 class="block w-full bg-dark-secondary text-white py-1.5 px-3 rounded transition hover:bg-primary-color"
                             >
                                 Create Konten
@@ -162,13 +171,13 @@
         </div>
         <!-- End Modal -->
         <!-- Alert Confrim -->
-        <confirm-alert
+        <!-- <confirm-alert
             v-if="modalConfirm"
             @closedButton="this.modalConfirm = false"
             @deleteConfirm="deleteUser"
         >
             {{ this.name }} || {{ this.email }}
-        </confirm-alert>
+        </confirm-alert> -->
         <!-- End Confirm Alert -->
     </div>
 </template>
@@ -179,6 +188,8 @@ import SuccesNotifications from "../components/Notifications/SuccesNotifications
 import ConfirmAlert from "../components/Alert/ConfirmAlert.vue";
 import CardStatic from "../components/Cards/CardStatic.vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// import StaticContentServis from "../services/StaticContentServis";
+import http from "../services/http-config";
 
 export default {
     name: "StaticManagement",
@@ -186,13 +197,15 @@ export default {
         return {
             modalCreate: true,
             editor: ClassicEditor,
-            editorData: "<p>Content of the editor.</p>",
+            editorData: null,
             editorConfig: {
                 // The configuration of the editor.
                 width: 850,
             },
             currentImage: undefined,
             previewImage: null,
+            title: "",
+            message: null,
         };
     },
     components: {
@@ -208,6 +221,43 @@ export default {
         selectImage() {
             this.currentImage = this.$refs.imagesInput.files.item(0);
             this.previewImage = URL.createObjectURL(this.currentImage);
+        },
+        createPOST() {
+            if (
+                this.title == "" ||
+                this.editorData == null ||
+                this.currentImage == undefined
+            ) {
+                this.modalCreate = true;
+                this.message =
+                    "Hai.. Ada Data Yang kosong di Kolomnya, Tolong lengkapi ya!";
+                return false;
+            } else {
+                let form = new FormData();
+                form.append("title", this.title);
+                form.append("desc", this.editorData);
+                form.append("imagesFile", this.currentImage);
+                const config = {
+                    headers: {
+                        "Content-type": "multipart/form-data",
+                    },
+                };
+                return http
+                    .post("/static-content/create", form, config)
+                    .then((Response) => {
+                        // console.log(Response.data);
+                        this.message = Response.data.message;
+                        setTimeout(() => {
+                            this.message = null;
+                            this.title = "";
+                            this.editorData = "";
+                            this.currentImage = "";
+                            this.previewImage = null;
+                        }, 2000);
+                        this.modalCreate = false;
+                    })
+                    .catch((e) => console.log(e));
+            }
         },
     },
 };
