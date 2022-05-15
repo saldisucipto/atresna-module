@@ -178,14 +178,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <button
-                                v-if="modalUpdate"
-                                @click="updateAction(this.id)"
-                                type="button"
-                                class="block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
-                            >
-                                Update Konten
-                            </button>
+
+                            <div v-if="modalUpdate" class="flex gap-4">
+                                <button
+                                    @click="updateAction(this.id)"
+                                    type="button"
+                                    class="block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
+                                >
+                                    Update Konten
+                                </button>
+                                <button
+                                    @click="deleteAction(this.id)"
+                                    type="button"
+                                    class="block w-full bg-red-600 text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
+                                >
+                                    Delete Post
+                                </button>
+                            </div>
+
                             <button
                                 @click="createPOST()"
                                 type="button"
@@ -253,6 +263,11 @@ export default {
             this.modalCreate = !this.modalCreate;
             this.modalUpdate = false;
             this.previewImage = null;
+            this.currentImage = null;
+            this.modalUpdate = false;
+            this.title = "";
+            this.editorData = "";
+            this.images = "";
         },
         getDataStaticContent() {
             StaticContentServis.getStaticCOntent().then((response) => {
@@ -265,8 +280,8 @@ export default {
             this.currentImage = this.$refs.imagesInput.files.item(0);
             this.previewImage = URL.createObjectURL(this.currentImage);
         },
-        async updateStatic(id) {
-            await StaticContentServis.getStaticInfo(id).then((res) => {
+        updateStatic(id) {
+            StaticContentServis.getStaticInfo(id).then((res) => {
                 // console.log(res.data);
                 this.id = res.data.id;
                 this.title = res.data.title;
@@ -291,6 +306,8 @@ export default {
                 .then((res) => {
                     // console.log(res.data);
                     this.message = res.data.message;
+                    this.getDataStaticContent();
+
                     setTimeout(() => {
                         this.message = null;
                         this.id = "";
@@ -298,10 +315,20 @@ export default {
                         this.editorData = "";
                         this.currentImage = "";
                         this.previewImage = null;
-                        this.getDataStaticContent();
                     }, 2000);
                     this.modalCreate = false;
                 });
+        },
+        async deleteAction(id) {
+            await StaticContentServis.deleteStatic(id).then((response) => {
+                this.modalCreate = false;
+                this.message = response.data.message;
+                this.getDataStaticContent();
+            });
+            setTimeout(() => {
+                this.message = null;
+                this.currentImage = "";
+            }, 1000);
         },
         createPOST() {
             if (
@@ -328,13 +355,13 @@ export default {
                     .then((Response) => {
                         // console.log(Response.data);
                         this.message = Response.data.message;
+                        this.getDataStaticContent();
                         setTimeout(() => {
                             this.message = null;
                             this.title = "";
                             this.editorData = "";
                             this.currentImage = "";
                             this.previewImage = null;
-                            this.getDataStaticContent();
                         }, 2000);
                         this.modalCreate = false;
                     })

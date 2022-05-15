@@ -64,4 +64,14 @@ class StaticController extends Controller
             }
         }
     }
+
+    // function delete
+    public function delete($id)
+    {
+        $staticInfo = StaticKonten::find($id);
+        $image = new FilesHandling();
+        $image->update($staticInfo->imagesFile, 'static-konten');
+        $staticInfo->delete();
+        return response()->json(['message' => "Berhasil Menghapus Data"], 201);
+    }
 }
