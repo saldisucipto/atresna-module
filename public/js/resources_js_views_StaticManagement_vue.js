@@ -3534,12 +3534,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // The configuration of the editor.
         width: 850
       },
-      currentImage: undefined,
+      currentImage: null,
       previewImage: null,
       title: "",
       id: "",
       message: null,
       staticContent: [],
+      images: null,
       modalUpdate: false
     };
   },
@@ -3578,9 +3579,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return _services_StaticContentServis__WEBPACK_IMPORTED_MODULE_6__["default"].getStaticInfo(id).then(function (res) {
                   // console.log(res.data);
+                  _this2.id = res.data.id;
                   _this2.title = res.data.title;
                   _this2.editorData = res.data.desc;
-                  _this2.previewImage = res.data.imagesFile;
+                  _this2.images = res.data.imagesFile;
                 });
 
               case 2:
@@ -3595,9 +3597,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    updateAction: function updateAction(id) {},
-    createPOST: function createPOST() {
+    updateAction: function updateAction(id) {
       var _this3 = this;
+
+      var form = new FormData();
+      form.append("title", this.title);
+      form.append("desc", this.editorData);
+      form.append("imagesFile", this.currentImage);
+      var config = {
+        headers: {
+          "Content-type": "multipart/form-data"
+        }
+      };
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_7__["default"].post("/static-content/info/" + id, form, config).then(function (res) {
+        // console.log(res.data);
+        _this3.message = res.data.message;
+        setTimeout(function () {
+          _this3.message = null;
+          _this3.id = "";
+          _this3.title = "";
+          _this3.editorData = "";
+          _this3.currentImage = "";
+          _this3.previewImage = null;
+
+          _this3.getDataStaticContent();
+        }, 2000);
+        _this3.modalCreate = false;
+      });
+    },
+    createPOST: function createPOST() {
+      var _this4 = this;
 
       if (this.title == "" || this.editorData == null || this.currentImage == undefined) {
         this.modalCreate = true;
@@ -3615,17 +3644,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         };
         return _services_http_config__WEBPACK_IMPORTED_MODULE_7__["default"].post("/static-content/create", form, config).then(function (Response) {
           // console.log(Response.data);
-          _this3.message = Response.data.message;
+          _this4.message = Response.data.message;
           setTimeout(function () {
-            _this3.message = null;
-            _this3.title = "";
-            _this3.editorData = "";
-            _this3.currentImage = "";
-            _this3.previewImage = null;
+            _this4.message = null;
+            _this4.title = "";
+            _this4.editorData = "";
+            _this4.currentImage = "";
+            _this4.previewImage = null;
 
-            _this3.getDataStaticContent();
+            _this4.getDataStaticContent();
           }, 2000);
-          _this3.modalCreate = false;
+          _this4.modalCreate = false;
         })["catch"](function (e) {
           return console.log(e);
         });
@@ -4535,77 +4564,69 @@ var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_22 = [_hoisted_21];
-var _hoisted_23 = {
+var _hoisted_23 = ["src"];
+var _hoisted_24 = {
   enctype: "multipart/form-data",
   method: "POST",
   ref: "formCreate"
 };
-var _hoisted_24 = {
+var _hoisted_25 = {
   key: 0,
   "class": "text-xs text-red-600 my-3"
 };
-var _hoisted_25 = {
+var _hoisted_26 = {
   "class": "w-full bg-gray-200 h-full mb-4 rounded-md flex flex-col justify-evenly text-center"
 };
-var _hoisted_26 = {
+var _hoisted_27 = {
   key: 0,
   "class": "mx-auto mt-5"
 };
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-plus"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Tambahkan Gambar Utama", -1
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Tambahkan Gambar Utama", -1
 /* HOISTED */
 );
 
-var _hoisted_29 = [_hoisted_27, _hoisted_28];
-var _hoisted_30 = {
+var _hoisted_30 = [_hoisted_28, _hoisted_29];
+var _hoisted_31 = {
   key: 1,
   "class": "flex justify-center gap-2 mx-3 my-2"
 };
-var _hoisted_31 = {
-  key: 0,
-  "class": ""
-};
 var _hoisted_32 = ["src"];
-var _hoisted_33 = {
-  key: 1,
-  "class": ""
-};
-var _hoisted_34 = ["src"];
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex h-52 flex-col justify-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-gray-900 text-sm font-bold"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-info"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Image Preview Sbelum di Upload Server ")])], -1
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Gambar Baru Sebelum di Upload Ke Server ")])], -1
 /* HOISTED */
 );
 
-var _hoisted_36 = {
+var _hoisted_34 = {
   "class": "my-2 flex flex-col mx-3"
 };
-var _hoisted_37 = {
+var _hoisted_35 = {
   "class": "flex flex-col text-left"
 };
 
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "title"
 }, "Judul Posting", -1
 /* HOISTED */
 );
 
-var _hoisted_39 = {
+var _hoisted_37 = {
   "class": "flex flex-col text-left"
 };
 
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "title"
 }, "Isi Konten Posting", -1
 /* HOISTED */
@@ -4692,25 +4713,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), $data.modalCreate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This element is to trick the browser into centering the modal contents. "), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Add margin if you want to see some of the overlay behind the modal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Title"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [$data.modalUpdate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_18, " Update Statik Konten ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_19, " Statik Konten ")), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal Close Button "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), $data.modalCreate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This element is to trick the browser into centering the modal contents. "), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Add margin if you want to see some of the overlay behind the modal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Title"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [$data.modalUpdate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.title), 1
+  /* TEXT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_19, " Statik Konten ")), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal Close Button "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.modalController();
     }, ["prevent"]))
-  }, _hoisted_22)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_23, [this.message != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [$data.previewImage == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, _hoisted_29)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, [$data.modalUpdate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: this.previewImage,
-    alt: "Image",
-    "class": "max-h-52"
+  }, _hoisted_22)])]), $data.images != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+    key: 0,
+    src: 'static-konten/' + $data.images,
+    alt: "",
+    "class": "max-h-56 mx-auto my-2"
   }, null, 8
   /* PROPS */
-  , _hoisted_32)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  , _hoisted_23)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_24, [this.message != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [$data.previewImage == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, _hoisted_30)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.previewImage,
     alt: "Image",
     "class": "max-h-52"
   }, null, 8
   /* PROPS */
-  , _hoisted_34)])), _hoisted_35])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  , _hoisted_32)]), _hoisted_33])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     "class": "mx-3 mb-1",
     accept: "image/*",
@@ -4721,7 +4745,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     required: ""
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "py-1 rounded-md px-2 active:outline-none focus:outline-none my-1",
     placeholder: "Judul Posting Konten",
     type: "text",
@@ -4733,7 +4757,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     required: ""
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.title]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ckeditor, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.title]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ckeditor, {
     "class": "h-28",
     editor: $data.editor,
     modelValue: $data.editorData,

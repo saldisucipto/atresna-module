@@ -39,9 +39,29 @@ class StaticController extends Controller
     // function update
     public function update(Request $request, $id = null)
     {
+        $data = $request->all();
+        $staticInfo = StaticKonten::find($id);
+
         if ($request->isMethod('GET')) {
-            $staticInfo = StaticKonten::find($id);
             return response()->json($staticInfo, 200);
+        } else {
+            $images_file = $request->file('imagesFile');
+            $image = new FilesHandling();
+            if ($images_file) {
+                $staticInfo->title = $data['title'];
+                $staticInfo->desc = $data['desc'];
+                $image->update($staticInfo->imagesFile, 'static-konten');
+                $staticInfo->imagesFile = $image->upload($images_file, 'static-konten', 'img-static-content');
+                $staticInfo->slug = Str::slug($data['title']);
+                $staticInfo->update();
+                return response()->json(['message' => "Berhasil Update Data"], 201);
+            } else {
+                $staticInfo->title = $data['title'];
+                $staticInfo->desc = $data['desc'];
+                $staticInfo->slug = Str::slug($data['title']);
+                $staticInfo->update();
+                return response()->json(['message' => "Berhasil Update Data"], 201);
+            }
         }
     }
 }

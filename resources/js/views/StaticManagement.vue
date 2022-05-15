@@ -77,7 +77,7 @@
                         <!--Title-->
                         <div class="flex justify-between items-center pb-4">
                             <p v-if="modalUpdate" class="text-2xl font-bold">
-                                Update Statik Konten
+                                {{ this.title }}
                             </p>
                             <p v-else class="text-2xl font-bold">
                                 Statik Konten
@@ -90,6 +90,13 @@
                                 </button>
                             </div>
                         </div>
+                        <img
+                            v-if="images != null"
+                            :src="'static-konten/' + images"
+                            alt=""
+                            class="max-h-56 mx-auto my-2"
+                        />
+
                         <form
                             enctype="multipart/form-data"
                             method="POST"
@@ -101,7 +108,6 @@
                             >
                                 {{ message }}
                             </span>
-
                             <div
                                 class="w-full bg-gray-200 h-full mb-4 rounded-md flex flex-col justify-evenly text-center"
                             >
@@ -112,32 +118,27 @@
                                     <i class="fas fa-plus"></i>
                                     <span>Tambahkan Gambar Utama</span>
                                 </div>
+
                                 <div
                                     v-else
                                     class="flex justify-center gap-2 mx-3 my-2"
                                 >
-                                    <div v-if="modalUpdate" class="">
-                                        <img
-                                            :src="this.previewImage"
-                                            alt="Image"
-                                            class="max-h-52"
-                                        />
-                                    </div>
-                                    <div v-else class="">
+                                    <div>
                                         <img
                                             :src="previewImage"
                                             alt="Image"
                                             class="max-h-52"
                                         />
                                     </div>
+
                                     <div
                                         class="flex h-52 flex-col justify-center"
                                     >
                                         <h1
                                             class="text-gray-900 text-sm font-bold"
                                         >
-                                            <i class="fas fa-info"></i> Image
-                                            Preview Sbelum di Upload Server
+                                            <i class="fas fa-info"></i> Gambar
+                                            Baru Sebelum di Upload Ke Server
                                         </h1>
                                     </div>
                                 </div>
@@ -231,12 +232,13 @@ export default {
                 // The configuration of the editor.
                 width: 850,
             },
-            currentImage: undefined,
+            currentImage: null,
             previewImage: null,
             title: "",
             id: "",
             message: null,
             staticContent: [],
+            images: null,
             modalUpdate: false,
         };
     },
@@ -266,14 +268,41 @@ export default {
         async updateStatic(id) {
             await StaticContentServis.getStaticInfo(id).then((res) => {
                 // console.log(res.data);
+                this.id = res.data.id;
                 this.title = res.data.title;
                 this.editorData = res.data.desc;
-                this.previewImage = res.data.imagesFile;
+                this.images = res.data.imagesFile;
             });
             this.modalCreate = true;
             this.modalUpdate = true;
         },
-        updateAction(id) {},
+        updateAction(id) {
+            let form = new FormData();
+            form.append("title", this.title);
+            form.append("desc", this.editorData);
+            form.append("imagesFile", this.currentImage);
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .post("/static-content/info/" + id, form, config)
+                .then((res) => {
+                    // console.log(res.data);
+                    this.message = res.data.message;
+                    setTimeout(() => {
+                        this.message = null;
+                        this.id = "";
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.getDataStaticContent();
+                    }, 2000);
+                    this.modalCreate = false;
+                });
+        },
         createPOST() {
             if (
                 this.title == "" ||
