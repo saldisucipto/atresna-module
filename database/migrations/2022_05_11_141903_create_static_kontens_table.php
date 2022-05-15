@@ -15,7 +15,7 @@ class CreateStaticKontensTable extends Migration
     {
         Schema::create('static_konten', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50);
+            $table->string('title', 50)->unique();
             $table->text('desc');
             $table->string('imagesFile');
             $table->string('slug')->nullable();

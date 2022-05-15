@@ -35,4 +35,13 @@ class StaticController extends Controller
         $static_konten->save();
         return response()->json(['message' => "Berhasil Input Data"], 201);
     }
+
+    // function update
+    public function update(Request $request, $id = null)
+    {
+        if ($request->isMethod('GET')) {
+            $staticInfo = StaticKonten::find($id);
+            return response()->json($staticInfo, 200);
+        }
+    }
 }

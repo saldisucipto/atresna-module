@@ -16,6 +16,7 @@ Route::prefix('com-info')->group(function () {
 Route::prefix('static-content')->group(function () {
     // create static-content
     Route::get('/', [StaticController::class, 'index'])->name('showStaticContent');
+    Route::match(['get', 'post'], '/info/{id}', [StaticController::class, 'update']);
     Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
 });
 

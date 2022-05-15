@@ -15,5 +15,8 @@ class StaticContentServis {
                 console.log(Response.data);
             });
     }
+    getStaticInfo(id) {
+        return http.get("/static-content/info/" + id);
+    }
 }
 export default new StaticContentServis();

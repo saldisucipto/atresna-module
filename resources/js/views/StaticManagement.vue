@@ -41,6 +41,7 @@
                                 ></p>
                                 <button
                                     class="my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary"
+                                    @click="updateStatic(konten.id)"
                                 >
                                     update
                                 </button>
@@ -75,7 +76,13 @@
                     <div class="py-4 text-left px-6">
                         <!--Title-->
                         <div class="flex justify-between items-center pb-4">
-                            <p class="text-2xl font-bold">Statik Konten</p>
+                            <p v-if="modalUpdate" class="text-2xl font-bold">
+                                Update Statik Konten
+                            </p>
+                            <p v-else class="text-2xl font-bold">
+                                Statik Konten
+                            </p>
+
                             <!-- Modal Close Button -->
                             <div class="modal-close cursor-pointer z-50">
                                 <button @click.prevent="modalController()">
@@ -109,7 +116,14 @@
                                     v-else
                                     class="flex justify-center gap-2 mx-3 my-2"
                                 >
-                                    <div class="">
+                                    <div v-if="modalUpdate" class="">
+                                        <img
+                                            :src="this.previewImage"
+                                            alt="Image"
+                                            class="max-h-52"
+                                        />
+                                    </div>
+                                    <div v-else class="">
                                         <img
                                             :src="previewImage"
                                             alt="Image"
@@ -163,10 +177,18 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <button
+                                v-if="modalUpdate"
+                                @click="updateAction(this.id)"
+                                type="button"
+                                class="block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
+                            >
+                                Update Konten
+                            </button>
                             <button
                                 @click="createPOST()"
                                 type="button"
+                                v-else
                                 class="block w-full bg-dark-secondary text-white py-1.5 px-3 rounded transition hover:bg-primary-color"
                             >
                                 Create Konten
@@ -212,8 +234,10 @@ export default {
             currentImage: undefined,
             previewImage: null,
             title: "",
+            id: "",
             message: null,
             staticContent: [],
+            modalUpdate: false,
         };
     },
     components: {
@@ -225,6 +249,8 @@ export default {
     methods: {
         modalController() {
             this.modalCreate = !this.modalCreate;
+            this.modalUpdate = false;
+            this.previewImage = null;
         },
         getDataStaticContent() {
             StaticContentServis.getStaticCOntent().then((response) => {
@@ -237,6 +263,17 @@ export default {
             this.currentImage = this.$refs.imagesInput.files.item(0);
             this.previewImage = URL.createObjectURL(this.currentImage);
         },
+        async updateStatic(id) {
+            await StaticContentServis.getStaticInfo(id).then((res) => {
+                // console.log(res.data);
+                this.title = res.data.title;
+                this.editorData = res.data.desc;
+                this.previewImage = res.data.imagesFile;
+            });
+            this.modalCreate = true;
+            this.modalUpdate = true;
+        },
+        updateAction(id) {},
         createPOST() {
             if (
                 this.title == "" ||
