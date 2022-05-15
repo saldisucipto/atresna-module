@@ -16,11 +16,15 @@
                     </button>
                 </div>
                 <div class="grid grid-cols-4 gap-2">
-                    <!-- <card-static class="overflow-hidden">
+                    <card-static
+                        v-for="konten in staticContent"
+                        :key="konten.id"
+                        class="overflow-hidden"
+                    >
                         <template v-slot:images>
                             <div class="flex flex-col justify-center h-28">
                                 <img
-                                    src="/images/intro-img.svg"
+                                    :src="'/static-konten/' + konten.imagesFile"
                                     alt=""
                                     class="object-cover h-20"
                                 />
@@ -30,8 +34,11 @@
                             <div
                                 class="h-28 flex flex-col justify-center text-white"
                             >
-                                <h1 class="font-bold">Welcome</h1>
-                                <p class="text-thin text-xs">Introduction</p>
+                                <h1 class="font-bold">{{ konten.title }}</h1>
+                                <p
+                                    class="text-thin text-xs"
+                                    v-html="konten.desc"
+                                ></p>
                                 <button
                                     class="my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary"
                                 >
@@ -39,7 +46,7 @@
                                 </button>
                             </div>
                         </template>
-                    </card-static> -->
+                    </card-static>
                 </div>
             </section>
         </admin>
@@ -188,14 +195,14 @@ import SuccesNotifications from "../components/Notifications/SuccesNotifications
 import ConfirmAlert from "../components/Alert/ConfirmAlert.vue";
 import CardStatic from "../components/Cards/CardStatic.vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-// import StaticContentServis from "../services/StaticContentServis";
+import StaticContentServis from "../services/StaticContentServis";
 import http from "../services/http-config";
 
 export default {
     name: "StaticManagement",
     data() {
         return {
-            modalCreate: true,
+            modalCreate: false,
             editor: ClassicEditor,
             editorData: null,
             editorConfig: {
@@ -206,6 +213,7 @@ export default {
             previewImage: null,
             title: "",
             message: null,
+            staticContent: [],
         };
     },
     components: {
@@ -217,6 +225,13 @@ export default {
     methods: {
         modalController() {
             this.modalCreate = !this.modalCreate;
+        },
+        getDataStaticContent() {
+            StaticContentServis.getStaticCOntent().then((response) => {
+                // console.log(response.data);
+                this.staticContent = response.data;
+                // console.log(this.staticContent);
+            });
         },
         selectImage() {
             this.currentImage = this.$refs.imagesInput.files.item(0);
@@ -253,12 +268,19 @@ export default {
                             this.editorData = "";
                             this.currentImage = "";
                             this.previewImage = null;
+                            this.getDataStaticContent();
                         }, 2000);
                         this.modalCreate = false;
                     })
                     .catch((e) => console.log(e));
             }
         },
+    },
+    // mounted() {
+    //     this.getDataStaticContent();
+    // },
+    beforeMount() {
+        this.getDataStaticContent();
     },
 };
 </script>

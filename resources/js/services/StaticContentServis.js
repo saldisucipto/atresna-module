@@ -1,7 +1,7 @@
 import http from "./http-config";
 class StaticContentServis {
     getStaticCOntent() {
-        return http.get();
+        return http.get("/static-content");
     }
     createStaticContent(data) {
         const config = {
