@@ -15,10 +15,11 @@ class CreateStaticKontensTable extends Migration
     {
         Schema::create('static_konten', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50)->unique();
+            $table->string('title', 50);
             $table->text('desc');
-            $table->string('imagesFile');
-            $table->string('slug')->nullable();
+            $table->string('imagesFile')->nullable();
+            $table->enum('konten_untuk', ['HeroKonten', 'IsiKonten']);
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

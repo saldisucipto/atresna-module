@@ -15,7 +15,7 @@
                         <i class="fas fa-plus"></i> Buat Statik Konten Baru
                     </button>
                 </div>
-                <div class="grid grid-cols-4 gap-2">
+                <div class="grid grid-cols-3 gap-2">
                     <card-static
                         v-for="konten in staticContent"
                         :key="konten.id"
@@ -23,7 +23,12 @@
                     >
                         <template v-slot:images>
                             <div class="flex flex-col justify-center h-28">
+                                <i
+                                    v-if="konten.imagesFile == null"
+                                    class="fas fa-image fa-4x text-gray-50"
+                                ></i>
                                 <img
+                                    v-else
                                     :src="'/static-konten/' + konten.imagesFile"
                                     alt=""
                                     class="object-cover h-20"
@@ -32,13 +37,21 @@
                         </template>
                         <template v-slot:desc>
                             <div
-                                class="h-28 flex flex-col justify-center text-white"
+                                class="h-28 flex flex-col justify-center text-white py-2"
                             >
-                                <h1 class="font-bold">{{ konten.title }}</h1>
-                                <p
-                                    class="text-thin text-xs"
-                                    v-html="konten.desc"
-                                ></p>
+                                <h1 class="font-bold text-sm capitalize">
+                                    {{ konten.title }}
+                                </h1>
+                                <span
+                                    class="px-2 py-1 text-xs bg-green-800 text-white rounded-md"
+                                    v-if="konten.konten_untuk == 'HeroKonten'"
+                                    >Konten Hero Pages</span
+                                >
+                                <span
+                                    class="px-2 py-1 text-xs bg-indigo-800 text-white rounded-md"
+                                    v-else
+                                    >Konten Isi Pages</span
+                                >
                                 <button
                                     class="my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary"
                                     @click="updateStatic(konten.id)"
@@ -164,6 +177,21 @@
                                         />
                                     </div>
                                     <div class="flex flex-col text-left">
+                                        <label for="title">Konten Untuk</label>
+                                        <select
+                                            v-model="konten_untuk"
+                                            class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
+                                            required
+                                        >
+                                            <option value="HeroKonten">
+                                                Main Konten
+                                            </option>
+                                            <option value="IsiKonten">
+                                                Static Konten
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col text-left">
                                         <label for="title"
                                             >Isi Konten Posting</label
                                         >
@@ -250,6 +278,7 @@ export default {
             staticContent: [],
             images: null,
             modalUpdate: false,
+            konten_untuk: null,
         };
     },
     components: {
@@ -264,6 +293,7 @@ export default {
             this.modalUpdate = false;
             this.previewImage = null;
             this.currentImage = null;
+            this.konten_untuk = null;
             this.modalUpdate = false;
             this.title = "";
             this.editorData = "";
@@ -287,6 +317,7 @@ export default {
                 this.title = res.data.title;
                 this.editorData = res.data.desc;
                 this.images = res.data.imagesFile;
+                this.konten_untuk = res.data.konten_untuk;
             });
             this.modalCreate = true;
             this.modalUpdate = true;
@@ -296,6 +327,7 @@ export default {
             form.append("title", this.title);
             form.append("desc", this.editorData);
             form.append("imagesFile", this.currentImage);
+            form.append("konten_untuk", this.konten_untuk);
             const config = {
                 headers: {
                     "Content-type": "multipart/form-data",
@@ -314,6 +346,7 @@ export default {
                         this.title = "";
                         this.editorData = "";
                         this.currentImage = "";
+                        this.konten_untuk = null;
                         this.previewImage = null;
                     }, 2000);
                     this.modalCreate = false;
@@ -334,7 +367,8 @@ export default {
             if (
                 this.title == "" ||
                 this.editorData == null ||
-                this.currentImage == undefined
+                // this.currentImage == undefined ||
+                this.konten_untuk == null
             ) {
                 this.modalCreate = true;
                 this.message =
@@ -345,6 +379,7 @@ export default {
                 form.append("title", this.title);
                 form.append("desc", this.editorData);
                 form.append("imagesFile", this.currentImage);
+                form.append("konten_untuk", this.konten_untuk);
                 const config = {
                     headers: {
                         "Content-type": "multipart/form-data",
@@ -362,6 +397,7 @@ export default {
                             this.editorData = "";
                             this.currentImage = "";
                             this.previewImage = null;
+                            this.konten_untuk = null;
                         }, 2000);
                         this.modalCreate = false;
                     })

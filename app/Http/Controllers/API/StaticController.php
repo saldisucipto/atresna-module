@@ -30,8 +30,11 @@ class StaticController extends Controller
         $static_konten = new StaticKonten();
         $static_konten->title = $data['title'];
         $static_konten->desc = $data['desc'];
-        $static_konten->imagesFile = $image->upload($images_file, 'static-konten', 'img-static-content');
+        if ($images_file) {
+            $static_konten->imagesFile = $image->upload($images_file, 'static-konten', 'img-static-content');
+        }
         $static_konten->slug = Str::slug($data['title']);
+        $static_konten->konten_untuk = $data['konten_untuk'];
         $static_konten->save();
         return response()->json(['message' => "Berhasil Input Data"], 201);
     }
@@ -53,12 +56,14 @@ class StaticController extends Controller
                 $image->update($staticInfo->imagesFile, 'static-konten');
                 $staticInfo->imagesFile = $image->upload($images_file, 'static-konten', 'img-static-content');
                 $staticInfo->slug = Str::slug($data['title']);
+                $staticInfo->konten_untuk = $data['konten_untuk'];
                 $staticInfo->update();
                 return response()->json(['message' => "Berhasil Update Data"], 201);
             } else {
                 $staticInfo->title = $data['title'];
                 $staticInfo->desc = $data['desc'];
                 $staticInfo->slug = Str::slug($data['title']);
+                $staticInfo->konten_untuk = $data['konten_untuk'];
                 $staticInfo->update();
                 return response()->json(['message' => "Berhasil Update Data"], 201);
             }

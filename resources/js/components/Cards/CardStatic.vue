@@ -2,10 +2,10 @@
     <div>
         <div class="h-28 bg-dark-secondary rounded-lg drop-shadow-lg">
             <div class="flex mx-2 gap-1">
-                <div class="flex justify-center">
+                <div class="flex-1 flex justify-center">
                     <slot name="images"></slot>
                 </div>
-                <div class="">
+                <div class="flex-1">
                     <slot name="desc"></slot>
                 </div>
             </div>
