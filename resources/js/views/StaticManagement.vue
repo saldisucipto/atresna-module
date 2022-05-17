@@ -37,18 +37,18 @@
                         </template>
                         <template v-slot:desc>
                             <div
-                                class="h-28 flex flex-col justify-center text-white py-2"
+                                class="h-28 flex flex-col justify-center text-white my-2"
                             >
-                                <h1 class="font-bold text-sm capitalize">
+                                <h1 class="font-bold text-xs capitalize">
                                     {{ konten.title }}
                                 </h1>
                                 <span
-                                    class="px-2 py-1 text-xs bg-green-800 text-white rounded-md"
+                                    class="font-thin text px-2 text-center text-xs bg-green-800 text-white rounded-md"
                                     v-if="konten.konten_untuk == 'HeroKonten'"
                                     >Konten Hero Pages</span
                                 >
                                 <span
-                                    class="px-2 py-1 text-xs bg-indigo-800 text-white rounded-md"
+                                    class="font-thin px-2 text-center text-xs bg-yellow-600 text-white rounded-md"
                                     v-else
                                     >Konten Isi Pages</span
                                 >
