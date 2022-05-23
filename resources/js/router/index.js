@@ -29,6 +29,14 @@ const routes = [
             auth: true,
         },
     },
+    {
+        path: "/why-choose-us",
+        component: () => import("../views/WhyChooseUs.vue"),
+        name: "WhyChooseUs",
+        meta: {
+            auth: true,
+        },
+    },
 ];
 
 const router = createRouter({

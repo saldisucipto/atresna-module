@@ -6,6 +6,7 @@ use App\Http\Controllers\API\CompanyInfoController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\StaticController;
+use App\Http\Controllers\API\WhyChooseUsController;
 
 Route::prefix('com-info')->group(function () {
     // Company Info
@@ -19,6 +20,13 @@ Route::prefix('static-content')->group(function () {
     Route::match(['get', 'post'], '/info/{id}', [StaticController::class, 'update']);
     Route::delete('/delete/{id}', [StaticController::class, 'delete'])->name('deleteStaticContent');
     Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
+});
+
+Route::prefix('why-choose-us')->group(function () {
+    Route::get('/', [WhyChooseUsController::class, 'index'])->name('showWhyChooseUs');
+    Route::post('/create', [WhyChooseUsController::class, 'create'])->name('createWhyChooseUs');
+    Route::match(['get', 'post'], '/{slugs}', [WhyChooseUsController::class, 'update']);
+    Route::delete('/{slugs}/delete', [WhyChooseUsController::class, 'delete'])->name('deleteWhyChooseUs');
 });
 
 Route::prefix('user-info')->group(function () {

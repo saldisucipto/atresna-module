@@ -185,6 +185,31 @@
                                 Static Management
                             </a>
                         </router-link>
+                        <router-link
+                            to="/why-choose-us"
+                            v-slot="{ href, navigate, isActive }"
+                        >
+                            <a
+                                :href="href"
+                                @click="navigate"
+                                class="text-xs uppercase py-3 font-bold block"
+                                :class="[
+                                    isActive
+                                        ? 'text-primary-color hover:text-gray-700'
+                                        : 'text-secondary-color hover:text-gray-700',
+                                ]"
+                            >
+                                <i
+                                    class="fas fa-file mr-2 text-sm"
+                                    :class="[
+                                        isActive
+                                            ? 'opacity-75 hover:text-gray-700'
+                                            : ' hover:text-gray-700',
+                                    ]"
+                                ></i>
+                                Why Choose Us
+                            </a>
+                        </router-link>
                     </li>
                 </ul>
 
