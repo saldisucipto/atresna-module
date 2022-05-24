@@ -234,6 +234,7 @@ export default {
             curenntImage: null,
             title: null,
             dbData: [],
+            singleData: [],
         };
     },
     components: {
@@ -285,7 +286,19 @@ export default {
                 .get("/why-choose-us")
                 .then((respon) => (this.dbData = respon.data.data));
         },
-        updateData(slugs) {},
+        updateData(slugs) {
+            this.modal = true;
+            this.modalUpdate = true;
+            // console.log("ini adalah slugs yang di klik :");
+            // console.log(slugs);
+            // this.dbData.forEach((element) => {
+            //     if (element.slugs == slugs) {
+            //         console.log(element.filter(slugs));
+            //     }
+            // });
+            // console.log(this.singleData);
+            return this.singleData;
+        },
     },
     mounted() {
         this.getData();
