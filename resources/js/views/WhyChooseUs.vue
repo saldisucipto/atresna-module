@@ -6,7 +6,7 @@
             </succes-notifications>
         </Transition>
         <admin>
-            <section>
+            <section class="mb-10">
                 <div>
                     <button
                         @click="modalController()"
@@ -15,52 +15,44 @@
                         <i class="fas fa-plus"></i> Tambah Data
                     </button>
                 </div>
-                <div class="grid grid-cols-3 gap-2">
-                    <card-static
-                        v-for="konten in staticContent"
-                        :key="konten.id"
+                <div class="grid grid-cols-5 gap-4">
+                    <card-medium
+                        v-for="konten in dbData"
+                        :key="konten.slugs"
                         class="overflow-hidden"
                     >
                         <template v-slot:images>
-                            <div class="flex flex-col justify-center h-28">
+                            <div class="flex flex-col justify-center mt-3">
                                 <i
-                                    v-if="konten.imagesFile == null"
+                                    v-if="konten.images == null"
                                     class="fas fa-image fa-4x text-gray-50"
                                 ></i>
                                 <img
                                     v-else
-                                    :src="'/static-konten/' + konten.imagesFile"
+                                    :src="'/why/' + konten.images"
                                     alt=""
-                                    class="object-cover h-20"
+                                    class="object-cover rounded-lg max-h-32"
                                 />
                             </div>
                         </template>
                         <template v-slot:desc>
                             <div
-                                class="h-28 flex flex-col justify-center text-white my-2"
+                                class="flex flex-col justify-center text-white my-2"
                             >
-                                <h1 class="font-bold text-xs capitalize">
+                                <h1
+                                    class="font-bold text-xs capitalize justify-center text-center"
+                                >
                                     {{ konten.title }}
                                 </h1>
-                                <span
-                                    class="font-thin text px-2 text-center text-xs bg-green-800 text-white rounded-md"
-                                    v-if="konten.konten_untuk == 'HeroKonten'"
-                                    >Konten Hero Pages</span
-                                >
-                                <span
-                                    class="font-thin px-2 text-center text-xs bg-yellow-600 text-white rounded-md"
-                                    v-else
-                                    >Konten Isi Pages</span
-                                >
                                 <button
                                     class="my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary"
-                                    @click="updateStatic(konten.id)"
+                                    @click="updateData(konten.slugs)"
                                 >
                                     update
                                 </button>
                             </div>
                         </template>
-                    </card-static>
+                    </card-medium>
                 </div>
             </section>
         </admin>
@@ -85,7 +77,7 @@
                     <div class="py-4 text-left px-6">
                         <!--Title-->
                         <div class="flex justify-between items-center pb-4">
-                            <p class="text-2xl font-bold">Statik Konten</p>
+                            <p class="text-2xl font-bold">Buat Data Baru</p>
 
                             <!-- Modal Close Button -->
                             <div class="modal-close cursor-pointer z-50">
@@ -94,14 +86,14 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- <img
+                        <img
                             v-if="images != null"
                             :src="'static-konten/' + images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
-                        /> -->
+                        />
 
-                        <!-- <form
+                        <form
                             enctype="multipart/form-data"
                             method="POST"
                             ref="formCreate"
@@ -168,21 +160,6 @@
                                         />
                                     </div>
                                     <div class="flex flex-col text-left">
-                                        <label for="title">Konten Untuk</label>
-                                        <select
-                                            v-model="konten_untuk"
-                                            class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
-                                            required
-                                        >
-                                            <option value="HeroKonten">
-                                                Main Konten
-                                            </option>
-                                            <option value="IsiKonten">
-                                                Static Konten
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="flex flex-col text-left">
                                         <label for="title"
                                             >Isi Konten Posting</label
                                         >
@@ -190,7 +167,7 @@
                                         <ckeditor
                                             class="h-28"
                                             :editor="editor"
-                                            v-model="editorData"
+                                            v-model="description"
                                             :config="editorConfig"
                                             aria-required="true"
                                         ></ckeditor>
@@ -223,7 +200,7 @@
                             >
                                 Create Konten
                             </button>
-                        </form> -->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -235,18 +212,34 @@
 <script>
 import Admin from "../layouts/Admin.vue";
 import SuccesNotifications from "../components/Notifications/SuccesNotifications.vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import http from "../services/http-config";
+import CardMedium from "../components/Cards/CardMedium.vue";
 
 export default {
     name: "WhyChooseUs",
     data() {
         return {
+            editor: ClassicEditor,
+            description: "isi posting",
+            editorConfig: {
+                // The configuration of the editor.
+                width: 850,
+            },
             message: null,
             modal: false,
+            images: null,
+            modalUpdate: false,
+            previewImage: null,
+            curenntImage: null,
+            title: null,
+            dbData: [],
         };
     },
     components: {
         Admin,
         SuccesNotifications,
+        CardMedium,
     },
     methods: {
         modalController() {
@@ -256,8 +249,46 @@ export default {
             this.modal = false;
         },
         createPOST() {
-            console.log("create content");
+            let form = new FormData();
+            form.append("title", this.title);
+            form.append("description", this.description);
+            form.append("images", this.curenntImage);
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .post("/why-choose-us/create", form, config)
+                .then((response) => {
+                    // console.log(response.data.message);
+                    this.message = response.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                    }, 2000);
+                    this.modal = false;
+                })
+                .catch((e) => console.log(e));
         },
+        selectImage() {
+            this.curenntImage = this.$refs.imagesInput.files.item(0);
+            this.previewImage = URL.createObjectURL(this.curenntImage);
+        },
+        async getData() {
+            return http
+                .get("/why-choose-us")
+                .then((respon) => (this.dbData = respon.data.data));
+        },
+        updateData(slugs) {},
+    },
+    mounted() {
+        this.getData();
     },
 };
 </script>
