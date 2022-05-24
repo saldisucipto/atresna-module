@@ -3511,7 +3511,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       previewImage: null,
       curenntImage: null,
       title: null,
-      dbData: []
+      dbData: [],
+      singleData: []
     };
   },
   components: {
@@ -3581,7 +3582,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    updateData: function updateData(slugs) {}
+    updateData: function updateData(slugs) {
+      this.modal = true;
+      this.modalUpdate = true; // console.log("ini adalah slugs yang di klik :");
+      // console.log(slugs);
+      // this.dbData.forEach((element) => {
+      //     if (element.slugs == slugs) {
+      //         console.log(element.filter(slugs));
+      //     }
+      // });
+      // console.log(this.singleData);
+
+      return this.singleData;
+    }
   },
   mounted: function mounted() {
     this.getData();
