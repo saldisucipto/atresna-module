@@ -22,7 +22,7 @@
                         class="overflow-hidden"
                     >
                         <template v-slot:images>
-                            <div class="flex flex-col justify-center mt-3">
+                            <div class="flex flex-col justify-center mt-3 h-32">
                                 <i
                                     v-if="konten.images == null"
                                     class="fas fa-image fa-4x text-gray-50"
@@ -31,7 +31,7 @@
                                     v-else
                                     :src="'/why/' + konten.images"
                                     alt=""
-                                    class="object-cover rounded-lg max-h-32"
+                                    class="object-cover rounded-lg max-h-32 mx-3"
                                 />
                             </div>
                         </template>
@@ -88,7 +88,7 @@
                         </div>
                         <img
                             v-if="images != null"
-                            :src="'static-konten/' + images"
+                            :src="'why/' + images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
                         />
@@ -96,7 +96,7 @@
                         <form
                             enctype="multipart/form-data"
                             method="POST"
-                            ref="formCreate"
+                            ref="formrEF"
                         >
                             <span
                                 v-if="this.message != null"
@@ -177,14 +177,14 @@
 
                             <div v-if="modalUpdate" class="flex gap-4">
                                 <button
-                                    @click="updateAction(this.id)"
+                                    @click="updateAction(this.slugs)"
                                     type="button"
                                     class="block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
                                 >
                                     Update Konten
                                 </button>
                                 <button
-                                    @click="deleteAction(this.id)"
+                                    @click="deleteAction(this.slugs)"
                                     type="button"
                                     class="block w-full bg-red-600 text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
                                 >
@@ -233,8 +233,8 @@ export default {
             previewImage: null,
             curenntImage: null,
             title: null,
+            slugs: null,
             dbData: [],
-            singleData: [],
         };
     },
     components: {
@@ -248,6 +248,11 @@ export default {
         },
         closedModal() {
             this.modal = false;
+            this.modalUpdate = false;
+            this.title = null;
+            this.description = null;
+            this.images = null;
+            this.curenntImage = null;
         },
         createPOST() {
             let form = new FormData();
@@ -289,15 +294,61 @@ export default {
         updateData(slugs) {
             this.modal = true;
             this.modalUpdate = true;
-            // console.log("ini adalah slugs yang di klik :");
-            // console.log(slugs);
-            // this.dbData.forEach((element) => {
-            //     if (element.slugs == slugs) {
-            //         console.log(element.filter(slugs));
-            //     }
-            // });
-            // console.log(this.singleData);
-            return this.singleData;
+            let data = this.dbData.find(
+                (element) => element.slugs.toLowerCase() === slugs
+            );
+            this.title = data.title;
+            this.description = data.description;
+            this.images = data.images;
+            this.slugs = slugs;
+        },
+        updateAction(slugs) {
+            let form = new FormData();
+            form.append("title", this.title);
+            form.append("description", this.description);
+            form.append("images", this.curenntImage);
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .post("/why-choose-us/" + slugs, form, config)
+                .then((response) => {
+                    // console.log(response.data.message);
+                    this.message = response.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                        this.modalUpdate = false;
+                    }, 2000);
+                    this.modal = false;
+                })
+                .catch((e) => console.log(e));
+        },
+        deleteAction(slugs) {
+            return http
+                .delete("/why-choose-us/" + slugs + "/delete")
+                .then((response) => {
+                    this.message = response.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                        this.modalUpdate = false;
+                    }, 2000);
+                    this.modal = false;
+                })
+                .catch((e) => console.log(e));
         },
     },
     mounted() {

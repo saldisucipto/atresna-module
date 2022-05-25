@@ -64,8 +64,8 @@ class WhyChooseUsController extends Controller
             $db->description = $data['description'];
             if ($images) {
                 $fileHandling = new FilesHandling();
-                $db->images = $fileHandling->upload($images, 'why', 'why-choose-us');
                 $fileHandling->update($db->images, 'why');
+                $db->images = $fileHandling->upload($images, 'why', 'why-choose-us');
             }
             $db->update();
             return response()->json(['data' => $data, 'message' => 'Berhasil Membuat Data Baru'], 201);
