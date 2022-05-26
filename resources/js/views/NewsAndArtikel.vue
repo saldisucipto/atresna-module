@@ -32,19 +32,24 @@
                                 v-else
                                 :src="'/news-artikel/' + konten.images_utama"
                                 alt=""
-                                class="object-cover rounded-lg max-h-32 mx-3"
+                                class="object-cover rounded-lg max-h-36 mx-2 mt-2"
                             />
                         </div>
                     </template>
                     <template v-slot:desc>
-                        <div
-                            class="flex flex-col justify-center text-white my-2"
-                        >
-                            <h1
-                                class="font-bold text-xs capitalize justify-center text-center"
-                            >
+                        <div class="flex flex-col justify-center text-white">
+                            <h1 class="font-bold justify-center my-1">
                                 {{ konten.title }}
                             </h1>
+                            <div
+                                class="px-5 text-xs bg-green-500 text-white my-2 w-28 rounded-2xl"
+                            >
+                                {{
+                                    moment(konten.created_at).format(
+                                        "DD-MM-YYYY"
+                                    )
+                                }}
+                            </div>
                             <button
                                 class="my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary"
                                 @click="updateData(konten.slugs)"
@@ -217,6 +222,7 @@ import Admin from "../layouts/Admin.vue";
 import CardLarge from "../components/Cards/CardLarge.vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import http from "../services/http-config";
+import moment from "moment";
 
 export default {
     name: "NewsAndArtikel",
@@ -233,6 +239,7 @@ export default {
                 // The configuration of the editor.
                 width: 850,
             },
+            moment: moment,
             modal: false,
             message: null,
             dbData: [],
@@ -289,6 +296,34 @@ export default {
             return http.get("news-artikel").then((response) => {
                 this.dbData = response.data.data;
             });
+        },
+        dataFormat(input) {
+            var d = new Date(Date.parse(input.replace(/-/g, "/")));
+            var month = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ];
+            var date =
+                d.getDay().toString() +
+                " " +
+                month[d.getMonth().toString()] +
+                ", " +
+                d.getFullYear().toString();
+            return date;
+        },
+        updateData(slugs) {
+            this.modal = !this.modal;
+            this.modalUpdate = true;
         },
     },
     mounted() {

@@ -28,6 +28,7 @@
         "@nuxtjs/axios": "^5.13.6",
         "@popperjs/core": "^2.11.4",
         "chart.js": "^2.9.4",
+        "moment": "^2.29.3",
         "vue": "^3.2.31",
         "vue-router": "^4.0.14",
         "vuex": "^4.0.2",
