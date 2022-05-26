@@ -210,6 +210,31 @@
                                 Why Choose Us
                             </a>
                         </router-link>
+                        <router-link
+                            to="/news"
+                            v-slot="{ href, navigate, isActive }"
+                        >
+                            <a
+                                :href="href"
+                                @click="navigate"
+                                class="text-xs uppercase py-3 font-bold block"
+                                :class="[
+                                    isActive
+                                        ? 'text-primary-color hover:text-gray-700'
+                                        : 'text-secondary-color hover:text-gray-700',
+                                ]"
+                            >
+                                <i
+                                    class="fas fa-file mr-2 text-sm"
+                                    :class="[
+                                        isActive
+                                            ? 'opacity-75 hover:text-gray-700'
+                                            : ' hover:text-gray-700',
+                                    ]"
+                                ></i>
+                                News And Artikel
+                            </a>
+                        </router-link>
                     </li>
                 </ul>
 

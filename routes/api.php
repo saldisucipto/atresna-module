@@ -7,6 +7,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\StaticController;
 use App\Http\Controllers\API\WhyChooseUsController;
+use App\Http\Controllers\API\NewsController;
 
 Route::prefix('com-info')->group(function () {
     // Company Info
@@ -21,6 +22,12 @@ Route::prefix('static-content')->group(function () {
     Route::delete('/delete/{id}', [StaticController::class, 'delete'])->name('deleteStaticContent');
     Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
 });
+
+Route::prefix('news-artikel')->group(function () {
+    Route::get('/', [NewsController::class, 'index'])->name('news');
+    Route::post('/create', [NewsController::class, 'create'])->name('createNews');
+});
+
 
 Route::prefix('why-choose-us')->group(function () {
     Route::get('/', [WhyChooseUsController::class, 'index'])->name('showWhyChooseUs');

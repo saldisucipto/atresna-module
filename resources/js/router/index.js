@@ -37,6 +37,14 @@ const routes = [
             auth: true,
         },
     },
+    {
+        path: "/news",
+        component: () => import("../views/NewsAndArtikel.vue"),
+        name: "NewsAndArtikel",
+        meta: {
+            auth: true,
+        },
+    },
 ];
 
 const router = createRouter({
