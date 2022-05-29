@@ -14,7 +14,10 @@ class CreateServisTable extends Migration
     public function up()
     {
         Schema::create('servis', function (Blueprint $table) {
-            $table->id();
+            $table->string('slugs')->primary();
+            $table->string('title');
+            $table->text('description');
+            $table->string('images_utama');
             $table->timestamps();
         });
     }

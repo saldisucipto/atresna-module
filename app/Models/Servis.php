@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Servis extends Model
 {
     use HasFactory;
+    protected $table = 'servis';
+    protected $primaryKey = 'slugs';
+
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $guarded = [];
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\StaticController;
 use App\Http\Controllers\API\WhyChooseUsController;
 use App\Http\Controllers\API\NewsController;
+use App\Http\Controllers\API\ServisProductController;
 
 Route::prefix('com-info')->group(function () {
     // Company Info
@@ -21,6 +22,11 @@ Route::prefix('static-content')->group(function () {
     Route::match(['get', 'post'], '/info/{id}', [StaticController::class, 'update']);
     Route::delete('/delete/{id}', [StaticController::class, 'delete'])->name('deleteStaticContent');
     Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
+});
+
+Route::prefix('servis')->group(function(){
+    Route::match(['get', 'post'], '/',  [ServisProductController::class, 'index']);
+    Route::match(['post', 'delete'], '/{slugs}/update', [ServisProductController::class, 'update']);
 });
 
 Route::prefix('news-artikel')->group(function () {
