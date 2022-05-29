@@ -26,6 +26,7 @@ Route::prefix('static-content')->group(function () {
 Route::prefix('news-artikel')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
     Route::post('/create', [NewsController::class, 'create'])->name('createNews');
+    Route::match(['post', 'delete'], '/{slugs}/update', [NewsController::class, 'update']);
 });
 
 

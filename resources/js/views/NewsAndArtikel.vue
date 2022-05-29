@@ -85,7 +85,15 @@
                     <div class="py-4 text-left px-6">
                         <!--Title-->
                         <div class="flex justify-between items-center pb-4">
-                            <p class="text-2xl font-bold">Buat Data Baru</p>
+                            <p
+                                class="text-2xl font-bold"
+                                v-if="this.title != null"
+                            >
+                                Update {{ this.title }}
+                            </p>
+                            <p v-else class="text-2xl font-bold">
+                                Buat Data Baru
+                            </p>
 
                             <!-- Modal Close Button -->
                             <div class="modal-close cursor-pointer z-50">
@@ -95,8 +103,8 @@
                             </div>
                         </div>
                         <img
-                            v-if="images != null"
-                            :src="'/news-artikel/' + images"
+                            v-if="this.images != null"
+                            :src="'news-artikel/' + this.images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
                         />
@@ -249,6 +257,7 @@ export default {
             curenntImage: null,
             title: null,
             slugs: null,
+            singleData: [],
         };
     },
     methods: {
@@ -324,6 +333,42 @@ export default {
         updateData(slugs) {
             this.modal = !this.modal;
             this.modalUpdate = true;
+            let data = this.dbData.find(
+                (element) => element.slugs.toLowerCase() === slugs
+            );
+            this.title = data.title;
+            this.description = data.description;
+            this.images = data.images_utama;
+            this.slugs = slugs;
+        },
+        updateAction() {
+            let form = new FormData();
+            form.append("title", this.title);
+            form.append("description", this.description);
+            form.append("images", this.curenntImage);
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .post("news-artikel/" + this.slugs + "/update", form, config)
+                .then((response) => {
+                    // console.log(response.data.message);
+                    this.message = response.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                        this.modalUpdate = false;
+                    }, 2000);
+                    this.modal = false;
+                })
+                .catch((e) => console.log(e));
         },
     },
     mounted() {
