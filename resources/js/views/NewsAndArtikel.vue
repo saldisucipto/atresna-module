@@ -370,6 +370,29 @@ export default {
                 })
                 .catch((e) => console.log(e));
         },
+        deleteAction() {
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .delete("news-artikel/" + this.slugs + "/update", config)
+                .then((response) => {
+                    this.message = response.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                        this.modalUpdate = false;
+                    }, 2000);
+                    this.modal = false;
+                });
+        },
     },
     mounted() {
         this.getData();

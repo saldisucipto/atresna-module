@@ -3637,6 +3637,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       })["catch"](function (e) {
         return console.log(e);
       });
+    },
+    deleteAction: function deleteAction() {
+      var _this4 = this;
+
+      var config = {
+        headers: {
+          "Content-type": "multipart/form-data"
+        }
+      };
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("news-artikel/" + this.slugs + "/update", config).then(function (response) {
+        _this4.message = response.data.message;
+
+        _this4.getData();
+
+        setTimeout(function () {
+          _this4.message = null;
+          _this4.title = "";
+          _this4.editorData = "";
+          _this4.currentImage = "";
+          _this4.previewImage = null;
+          _this4.description = null;
+          _this4.modalUpdate = false;
+        }, 2000);
+        _this4.modal = false;
+      });
     }
   },
   mounted: function mounted() {
@@ -4731,7 +4756,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
   }, " Update Konten "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function ($event) {
-      return _ctx.deleteAction(_this.slugs);
+      return $options.deleteAction(_this.slugs);
     }),
     type: "button",
     "class": "block w-full bg-red-600 text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
