@@ -38,6 +38,14 @@ const routes = [
         },
     },
     {
+        path: "/servis-management",
+        component: () => import("../views/ServisManagement.vue"),
+        name: "ServisManagement",
+        meta: {
+            auth: true,
+        },
+    },
+    {
         path: "/news",
         component: () => import("../views/NewsAndArtikel.vue"),
         name: "NewsAndArtikel",

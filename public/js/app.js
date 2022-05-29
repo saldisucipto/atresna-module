@@ -25540,6 +25540,15 @@ var routes = [{
     auth: true
   }
 }, {
+  path: "/servis-management",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_ServisManagement_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/ServisManagement.vue */ "./resources/js/views/ServisManagement.vue"));
+  },
+  name: "ServisManagement",
+  meta: {
+    auth: true
+  }
+}, {
   path: "/news",
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_views_NewsAndArtikel_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/NewsAndArtikel.vue */ "./resources/js/views/NewsAndArtikel.vue"));
@@ -32554,7 +32563,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_auth_Login_vue":1,"resources_js_views_Welcome_vue":1,"resources_js_views_UserManagement_vue":1,"resources_js_views_StaticManagement_vue":1,"resources_js_views_WhyChooseUs_vue":1,"resources_js_views_NewsAndArtikel_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_auth_Login_vue":1,"resources_js_views_Welcome_vue":1,"resources_js_views_UserManagement_vue":1,"resources_js_views_StaticManagement_vue":1,"resources_js_views_WhyChooseUs_vue":1,"resources_js_views_ServisManagement_vue":1,"resources_js_views_NewsAndArtikel_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

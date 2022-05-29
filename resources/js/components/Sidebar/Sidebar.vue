@@ -158,6 +158,41 @@
                     >
                         Content Management System
                     </h6>
+                    <li class="items-center">
+                        <router-link
+                            :to="{ name: 'ServisManagement' }"
+                            v-slot="{ href, navigate, isActive }"
+                        >
+                            <a
+                                :href="href"
+                                @click="navigate"
+                                class="text-xs uppercase py-3 font-bold block"
+                                :class="[
+                                    isActive
+                                        ? 'text-primary-color hover:text-gray-700'
+                                        : 'text-secondary-color hover:text-gray-700',
+                                ]"
+                            >
+                                <i
+                                    class="fas fa-hands mr-2 text-sm"
+                                    :class="[
+                                        isActive
+                                            ? 'opacity-75 hover:text-gray-700'
+                                            : ' hover:text-gray-700',
+                                    ]"
+                                ></i>
+                                Servis Management
+                            </a>
+                        </router-link>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="mt-4 md:min-w-full" />
+                    <!-- Heading -->
+                    <h6
+                        class="md:min-w-full text-gray-700 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+                    >
+                        Content Management System
+                    </h6>
                     <!-- Navigation -->
                     <li class="items-center">
                         <router-link
