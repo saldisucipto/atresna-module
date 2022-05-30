@@ -104,7 +104,7 @@
                         </div>
                         <img
                             v-if="this.images != null"
-                            :src="'news-artikel/' + this.images"
+                            :src="'servis/' + this.images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
                         />
@@ -192,14 +192,14 @@
 
                             <div v-if="modalUpdate" class="flex gap-4">
                                 <button
-                                    @click="updateAction(this.slugs)"
+                                    @click="updateAction()"
                                     type="button"
                                     class="block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
                                 >
                                     Update Konten
                                 </button>
                                 <button
-                                    @click="deleteAction(this.slugs)"
+                                    @click="deleteAction()"
                                     type="button"
                                     class="block w-full bg-red-600 text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
                                 >
@@ -272,6 +272,100 @@ export default {
             return http.get("servis").then((response) => {
                 this.dbData = response.data.data;
             });
+        },
+        createPOST() {
+            let form = new FormData();
+            form.append("title", this.title);
+            form.append("description", this.description);
+            form.append("images", this.curenntImage);
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .post("servis", form, config)
+                .then((res) => {
+                    this.message = res.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                    }, 2000);
+                    this.modal = !this.modal;
+                })
+                .catch((e) => console.log(e));
+        },
+        selectImage() {
+            this.curenntImage = this.$refs.imagesInput.files.item(0);
+            this.previewImage = URL.createObjectURL(this.curenntImage);
+        },
+        updateData(slugs) {
+            this.modal = !this.modal;
+            this.modalUpdate = true;
+            let data = this.dbData.find(
+                (element) => element.slugs.toLowerCase() === slugs
+            );
+            this.title = data.title;
+            this.description = data.description;
+            this.images = data.images_utama;
+            this.slugs = slugs;
+        },
+        updateAction() {
+            let form = new FormData();
+            form.append("title", this.title);
+            form.append("description", this.description);
+            form.append("images", this.curenntImage);
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .post("servis/" + this.slugs + "/update", form, config)
+                .then((response) => {
+                    // console.log(response.data.message);
+                    this.message = response.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                        this.modalUpdate = false;
+                    }, 2000);
+                    this.modal = false;
+                })
+                .catch((e) => console.log(e));
+        },
+        deleteAction() {
+            const config = {
+                headers: {
+                    "Content-type": "multipart/form-data",
+                },
+            };
+            return http
+                .delete("servis/" + this.slugs + "/update", config)
+                .then((response) => {
+                    this.message = response.data.message;
+                    this.getData();
+                    setTimeout(() => {
+                        this.message = null;
+                        this.title = "";
+                        this.editorData = "";
+                        this.currentImage = "";
+                        this.previewImage = null;
+                        this.description = null;
+                        this.modalUpdate = false;
+                    }, 2000);
+                    this.modal = false;
+                });
         },
     },
     mounted() {

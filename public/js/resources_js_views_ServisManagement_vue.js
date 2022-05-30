@@ -3531,6 +3531,108 @@ __webpack_require__.r(__webpack_exports__);
       return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].get("servis").then(function (response) {
         _this.dbData = response.data.data;
       });
+    },
+    createPOST: function createPOST() {
+      var _this2 = this;
+
+      var form = new FormData();
+      form.append("title", this.title);
+      form.append("description", this.description);
+      form.append("images", this.curenntImage);
+      var config = {
+        headers: {
+          "Content-type": "multipart/form-data"
+        }
+      };
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].post("servis", form, config).then(function (res) {
+        _this2.message = res.data.message;
+
+        _this2.getData();
+
+        setTimeout(function () {
+          _this2.message = null;
+          _this2.title = "";
+          _this2.editorData = "";
+          _this2.currentImage = "";
+          _this2.previewImage = null;
+          _this2.description = null;
+        }, 2000);
+        _this2.modal = !_this2.modal;
+      })["catch"](function (e) {
+        return console.log(e);
+      });
+    },
+    selectImage: function selectImage() {
+      this.curenntImage = this.$refs.imagesInput.files.item(0);
+      this.previewImage = URL.createObjectURL(this.curenntImage);
+    },
+    updateData: function updateData(slugs) {
+      this.modal = !this.modal;
+      this.modalUpdate = true;
+      var data = this.dbData.find(function (element) {
+        return element.slugs.toLowerCase() === slugs;
+      });
+      this.title = data.title;
+      this.description = data.description;
+      this.images = data.images_utama;
+      this.slugs = slugs;
+    },
+    updateAction: function updateAction() {
+      var _this3 = this;
+
+      var form = new FormData();
+      form.append("title", this.title);
+      form.append("description", this.description);
+      form.append("images", this.curenntImage);
+      var config = {
+        headers: {
+          "Content-type": "multipart/form-data"
+        }
+      };
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].post("servis/" + this.slugs + "/update", form, config).then(function (response) {
+        // console.log(response.data.message);
+        _this3.message = response.data.message;
+
+        _this3.getData();
+
+        setTimeout(function () {
+          _this3.message = null;
+          _this3.title = "";
+          _this3.editorData = "";
+          _this3.currentImage = "";
+          _this3.previewImage = null;
+          _this3.description = null;
+          _this3.modalUpdate = false;
+        }, 2000);
+        _this3.modal = false;
+      })["catch"](function (e) {
+        return console.log(e);
+      });
+    },
+    deleteAction: function deleteAction() {
+      var _this4 = this;
+
+      var config = {
+        headers: {
+          "Content-type": "multipart/form-data"
+        }
+      };
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("servis/" + this.slugs + "/update", config).then(function (response) {
+        _this4.message = response.data.message;
+
+        _this4.getData();
+
+        setTimeout(function () {
+          _this4.message = null;
+          _this4.title = "";
+          _this4.editorData = "";
+          _this4.currentImage = "";
+          _this4.previewImage = null;
+          _this4.description = null;
+          _this4.modalUpdate = false;
+        }, 2000);
+        _this4.modal = false;
+      });
     }
   },
   mounted: function mounted() {
@@ -4527,8 +4629,6 @@ var _hoisted_44 = {
   "class": "flex gap-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _this = this;
-
   var _component_succes_notifications = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("succes-notifications");
 
   var _component_card_large = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("card-large");
@@ -4586,7 +4686,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
               "class": "my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary",
               onClick: function onClick($event) {
-                return _ctx.updateData(konten.slugs);
+                return $options.updateData(konten.slugs);
               }
             }, " update ", 8
             /* PROPS */
@@ -4613,7 +4713,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, _hoisted_27)])]), this.images != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
     key: 0,
-    src: 'news-artikel/' + this.images,
+    src: 'servis/' + this.images,
     alt: "",
     "class": "max-h-56 mx-auto my-2"
   }, null, 8
@@ -4632,7 +4732,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     accept: "image/*",
     ref: "imagesInput",
     onChange: _cache[2] || (_cache[2] = function ($event) {
-      return _ctx.selectImage();
+      return $options.selectImage();
     }),
     required: ""
   }, null, 544
@@ -4662,20 +4762,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["editor", "modelValue", "config"])])])]), $data.modalUpdate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[5] || (_cache[5] = function ($event) {
-      return _ctx.updateAction(_this.slugs);
+      return $options.updateAction();
     }),
     type: "button",
     "class": "block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
   }, " Update Konten "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function ($event) {
-      return _ctx.deleteAction(_this.slugs);
+      return $options.deleteAction();
     }),
     type: "button",
     "class": "block w-full bg-red-600 text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
   }, " Delete Post ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 2,
     onClick: _cache[7] || (_cache[7] = function ($event) {
-      return _ctx.createPOST();
+      return $options.createPOST();
     }),
     type: "button",
     "class": "block w-full bg-dark-secondary text-white py-1.5 px-3 rounded transition hover:bg-primary-color"

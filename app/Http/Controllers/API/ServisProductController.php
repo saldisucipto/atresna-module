@@ -46,7 +46,7 @@ class ServisProductController extends Controller
             $dbData->title = $dataUpdate['title'];
             $dbData->description = $dataUpdate['description'];
             if($images){
-                $imagesFileHanndling->update($dbData->images_utama, 'servis');
+               $imagesFileHanndling->update($dbData->images_utama, 'servis');
                $dbData->images_utama = $imagesFileHanndling->upload($images, 'servis', 'servis');
             }
             $dbData->update();
