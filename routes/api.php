@@ -40,6 +40,7 @@ Route::prefix('servis')->group(function(){
 
 Route::prefix('news-artikel')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
+    Route::get('/{slugs}', [NewsController::class, 'details'])->name('detailsNews');
     Route::post('/create', [NewsController::class, 'create'])->name('createNews');
     Route::match(['post', 'delete'], '/{slugs}/update', [NewsController::class, 'update']);
 });

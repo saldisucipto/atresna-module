@@ -15,4 +15,6 @@ class WhyChooseUs extends Model
     protected $keyType = 'string';
 
     protected $guarded = [];
+
+    protected $hidden = ['updated_at', 'created_at'];
 }

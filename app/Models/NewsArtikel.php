@@ -14,5 +14,6 @@ class NewsArtikel extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    protected $hidden = ['updated_at'];
     protected $guarded = [];
 }

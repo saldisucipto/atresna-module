@@ -69,4 +69,9 @@ class NewsController extends Controller
             return response()->json(['data' => $data, 'message' => 'Berhasil Di Hapus'], 201);
         }
     }
+    // detaails
+    public function details($slugs = null){
+        $dbData = NewsArtikel::find($slugs);
+        return response()->json(['data' => $dbData, 'message' => 'Berhasil Mengambil Data Dari Database'], 201);
+    }
 }
