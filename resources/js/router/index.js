@@ -46,6 +46,14 @@ const routes = [
         },
     },
     {
+        path: "/contact",
+        component: () => import("../views/Contact.vue"),
+        name: "Contact",
+        meta: {
+            auth: true,
+        },
+    },
+    {
         path: "/news",
         component: () => import("../views/NewsAndArtikel.vue"),
         name: "NewsAndArtikel",

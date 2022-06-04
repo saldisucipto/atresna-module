@@ -1,4 +1,4 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_NewsAndArtikel_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_Contact_vue"],{
 
 /***/ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js":
 /*!**************************************************************************!*\
@@ -3464,10 +3464,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/NewsAndArtikel.vue?vue&type=script&lang=js":
-/*!***************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/NewsAndArtikel.vue?vue&type=script&lang=js ***!
-  \***************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/Contact.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/Contact.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3498,7 +3498,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "NewsAndArtikel",
+  name: "Contact",
   components: {
     SuccesNotifications: _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     Admin: _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -3550,7 +3550,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           "Content-type": "multipart/form-data"
         }
       };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"].post("/news-artikel/create", form, config).then(function (response) {
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"].post("/static-contact", form, config).then(function (response) {
         // console.log(response.data.message);
         _this.message = response.data.message;
 
@@ -3577,7 +3577,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"].get("news-artikel").then(function (response) {
+                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"].get("static-contact").then(function (response) {
                   _this2.dbData = response.data.data;
                 }));
 
@@ -3612,7 +3612,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           "Content-type": "multipart/form-data"
         }
       };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"].post("news-artikel/" + this.slugs + "/update", form, config).then(function (response) {
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"].post("static-contact/" + this.slugs + "/update", form, config).then(function (response) {
         // console.log(response.data.message);
         _this3.message = response.data.message;
 
@@ -3640,7 +3640,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           "Content-type": "multipart/form-data"
         }
       };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("news-artikel/" + this.slugs + "/update", config).then(function (response) {
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("static-contact/" + this.slugs + "/update", config).then(function (response) {
         _this4.message = response.data.message;
 
         _this4.getData();
@@ -4496,10 +4496,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/NewsAndArtikel.vue?vue&type=template&id=61335b32":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/NewsAndArtikel.vue?vue&type=template&id=61335b32 ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/Contact.vue?vue&type=template&id=1d91a851":
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/Contact.vue?vue&type=template&id=1d91a851 ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4722,7 +4722,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           images: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [konten.images_utama == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_7)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
               key: 1,
-              src: '/news-artikel/' + konten.images_utama,
+              src: '/contact/' + konten.images_utama,
               alt: "",
               "class": "object-cover rounded-lg max-h-36 mx-2 mt-2"
             }, null, 8
@@ -4764,7 +4764,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, _hoisted_27)])]), this.images != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
     key: 0,
-    src: 'news-artikel/' + this.images,
+    src: 'contact/' + this.images,
     alt: "",
     "class": "max-h-56 mx-auto my-2"
   }, null, 8
@@ -26635,10 +26635,10 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/views/NewsAndArtikel.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/views/NewsAndArtikel.vue ***!
-  \***********************************************/
+/***/ "./resources/js/views/Contact.vue":
+/*!****************************************!*\
+  !*** ./resources/js/views/Contact.vue ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -26646,15 +26646,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _NewsAndArtikel_vue_vue_type_template_id_61335b32__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewsAndArtikel.vue?vue&type=template&id=61335b32 */ "./resources/js/views/NewsAndArtikel.vue?vue&type=template&id=61335b32");
-/* harmony import */ var _NewsAndArtikel_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewsAndArtikel.vue?vue&type=script&lang=js */ "./resources/js/views/NewsAndArtikel.vue?vue&type=script&lang=js");
+/* harmony import */ var _Contact_vue_vue_type_template_id_1d91a851__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Contact.vue?vue&type=template&id=1d91a851 */ "./resources/js/views/Contact.vue?vue&type=template&id=1d91a851");
+/* harmony import */ var _Contact_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Contact.vue?vue&type=script&lang=js */ "./resources/js/views/Contact.vue?vue&type=script&lang=js");
 /* harmony import */ var D_LARAVEL_DEVELOPMENT_atresna_module_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,D_LARAVEL_DEVELOPMENT_atresna_module_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_NewsAndArtikel_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_NewsAndArtikel_vue_vue_type_template_id_61335b32__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/views/NewsAndArtikel.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_LARAVEL_DEVELOPMENT_atresna_module_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Contact_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Contact_vue_vue_type_template_id_1d91a851__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/views/Contact.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -26823,18 +26823,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/NewsAndArtikel.vue?vue&type=script&lang=js":
-/*!***********************************************************************!*\
-  !*** ./resources/js/views/NewsAndArtikel.vue?vue&type=script&lang=js ***!
-  \***********************************************************************/
+/***/ "./resources/js/views/Contact.vue?vue&type=script&lang=js":
+/*!****************************************************************!*\
+  !*** ./resources/js/views/Contact.vue?vue&type=script&lang=js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NewsAndArtikel_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Contact_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NewsAndArtikel_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./NewsAndArtikel.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/NewsAndArtikel.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Contact_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Contact.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/Contact.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -26999,18 +26999,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/NewsAndArtikel.vue?vue&type=template&id=61335b32":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/views/NewsAndArtikel.vue?vue&type=template&id=61335b32 ***!
-  \*****************************************************************************/
+/***/ "./resources/js/views/Contact.vue?vue&type=template&id=1d91a851":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/Contact.vue?vue&type=template&id=1d91a851 ***!
+  \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NewsAndArtikel_vue_vue_type_template_id_61335b32__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Contact_vue_vue_type_template_id_1d91a851__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_NewsAndArtikel_vue_vue_type_template_id_61335b32__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./NewsAndArtikel.vue?vue&type=template&id=61335b32 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/NewsAndArtikel.vue?vue&type=template&id=61335b32");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Contact_vue_vue_type_template_id_1d91a851__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Contact.vue?vue&type=template&id=1d91a851 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/Contact.vue?vue&type=template&id=1d91a851");
 
 
 /***/ })
