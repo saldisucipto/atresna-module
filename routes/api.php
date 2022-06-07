@@ -26,6 +26,7 @@ Route::prefix('static-content')->group(function () {
     Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
 });
 
+
 Route::prefix('static-contact')->group(function () {
     Route::match(['get', 'post'], '/',  [StaticContact::class, 'index']);
     Route::match(['post', 'delete'], '/{slugs}/update', [StaticContact::class, 'update']);
@@ -35,6 +36,7 @@ Route::prefix('static-contact')->group(function () {
 
 Route::prefix('servis')->group(function(){
     Route::match(['get', 'post'], '/',  [ServisProductController::class, 'index']);
+    Route::get('/{slugs}', [ServisProductController::class, 'details']);
     Route::match(['post', 'delete'], '/{slugs}/update', [ServisProductController::class, 'update']);
 });
 
