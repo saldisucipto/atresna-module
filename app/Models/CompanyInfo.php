@@ -10,4 +10,5 @@ class CompanyInfo extends Model
     use HasFactory;
     protected $table = 'company_info';
     protected $guarded = [];
+    protected $hidden = ['updated_at', 'created_at', 'id'];
 }

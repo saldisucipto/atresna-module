@@ -30,7 +30,7 @@
                             ></i>
                             <img
                                 v-else
-                                :src="'/news-artikel/' + konten.images_utama"
+                                :src="'/servis/' + konten.images_utama"
                                 alt=""
                                 class="object-cover rounded-lg max-h-36 mx-2 mt-2"
                             />
@@ -104,7 +104,7 @@
                         </div>
                         <img
                             v-if="this.images != null"
-                            :src="'news-artikel/' + this.images"
+                            :src="'servis/' + this.images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
                         />
@@ -192,14 +192,14 @@
 
                             <div v-if="modalUpdate" class="flex gap-4">
                                 <button
-                                    @click="updateAction(this.slugs)"
+                                    @click="updateAction()"
                                     type="button"
                                     class="block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
                                 >
                                     Update Konten
                                 </button>
                                 <button
-                                    @click="deleteAction(this.slugs)"
+                                    @click="deleteAction()"
                                     type="button"
                                     class="block w-full bg-red-600 text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
                                 >
@@ -227,13 +227,13 @@
 <script>
 import SuccesNotifications from "../components/Notifications/SuccesNotifications.vue";
 import Admin from "../layouts/Admin.vue";
-import CardLarge from "../components/Cards/CardLarge.vue";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import http from "../services/http-config";
+import CardLarge from "../components/Cards/CardLarge.vue";
 import moment from "moment";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default {
-    name: "NewsAndArtikel",
+    name: "ServisManagement",
     components: {
         SuccesNotifications,
         Admin,
@@ -247,17 +247,16 @@ export default {
                 // The configuration of the editor.
                 width: 850,
             },
-            moment: moment,
-            modal: false,
             message: null,
             dbData: [],
+            modal: false,
+            moment: moment,
             images: null,
             modalUpdate: false,
             previewImage: null,
             curenntImage: null,
             title: null,
             slugs: null,
-            singleData: [],
         };
     },
     methods: {
@@ -269,9 +268,10 @@ export default {
             this.curenntImage = null;
             this.previewImage = null;
         },
-        selectImage() {
-            this.curenntImage = this.$refs.imagesInput.files.item(0);
-            this.previewImage = URL.createObjectURL(this.curenntImage);
+        getData() {
+            return http.get("servis").then((response) => {
+                this.dbData = response.data.data;
+            });
         },
         createPOST() {
             let form = new FormData();
@@ -284,10 +284,9 @@ export default {
                 },
             };
             return http
-                .post("/news-artikel/create", form, config)
-                .then((response) => {
-                    // console.log(response.data.message);
-                    this.message = response.data.message;
+                .post("servis", form, config)
+                .then((res) => {
+                    this.message = res.data.message;
                     this.getData();
                     setTimeout(() => {
                         this.message = null;
@@ -301,10 +300,9 @@ export default {
                 })
                 .catch((e) => console.log(e));
         },
-        async getData() {
-            return http.get("news-artikel").then((response) => {
-                this.dbData = response.data.data;
-            });
+        selectImage() {
+            this.curenntImage = this.$refs.imagesInput.files.item(0);
+            this.previewImage = URL.createObjectURL(this.curenntImage);
         },
         updateData(slugs) {
             this.modal = !this.modal;
@@ -328,7 +326,7 @@ export default {
                 },
             };
             return http
-                .post("news-artikel/" + this.slugs + "/update", form, config)
+                .post("servis/" + this.slugs + "/update", form, config)
                 .then((response) => {
                     // console.log(response.data.message);
                     this.message = response.data.message;
@@ -353,7 +351,7 @@ export default {
                 },
             };
             return http
-                .delete("news-artikel/" + this.slugs + "/update", config)
+                .delete("servis/" + this.slugs + "/update", config)
                 .then((response) => {
                     this.message = response.data.message;
                     this.getData();
@@ -376,4 +374,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

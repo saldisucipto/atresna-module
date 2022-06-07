@@ -8,6 +8,9 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\StaticController;
 use App\Http\Controllers\API\WhyChooseUsController;
 use App\Http\Controllers\API\NewsController;
+use App\Http\Controllers\API\ServisProductController;
+use App\Http\Controllers\API\StaticContact;
+
 
 Route::prefix('com-info')->group(function () {
     // Company Info
@@ -23,9 +26,23 @@ Route::prefix('static-content')->group(function () {
     Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
 });
 
+Route::prefix('static-contact')->group(function () {
+    Route::match(['get', 'post'], '/',  [StaticContact::class, 'index']);
+    Route::match(['post', 'delete'], '/{slugs}/update', [StaticContact::class, 'update']);
+});
+
+
+
+Route::prefix('servis')->group(function(){
+    Route::match(['get', 'post'], '/',  [ServisProductController::class, 'index']);
+    Route::match(['post', 'delete'], '/{slugs}/update', [ServisProductController::class, 'update']);
+});
+
 Route::prefix('news-artikel')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
+    Route::get('/{slugs}', [NewsController::class, 'details'])->name('detailsNews');
     Route::post('/create', [NewsController::class, 'create'])->name('createNews');
+    Route::match(['post', 'delete'], '/{slugs}/update', [NewsController::class, 'update']);
 });
 
 

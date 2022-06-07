@@ -30,7 +30,7 @@
                             ></i>
                             <img
                                 v-else
-                                :src="'/news-artikel/' + konten.images_utama"
+                                :src="'/contact/' + konten.images_utama"
                                 alt=""
                                 class="object-cover rounded-lg max-h-36 mx-2 mt-2"
                             />
@@ -104,7 +104,7 @@
                         </div>
                         <img
                             v-if="this.images != null"
-                            :src="'news-artikel/' + this.images"
+                            :src="'contact/' + this.images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
                         />
@@ -233,7 +233,7 @@ import http from "../services/http-config";
 import moment from "moment";
 
 export default {
-    name: "NewsAndArtikel",
+    name: "Contact",
     components: {
         SuccesNotifications,
         Admin,
@@ -284,7 +284,7 @@ export default {
                 },
             };
             return http
-                .post("/news-artikel/create", form, config)
+                .post("/static-contact", form, config)
                 .then((response) => {
                     // console.log(response.data.message);
                     this.message = response.data.message;
@@ -302,7 +302,7 @@ export default {
                 .catch((e) => console.log(e));
         },
         async getData() {
-            return http.get("news-artikel").then((response) => {
+            return http.get("static-contact").then((response) => {
                 this.dbData = response.data.data;
             });
         },
@@ -328,7 +328,7 @@ export default {
                 },
             };
             return http
-                .post("news-artikel/" + this.slugs + "/update", form, config)
+                .post("static-contact/" + this.slugs + "/update", form, config)
                 .then((response) => {
                     // console.log(response.data.message);
                     this.message = response.data.message;
@@ -353,7 +353,7 @@ export default {
                 },
             };
             return http
-                .delete("news-artikel/" + this.slugs + "/update", config)
+                .delete("static-contact/" + this.slugs + "/update", config)
                 .then((response) => {
                     this.message = response.data.message;
                     this.getData();
