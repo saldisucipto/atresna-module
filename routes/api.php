@@ -10,6 +10,8 @@ use App\Http\Controllers\API\WhyChooseUsController;
 use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\ServisProductController;
 use App\Http\Controllers\API\StaticContact;
+use App\Http\Controllers\API\ContactController;
+
 
 
 Route::prefix('com-info')->group(function () {
@@ -61,6 +63,13 @@ Route::prefix('user-info')->group(function () {
     Route::post('/create', [UserController::class, 'create'])->name('createUser');
     Route::put('/update/{id}', [UserController::class, 'update'])->name('userUpdate');
     Route::match(['get', 'DELETE'], '/user/{id}', [UserController::class, 'show'])->name('userShow');
+});
+
+Route::prefix('contact')->group(function() {
+    Route::get('/', [ContactController::class, 'index'])->name('getContact');
+    Route::post('/post', [ContactController::class, 'create'])->name('createContact');
+    // Route::delete('/{id}', [ContactController::class, 'delete'])->name('deleteContact');
+    Route::match(['get', 'delete'], '/{id}',[ContactController::class, 'delete']);
 });
 
 
