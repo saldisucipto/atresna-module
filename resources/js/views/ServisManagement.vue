@@ -16,7 +16,7 @@
                     </button>
                 </div>
             </section>
-            <div v-if="dbData.length != 0" class="grid grid-cols-5 gap-4">
+            <div v-if="dbData.length < 0" class="grid grid-cols-5 gap-4">
                 <card-large
                     v-for="konten in dbData"
                     :key="konten.slugs"

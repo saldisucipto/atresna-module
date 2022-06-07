@@ -15,7 +15,7 @@
                         <i class="fas fa-plus"></i> Tambah Data
                     </button>
                 </div>
-                <div class="grid grid-cols-5 gap-4">
+                <div v-if="dbData.length < 0" class="grid grid-cols-5 gap-4">
                     <card-medium
                         v-for="konten in dbData"
                         :key="konten.slugs"
@@ -53,6 +53,9 @@
                             </div>
                         </template>
                     </card-medium>
+                </div>
+                <div v-else class="h-full text-center py-2 font-bold">
+                    <h1><i>'Belum Ada Data Pada Server'</i></h1>
                 </div>
             </section>
         </admin>

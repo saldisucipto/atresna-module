@@ -15,7 +15,10 @@
                         <i class="fas fa-plus"></i> Buat Statik Konten Baru
                     </button>
                 </div>
-                <div class="grid grid-cols-3 gap-2">
+                <div
+                    v-if="staticContent.length < 0"
+                    class="grid grid-cols-3 gap-2"
+                >
                     <card-static
                         v-for="konten in staticContent"
                         :key="konten.id"
@@ -61,6 +64,9 @@
                             </div>
                         </template>
                     </card-static>
+                </div>
+                <div v-else class="h-full text-center py-2 font-bold">
+                    <h1><i>'Belum Ada Data Pada Server'</i></h1>
                 </div>
             </section>
         </admin>
