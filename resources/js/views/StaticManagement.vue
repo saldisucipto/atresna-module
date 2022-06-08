@@ -16,7 +16,7 @@
                     </button>
                 </div>
                 <div
-                    v-if="staticContent.length < 0"
+                    v-if="staticContent.length != 0"
                     class="grid grid-cols-3 gap-2"
                 >
                     <card-static

@@ -15,7 +15,7 @@
                         <i class="fas fa-plus"></i> Tambah Data
                     </button>
                 </div>
-                <div v-if="dbData.length < 0" class="grid grid-cols-5 gap-4">
+                <div v-if="dbData.length != 0" class="grid grid-cols-5 gap-4">
                     <card-medium
                         v-for="konten in dbData"
                         :key="konten.slugs"
