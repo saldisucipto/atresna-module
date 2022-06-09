@@ -15,7 +15,7 @@
                         <i class="fas fa-plus"></i> Tambah Data
                     </button>
                 </div>
-                <div v-if="dbData.length < 0" class="grid grid-cols-5 gap-4">
+                <div v-if="dbData.length != 0" class="grid grid-cols-5 gap-4">
                     <card-medium
                         v-for="konten in dbData"
                         :key="konten.slugs"
@@ -292,7 +292,12 @@ export default {
         async getData() {
             return http
                 .get("/why-choose-us")
-                .then((respon) => (this.dbData = respon.data.data));
+                .then(
+                    (respon) => (
+                        console.log(respon.data),
+                        (this.dbData = respon.data.data)
+                    )
+                );
         },
         updateData(slugs) {
             this.modal = true;

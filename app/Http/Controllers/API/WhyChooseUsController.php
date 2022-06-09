@@ -16,7 +16,7 @@ class WhyChooseUsController extends Controller
     {
         $data = WhyChooseUs::get()->all();
         if (empty($data)) {
-            $data = "Belum Ada Data Pada Table ini";
+            $data = [];
         }
         return response()->json(['data' => $data, 'message' => 'Berhasil Memperoleh Data'], 200);
     }
@@ -35,8 +35,6 @@ class WhyChooseUsController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
-
         $whyChooseUs = new WhyChooseUs;
         $whyChooseUs->title = $data['title'];
         $whyChooseUs->slugs = Str::slug($data['title']);
