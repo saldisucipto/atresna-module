@@ -61,6 +61,14 @@ const routes = [
             auth: true,
         },
     },
+    {
+        path: "/our-client",
+        component: () => import("../views/OurClient.vue"),
+        name: "OurClient",
+        meta: {
+            auth: true,
+        },
+    },
 ];
 
 const router = createRouter({

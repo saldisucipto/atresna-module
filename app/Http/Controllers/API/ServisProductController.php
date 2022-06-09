@@ -19,7 +19,7 @@ class ServisProductController extends Controller
         if ($request->isMethod('GET')) {
             $data = Servis::get()->all();
             if (empty($data)) {
-                $data = "Data Masih Kosong";
+                $data = [];
             }
             return response()->json(['data' => $data, 'message' => 'Berhasil Mengmabil Data Dari Database'], 200);
         } else if ($request->isMethod('POST')) {

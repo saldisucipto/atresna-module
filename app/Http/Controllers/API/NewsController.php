@@ -16,7 +16,7 @@ class NewsController extends Controller
     {
         $data = NewsArtikel::get()->all();
         if (empty($data)) {
-            $data = "Tidak Ada Data Pada Server";
+            $data = [];
         }
         return response()->json(['data' => $data, 'message' => 'Berhasil MengambbiL data dari database'], 200);
     }

@@ -11,6 +11,8 @@ use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\ServisProductController;
 use App\Http\Controllers\API\StaticContact;
 use App\Http\Controllers\API\ContactController;
+use App\Http\Controllers\API\OurClientController;
+
 
 
 
@@ -70,6 +72,11 @@ Route::prefix('contact')->group(function() {
     Route::post('/post', [ContactController::class, 'create'])->name('createContact');
     // Route::delete('/{id}', [ContactController::class, 'delete'])->name('deleteContact');
     Route::match(['get', 'delete'], '/{id}',[ContactController::class, 'delete']);
+});
+
+Route::prefix('our-client')->group(function(){
+    Route::match(['get', 'post'], '/', [OurClientController::class, 'index'])->name('ourClient');
+    Route::match(['post', 'delete'], '/{slugs}', [OurClientController::class, 'update'])->name('ourClientUpdate');
 });
 
 
