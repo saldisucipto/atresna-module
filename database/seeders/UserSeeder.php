@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         // Make Seeder Default User
         DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'admin@narayanaconsulting.co.id',
+            'email' => 'admin@atresna.com',
             'user_role' => 'Admin',
             'password' => Hash::make('12345678'),
         ]);

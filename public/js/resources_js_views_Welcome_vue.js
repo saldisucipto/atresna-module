@@ -4082,22 +4082,18 @@ var _hoisted_5 = {
 var _hoisted_6 = ["src"];
 var _hoisted_7 = {
   key: 1,
-  "class": "flex justify-center gap-2"
+  "class": ""
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/images/logo.svg",
-  alt: "",
-  "class": "w-12"
-})], -1
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "text-primary-color"
+}, "Dashboard", -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-primary-color"
-}, "Dashboard"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "text-secondary-color"
-}, "Admin")], -1
+}, "Admin", -1
 /* HOISTED */
 );
 
@@ -4993,7 +4989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: "https://dashboard.narayanaconsulting.com/api/"
+  baseURL: "http://localhost:8000/api"
 }));
 
 /***/ }),

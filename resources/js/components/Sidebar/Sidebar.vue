@@ -27,14 +27,9 @@
                         />
                     </div>
                 </div>
-                <div v-else class="flex justify-center gap-2">
-                    <div>
-                        <img src="/images/logo.svg" alt="" class="w-12" />
-                    </div>
-                    <div>
-                        <h1 class="text-primary-color">Dashboard</h1>
-                        <h2 class="text-secondary-color">Admin</h2>
-                    </div>
+                <div v-else class="">
+                    <h1 class="text-primary-color">Dashboard</h1>
+                    <h2 class="text-secondary-color">Admin</h2>
                 </div>
             </router-link>
 

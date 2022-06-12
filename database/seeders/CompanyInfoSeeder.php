@@ -20,7 +20,7 @@ class CompanyInfoSeeder extends Seeder
             'company_phone' => '08557541551',
             'company_wa_number' => '08557541551',
             'company_email' => 'companyemail@email.com',
-            'company_image_logo' => '/path/images/images.png',
+            'company_image_logo' => '/logo.png',
             'company_address' => 'Jl. Company Alamat, Jakarta Barat, DKI Jakarta - 11710',
         ]);
     }
