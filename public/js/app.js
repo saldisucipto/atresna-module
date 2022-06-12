@@ -25390,7 +25390,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   state: function state() {
     return {
-      users: null,
+      users: [],
       isLoggedIn: false
     };
   },
@@ -25414,11 +25414,14 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   actions: {
     // action login
     login: function login(_ref, data) {
+      var _this = this;
+
       var dispatch = _ref.dispatch,
           commit = _ref.commit;
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_1___default().post("api/user-login", data).then(function (response) {
           var token = response.data.access_token;
+          _this.state.users = response.data.user;
           localStorage.setItem("token", token);
           _auth__WEBPACK_IMPORTED_MODULE_2__["default"].setHeaderToken(token);
           dispatch("get_user");
@@ -25432,6 +25435,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     },
     // get user function
     get_user: function get_user(_ref2) {
+      var _this2 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var commit, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -25449,29 +25454,25 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
 
               case 3:
                 _context.prev = 3;
-                _context.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("user");
-
-              case 6:
-                response = _context.sent;
-                commit("set_user", response.data.data);
-                _context.next = 16;
+                response = _this2.state.users;
+                commit("set_user", response);
+                _context.next = 14;
                 break;
 
-              case 10:
-                _context.prev = 10;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](3);
                 commit("reset_user");
                 _auth__WEBPACK_IMPORTED_MODULE_2__["default"].removeHeaderToken();
                 localStorage.removeItem("token");
                 return _context.abrupt("return", _context.t0);
 
-              case 16:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[3, 10]]);
+        }, _callee, null, [[3, 8]]);
       }))();
     }
   },

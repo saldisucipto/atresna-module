@@ -17,8 +17,8 @@
                     </a>
                 </div>
                 <div class="text-white text-lg">
-                    <i class="fas fa-hand-sparkles"></i> Hai Saldi Sucipto,
-                    Selamat Pagi :)
+                    <i class="fas fa-hand-sparkles"></i> Hai {{ users.name }},
+                    Selamat Datang :)
                 </div>
             </div>
             <!-- Form -->
@@ -50,11 +50,24 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import UserDropdown from "../Dropdowns/UserDropdown.vue";
 
 export default {
     components: {
         UserDropdown,
+    },
+    data() {
+        return {
+            userInfo: [],
+        };
+    },
+    computed: {
+        ...mapState({
+            isLoggedIn: "isLoggedIn",
+            users: "users",
+        }),
     },
 };
 </script>

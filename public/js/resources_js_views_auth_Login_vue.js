@@ -105,8 +105,8 @@ var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "text-center mb-3"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" logo img "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    "class": "max-h-32 h-28 mx-auto",
-    src: "/images/logo.svg",
+    "class": "max-h-28 mx-auto",
+    src: "/images/cms-logo.png",
     alt: "Logo"
   })])], -1
   /* HOISTED */

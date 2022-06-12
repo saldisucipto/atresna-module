@@ -16,7 +16,6 @@
                             <div>
                                 <h1 class="text-gray-800 font-semibold text-lg">
                                     Company Information
-                                    {{ users }}
                                 </h1>
                             </div>
                             <div class="flex flex-col gap-3">
@@ -129,7 +128,7 @@
                             <img
                                 id="parent1"
                                 v-else
-                                :src="`logo-images\\` + company_image_logo"
+                                :src="previewImage"
                                 alt=""
                                 class="mx-auto py-3 px-9 max-h-48"
                             />
@@ -194,10 +193,9 @@ export default {
             company_image_logo: "",
             company_address: "",
             currentImage: undefined,
-            previewImage: "/images/logo.svg",
+            previewImage: "/images/logo.png",
             notif: false,
             message: "",
-            userInfo: [],
         };
     },
     components: {

@@ -9,8 +9,8 @@
                         <div class="text-center mb-3">
                             <!-- logo img -->
                             <img
-                                class="max-h-32 h-28 mx-auto"
-                                src="/images/logo.svg"
+                                class="max-h-28 mx-auto"
+                                src="/images/cms-logo.png"
                                 alt="Logo"
                             />
                         </div>

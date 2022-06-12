@@ -5,7 +5,7 @@ import auth from "../auth";
 const store = createStore({
     state() {
         return {
-            users: null,
+            users: [],
             isLoggedIn: false,
         };
     },
@@ -34,6 +34,7 @@ const store = createStore({
                     .post("api/user-login", data)
                     .then((response) => {
                         const token = response.data.access_token;
+                        this.state.users = response.data.user;
                         localStorage.setItem("token", token);
                         auth.setHeaderToken(token);
                         dispatch("get_user");
@@ -52,8 +53,8 @@ const store = createStore({
                 return;
             }
             try {
-                let response = await axios.get("user");
-                commit("set_user", response.data.data);
+                let response = this.state.users;
+                commit("set_user", response);
             } catch (e) {
                 commit("reset_user");
                 auth.removeHeaderToken();
