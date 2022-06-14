@@ -6,19 +6,49 @@
             </succes-notifications>
         </Transition>
         <admin>
-            <section class="mb-10">
-                <div>
-                    <button
-                        @click="modalController()"
-                        class="bg-dark-secondary text-white text-sm my-2 py-1 px-3 rounded-lg"
-                    >
-                        <i class="fas fa-plus"></i> Tambah Data
-                    </button>
-                </div>
-            </section>
+            <section class="mb-10"></section>
             <div class="grid grid-cols-5 gap-4">
                 <div v-for="data in dbData" :key="data.id">
-                    <h1>{{ data.nama }}</h1>
+                    <!-- <h1>{{ data.nama }}</h1> -->
+                    <div
+                        class="h-56 bg-indigo-300 rounded-lg drop-shadow-md p-2"
+                    >
+                        <!-- title -->
+                        <div class="">
+                            <div
+                                class="text-gray-800 font-semibold flex flex-col justify-start gap-0"
+                            >
+                                <div class="flex justify-between">
+                                    <h1>
+                                        {{ data.nama }}
+                                    </h1>
+                                    <button
+                                        type="button"
+                                        @click="deleteAction(data.id)"
+                                    >
+                                        <i
+                                            class="fas fa-trash text-red-500"
+                                        ></i>
+                                    </button>
+                                </div>
+                                <span class="text-white text-xs font-thin">{{
+                                    moment(data.created_at).format("DD-MM-YYYY")
+                                }}</span>
+                                <div>
+                                    <div class="my-1">
+                                        <span
+                                            class="text-gray-800 font-semibold"
+                                            >Pesan :</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="bg-gray-50 bg-opacity-50 p-1 rounded-md text-sm italic"
+                                        v-html="data.description"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </admin>
@@ -64,39 +94,19 @@ export default {
                 this.dbData = response.data;
             });
         },
-        updateData(slugs) {
-            this.modal = !this.modal;
-            this.modalUpdate = true;
-            let data = this.dbData.find(
-                (element) => element.slugs.toLowerCase() === slugs
-            );
-            this.title = data.title;
-            this.description = data.description;
-            this.images = data.images_utama;
-            this.slugs = slugs;
-        },
-        deleteAction() {
+        deleteAction(id) {
             const config = {
                 headers: {
                     "Content-type": "multipart/form-data",
                 },
             };
-            return http
-                .delete("static-contact/" + this.slugs + "/update", config)
-                .then((response) => {
-                    this.message = response.data.message;
-                    this.getData();
-                    setTimeout(() => {
-                        this.message = null;
-                        this.title = "";
-                        this.editorData = "";
-                        this.currentImage = "";
-                        this.previewImage = null;
-                        this.description = null;
-                        this.modalUpdate = false;
-                    }, 2000);
-                    this.modal = false;
-                });
+            return http.delete("contact/" + id, config).then((response) => {
+                this.message = response.data.message;
+                this.getData();
+                setTimeout(() => {
+                    this.message = null;
+                }, 2000);
+            });
         },
     },
     mounted() {

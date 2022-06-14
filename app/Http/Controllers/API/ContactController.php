@@ -31,7 +31,7 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         if($request->isMethod('DELETE')){
             $contact->delete();
-            return response()->json($contact, 201);
+            return response()->json(['data' => $contact, 'message'=> 'Berhasil Menghapus Pesan'], 201);
         }else{
             return response()->json($contact, 201);
         }
