@@ -6,8 +6,7 @@
             </succes-notifications>
         </Transition>
         <admin>
-            <section class="mb-10"></section>
-            <div class="grid grid-cols-5 gap-4">
+            <div v-if="dbData.length != 0" class="grid grid-cols-5 gap-4 py-10">
                 <div v-for="data in dbData" :key="data.id">
                     <!-- <h1>{{ data.nama }}</h1> -->
                     <div
@@ -50,6 +49,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div v-else class="h-full text-center py-10 font-bold">
+                <h1><i>'Belum Ada Contact'</i></h1>
             </div>
         </admin>
     </div>
