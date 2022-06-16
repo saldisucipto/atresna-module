@@ -22,6 +22,7 @@ class CompanyInfoSeeder extends Seeder
             'company_email' => 'companyemail@email.com',
             'company_image_logo' => '/logo.png',
             'company_address' => 'Jl. Company Alamat, Jakarta Barat, DKI Jakarta - 11710',
+            'company_maps_links' => 'https://www.google.com/maps/@-6.2160896,106.8204032,12z',
         ]);
     }
 }
