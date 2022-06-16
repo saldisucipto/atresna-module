@@ -21,6 +21,7 @@ class CreateCompanyInfosTable extends Migration
             $table->string('company_email', 50);
             $table->string('company_image_logo', 100);
             $table->text('company_address');
+            $table->text('company_maps_links');
             $table->timestamps();
         });
     }

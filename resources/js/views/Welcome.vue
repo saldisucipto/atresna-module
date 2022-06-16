@@ -86,6 +86,20 @@
                                         v-model="company_address"
                                     ></textarea>
                                 </div>
+                                <div class="flex flex-col gap-1">
+                                    <label
+                                        class="text-sm text-gray-600 font-semibold"
+                                        for=""
+                                        >Company Maps Links</label
+                                    >
+                                    <textarea
+                                        cols="10"
+                                        rows="5"
+                                        class="focus:outline-none p-2 text-sm"
+                                        placeholder="Company Maps Links"
+                                        v-model="company_maps_links"
+                                    ></textarea>
+                                </div>
                                 <div class="">
                                     <button
                                         @click.prevent="changeCompanyInfo()"
@@ -192,6 +206,7 @@ export default {
             company_email: "",
             company_image_logo: "",
             company_address: "",
+            company_maps_links: "",
             currentImage: undefined,
             previewImage: "/images/logo.png",
             notif: false,
@@ -227,6 +242,7 @@ export default {
                         (this.company_image_logo =
                             response.data.company_image_logo),
                         (this.company_address = response.data.company_address);
+                    this.company_maps_links = response.data.company_maps_links;
                 })
                 .catch((e) => {
                     console.log(e);
@@ -239,6 +255,7 @@ export default {
                 company_wa_number: this.company_wa_number,
                 company_email: this.company_email,
                 company_address: this.company_address,
+                company_maps_links: this.company_maps_links,
             };
             CompanyInfoDataServices.editCompanyInfo(data)
                 .then((response) => {
