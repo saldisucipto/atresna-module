@@ -23,7 +23,7 @@
                         <img
                             :src="'/logo-images/' + imgesFile"
                             alt=""
-                            class="object-cover"
+                            class="object-cover max-h-20 mx-auto"
                         />
                     </div>
                 </div>

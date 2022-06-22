@@ -142,7 +142,7 @@
                             <img
                                 id="parent1"
                                 v-else
-                                :src="previewImage"
+                                :src="'/logo-images/' + company_image_logo"
                                 alt=""
                                 class="mx-auto py-3 px-9 max-h-48"
                             />
