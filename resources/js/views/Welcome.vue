@@ -234,15 +234,18 @@ export default {
         getCompanyInfo() {
             CompanyInfoDataServices.getCompanyInfo()
                 .then((response) => {
-                    (this.company_name = response.data.company_name),
-                        (this.company_phone = response.data.company_phone),
+                    console.log(response.data);
+                    (this.company_name = response.data.data.company_name),
+                        (this.company_phone = response.data.data.company_phone),
                         (this.company_wa_number =
-                            response.data.company_wa_number),
-                        (this.company_email = response.data.company_email),
+                            response.data.data.company_wa_number),
+                        (this.company_email = response.data.data.company_email),
                         (this.company_image_logo =
-                            response.data.company_image_logo),
-                        (this.company_address = response.data.company_address);
-                    this.company_maps_links = response.data.company_maps_links;
+                            response.data.data.company_image_logo),
+                        (this.company_address =
+                            response.data.data.company_address);
+                    this.company_maps_links =
+                        response.data.data.company_maps_links;
                 })
                 .catch((e) => {
                     console.log(e);

@@ -16,7 +16,7 @@ class CompanyInfoController extends Controller
         if ($companyInfo == null) {
             return response()->json(['message', 'Company Info Kosong'], 200);
         } else {
-            return response()->json($companyInfo, 200);
+            return response()->json(['data' => $companyInfo], 200);
         }
     }
 

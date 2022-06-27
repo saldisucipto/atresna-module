@@ -344,7 +344,7 @@ export default {
         getCompanyInfo() {
             CompanyInfoDataServices.getCompanyInfo().then((response) => {
                 // console.log(response);
-                this.imgesFile = response.data.company_image_logo;
+                this.imgesFile = response.data.data.company_image_logo;
             });
         },
     },
