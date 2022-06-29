@@ -12,6 +12,8 @@ use App\Http\Controllers\API\ServisProductController;
 use App\Http\Controllers\API\StaticContact;
 use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\OurClientController;
+use App\Http\Controllers\API\ProdukController;
+
 
 
 
@@ -82,6 +84,10 @@ Route::prefix('our-client')->group(function(){
     Route::match(['post', 'delete'], '/{slugs}', [OurClientController::class, 'update'])->name('ourClientUpdate');
 });
 
+Route::prefix('product-management')->group(function(){
+    // get and create data function
+    Route::match(['get', 'post'], '/kategori', [ProdukController::class, 'kat_index']);
+});
 
 // login
 Route::post('user-login', [AuthController::class, 'login'])->name('loginUser');

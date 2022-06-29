@@ -208,11 +208,13 @@
                         </router-link>
                         <div
                             class="flex-col pl-6 gap-2"
-                            :class="[collapseMenu ? 'flex' : 'hidden']"
+                            :class="[
+                                collapseMenu || isActive ? 'flex' : 'hidden',
+                            ]"
                         >
                             <router-link
                                 class="text-tiny capitalize px-2 text-white bg-secondary-color block py-2 rounded-lg"
-                                to="#"
+                                to="/product-management/kategori-product"
                                 >Kategori Produk</router-link
                             >
                         </div>
@@ -372,7 +374,7 @@ export default {
         return {
             collapseShow: "hidden",
             imgesFile: null,
-            collapseMenu: false,
+            collapseMenu: true,
         };
     },
     methods: {

@@ -77,6 +77,14 @@ const routes = [
             auth: true,
         },
     },
+    {
+        path: "/product-management/kategori-product",
+        component: () => import("../views/KategoriProdukManagement.vue"),
+        name: "KategoriProdukManagement",
+        meta: {
+            auth: true,
+        },
+    },
 ];
 
 const router = createRouter({
