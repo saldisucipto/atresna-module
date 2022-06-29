@@ -9,4 +9,8 @@ class ImagesProduk extends Model
 {
     use HasFactory;
     protected $table= 'images_produk';
+
+    public function kategoriProduct(){
+        return $this->belongsTo(KategoriProduk::class, 'id_produk', 'id');
+    }
 }

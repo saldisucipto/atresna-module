@@ -28,6 +28,9 @@ Route::prefix('static-content')->group(function () {
     Route::match(['get', 'post'], '/info/{id}', [StaticController::class, 'update']);
     Route::delete('/delete/{id}', [StaticController::class, 'delete'])->name('deleteStaticContent');
     Route::post('/create', [StaticController::class, 'create'])->name('createStaticContent');
+
+    // main card get
+    Route::get('/main-card', [StaticController::class, 'getMainCard'])->name('mainCard');
 });
 
 

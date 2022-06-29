@@ -69,6 +69,14 @@ const routes = [
             auth: true,
         },
     },
+    {
+        path: "/product-management",
+        component: () => import("../views/ProductManagement.vue"),
+        name: "ProductManagement",
+        meta: {
+            auth: true,
+        },
+    },
 ];
 
 const router = createRouter({

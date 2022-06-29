@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\StaticKonten;
 use Str;
 use App\Http\Classes\FilesHandling;
+use Illuminate\Support\Facades\DB;
 
 class StaticController extends Controller
 {
@@ -78,5 +79,12 @@ class StaticController extends Controller
         $image->update($staticInfo->imagesFile, 'static-konten');
         $staticInfo->delete();
         return response()->json(['message' => "Berhasil Menghapus Data"], 201);
+    }
+
+    // get main card data
+    public function getMainCard(){
+        // $data = DB::table('static_konten')->where('id', 1)->where('id', 2)->where('id', 3);
+        $staticInfo = StaticKonten::find([1,2,3]);
+        return response()->json($staticInfo, 200);
     }
 }

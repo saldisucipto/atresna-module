@@ -13,4 +13,12 @@ class Produk extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+
+    public function kategoriProduct(){
+        return $this->belongsTo(KategoriProduk::class, 'id_kat_produk', 'slugs');
+    }
+
+    public function imagesGallery(){
+        return $this->hasMany(ImagesProduk::class);
+    }
 }

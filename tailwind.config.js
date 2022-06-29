@@ -71,6 +71,9 @@ module.exports = {
             screens: {
                 hape: { max: "400px" },
             },
+            fontSize: {
+                tiny: ".875rem",
+            },
         },
     },
     variants: [

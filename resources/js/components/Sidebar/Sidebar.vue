@@ -179,6 +179,43 @@
                                 Servis Management
                             </a>
                         </router-link>
+                        <router-link
+                            to="/product-management"
+                            v-slot="{ href, navigate, isActive }"
+                        >
+                            <a
+                                :href="href"
+                                @click="navigate"
+                                class="text-xs uppercase py-3 font-bold block"
+                                :class="[
+                                    isActive
+                                        ? 'text-primary-color hover:text-gray-700'
+                                        : 'text-secondary-color hover:text-gray-700',
+                                ]"
+                            >
+                                <button @click="menuController">
+                                    <i
+                                        class="fas fa-boxes mr-2 text-sm"
+                                        :class="[
+                                            isActive
+                                                ? 'opacity-75 hover:text-gray-700'
+                                                : ' hover:text-gray-700',
+                                        ]"
+                                    ></i>
+                                </button>
+                                Product Management
+                            </a>
+                        </router-link>
+                        <div
+                            class="flex-col pl-6 gap-2"
+                            :class="[collapseMenu ? 'flex' : 'hidden']"
+                        >
+                            <router-link
+                                class="text-tiny capitalize px-2 text-white bg-secondary-color block py-2 rounded-lg"
+                                to="#"
+                                >Kategori Produk</router-link
+                            >
+                        </div>
                     </li>
                     <!-- Divider -->
                     <hr class="mt-4 md:min-w-full" />
@@ -335,6 +372,7 @@ export default {
         return {
             collapseShow: "hidden",
             imgesFile: null,
+            collapseMenu: false,
         };
     },
     methods: {
@@ -346,6 +384,9 @@ export default {
                 // console.log(response);
                 this.imgesFile = response.data.data.company_image_logo;
             });
+        },
+        menuController() {
+            this.collapseMenu = !this.collapseMenu;
         },
     },
     components: {
