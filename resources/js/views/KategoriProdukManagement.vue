@@ -34,12 +34,15 @@
                     <template v-slot:images>
                         <div class="flex flex-col justify-center mt-3 h-32">
                             <i
-                                v-if="konten.images_utama == null"
+                                v-if="konten.images_kat_produk == null"
                                 class="fas fa-image fa-4x text-gray-50"
                             ></i>
                             <img
                                 v-else
-                                :src="'/servis/' + konten.images_utama"
+                                :src="
+                                    '/kategori-produk/' +
+                                    konten.images_kat_produk
+                                "
                                 alt=""
                                 class="object-cover rounded-lg max-h-36 mx-2 mt-2"
                             />
@@ -48,7 +51,7 @@
                     <template v-slot:desc>
                         <div class="flex flex-col justify-center text-white">
                             <h1 class="font-bold justify-center my-1">
-                                {{ konten.title }}
+                                {{ konten.nama_kat_produk }}
                             </h1>
                             <div
                                 class="px-5 text-xs bg-green-500 text-white my-2 w-28 rounded-2xl"
@@ -282,7 +285,7 @@ export default {
             this.previewImage = null;
         },
         getData() {
-            return http.get("servis").then((response) => {
+            return http.get("/product-management/kategori").then((response) => {
                 this.dbData = response.data.data;
             });
         },
@@ -297,7 +300,7 @@ export default {
                 },
             };
             return http
-                .post("servis", form, config)
+                .post("/product-management/kategori", form, config)
                 .then((res) => {
                     this.message = res.data.message;
                     this.getData();

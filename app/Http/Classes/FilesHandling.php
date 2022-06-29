@@ -10,12 +10,10 @@ class FilesHandling
          * Uploaded Files
          */
         $uploadedFiles = $image;
-        // Merubah nama Files Images yang di Upload
-        $rename_image = preg_replace('/\s+/', '', $uploadedFiles->getClientOriginalName());
         // Path
         $folder_target = $directory . '/';
         // Nama Images Baru
-        $image_name_finall = $image_name ."-". \time()."-".$rename_image;
+        $image_name_finall = $image_name ."-". \time().".".$uploadedFiles->getClientOriginalExtension();
         // Move To Folder
         $image->move($folder_target, $image_name_finall);
         // Mengembalikan Nama Image Baru

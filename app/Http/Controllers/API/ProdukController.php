@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\KategoriProduk;
+use Str;
+use App\Http\Classes\FilesHandling;
+
 
 class ProdukController extends Controller
 {
@@ -18,7 +21,18 @@ class ProdukController extends Controller
             return response()->json(['data' => $data, 'message' => 'berhasil memperoleh data'], 200);
         }else{
             $dataParsing = $req->all();
+            $fileHandling = new FilesHandling();
+            $katProduk = new KategoriProduk();
+            $katProduk->slugs = Str::slug($dataParsing['nama_kat_produk']);
+            $katProduk->nama_kat_produk = $dataParsing['nama_kat_produk'];
+            $katProduk->deskripsi_kat_produk = $dataParsing['deskripsi_kat_produk'];
+            $katProduk->images_kat_produk = $fileHandling->upload($req->file('images_kat_produk'), 'kategori-produk', 'IMG-KAT-PRODUK');
+            $katProduk->save();
+            return response()->json(['data' => $dataParsing, 'message' => 'berhasil Membuat data'], 201);
         }
-
+    }
+    // update dan get Sepesial Data
+    public function updateData(Request $req, $slugs = null){
+        $data = FilesHandling::find($slugs);
     }
 }
