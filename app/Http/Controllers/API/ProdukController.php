@@ -1,25 +1,24 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\KategoriProduk;
-use Str;
 use App\Http\Classes\FilesHandling;
-
+use App\Http\Controllers\Controller;
+use App\Models\KategoriProduk;
+use Illuminate\Http\Request;
+use Str;
 
 class ProdukController extends Controller
 {
-    // kategori produk
-    public function  kat_index(Request $req){
-        if($req->isMethod('get')){
+// kategori produk
+    public function kat_index(Request $req)
+    {
+        if ($req->isMethod('get')) {
             $data = KategoriProduk::get()->all();
-            if(empty($data)){{
-                 return response()->json(['data' => 'Belum Ada Datanya', 'message' => 'berhasil memperoleh data'], 200);
+            if (empty($data)) {{
+                return response()->json(['data' => 'Belum Ada Datanya', 'message' => 'berhasil memperoleh data'], 200);
             }}
             return response()->json(['data' => $data, 'message' => 'berhasil memperoleh data'], 200);
-        }else{
+        } else {
             $dataParsing = $req->all();
             $fileHandling = new FilesHandling();
             $katProduk = new KategoriProduk();
@@ -31,8 +30,9 @@ class ProdukController extends Controller
             return response()->json(['data' => $dataParsing, 'message' => 'berhasil Membuat data'], 201);
         }
     }
-    // update dan get Sepesial Data
-    public function updateData(Request $req, $slugs = null){
+// update dan get Sepesial Data
+    public function updateData(Request $req, $slugs = null)
+    {
         $data = FilesHandling::find($slugs);
     }
 }
