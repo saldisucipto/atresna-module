@@ -3595,9 +3595,9 @@ __webpack_require__.r(__webpack_exports__);
       var data = this.dbData.find(function (element) {
         return element.slugs.toLowerCase() === slugs;
       });
-      this.title = data.title;
-      this.description = data.description;
-      this.images = data.images_utama;
+      this.title = data.nama_kat_produk;
+      this.description = data.deskripsi_kat_produk;
+      this.images = data.images_kat_produk;
       this.slugs = slugs;
     },
     updateAction: function updateAction() {
@@ -4849,7 +4849,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, _hoisted_28)])]), this.images != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
     key: 0,
-    src: 'servis/' + this.images,
+    src: '/kategori-produk/' + this.images,
     alt: "",
     "class": "max-h-56 mx-auto my-2"
   }, null, 8

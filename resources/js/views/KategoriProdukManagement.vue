@@ -119,7 +119,7 @@
                         </div>
                         <img
                             v-if="this.images != null"
-                            :src="'servis/' + this.images"
+                            :src="'/kategori-produk/' + this.images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
                         />
@@ -327,9 +327,9 @@ export default {
             let data = this.dbData.find(
                 (element) => element.slugs.toLowerCase() === slugs
             );
-            this.title = data.title;
-            this.description = data.description;
-            this.images = data.images_utama;
+            this.title = data.nama_kat_produk;
+            this.description = data.deskripsi_kat_produk;
+            this.images = data.images_kat_produk;
             this.slugs = slugs;
         },
         updateAction() {
