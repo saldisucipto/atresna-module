@@ -283,6 +283,7 @@ export default {
             this.images = null;
             this.curenntImage = null;
             this.previewImage = null;
+            this.modalUpdate = false;
         },
         getData() {
             return http.get("/product-management/kategori").then((response) => {
