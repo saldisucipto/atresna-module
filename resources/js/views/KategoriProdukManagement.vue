@@ -334,9 +334,9 @@ export default {
         },
         updateAction() {
             let form = new FormData();
-            form.append("title", this.title);
-            form.append("description", this.description);
-            form.append("images", this.curenntImage);
+            form.append("nama_kat_produk", this.title);
+            form.append("deskripsi_kat_produk", this.description);
+            form.append("images_kat_produk", this.curenntImage);
             const config = {
                 headers: {
                     "Content-type": "multipart/form-data",

@@ -3604,9 +3604,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var form = new FormData();
-      form.append("title", this.title);
-      form.append("description", this.description);
-      form.append("images", this.curenntImage);
+      form.append("nama_kat_produk", this.title);
+      form.append("deskripsi_kat_produk", this.description);
+      form.append("images_kat_produk", this.curenntImage);
       var config = {
         headers: {
           "Content-type": "multipart/form-data"
