@@ -13,7 +13,7 @@ class FilesHandling
         // Path
         $folder_target = $directory . '/';
         // Nama Images Baru
-        $image_name_finall = $image_name ."-". \time().".".$uploadedFiles->getClientOriginalExtension();
+        $image_name_finall = $image_name . "-" . \time() . "." . $uploadedFiles->getClientOriginalExtension();
         // Move To Folder
         $image->move($folder_target, $image_name_finall);
         // Mengembalikan Nama Image Baru
@@ -26,7 +26,7 @@ class FilesHandling
         /**
          * Update Images Files
          */
-        $image_path = public_path($path. '\\') . $old_images;
+        $image_path = public_path($path . '\\') . $old_images;
         if (file_exists($image_path)) {
             @unlink($image_path);
         }

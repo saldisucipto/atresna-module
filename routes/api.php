@@ -1,22 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\CompanyInfoController;
-use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\StaticController;
-use App\Http\Controllers\API\WhyChooseUsController;
-use App\Http\Controllers\API\NewsController;
-use App\Http\Controllers\API\ServisProductController;
-use App\Http\Controllers\API\StaticContact;
+use App\Http\Controllers\API\CompanyInfoController;
 use App\Http\Controllers\API\ContactController;
+use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\OurClientController;
 use App\Http\Controllers\API\ProdukController;
-
-
-
-
+use App\Http\Controllers\API\ServisProductController;
+use App\Http\Controllers\API\StaticContact;
+use App\Http\Controllers\API\StaticController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\WhyChooseUsController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('com-info')->group(function () {
     // Company Info
@@ -35,16 +30,13 @@ Route::prefix('static-content')->group(function () {
     Route::get('/main-card', [StaticController::class, 'getMainCard'])->name('mainCard');
 });
 
-
 Route::prefix('static-contact')->group(function () {
-    Route::match(['get', 'post'], '/',  [StaticContact::class, 'index']);
+    Route::match(['get', 'post'], '/', [StaticContact::class, 'index']);
     Route::match(['post', 'delete'], '/{slugs}/update', [StaticContact::class, 'update']);
 });
 
-
-
-Route::prefix('servis')->group(function(){
-    Route::match(['get', 'post'], '/',  [ServisProductController::class, 'index']);
+Route::prefix('servis')->group(function () {
+    Route::match(['get', 'post'], '/', [ServisProductController::class, 'index']);
     Route::get('/{slugs}', [ServisProductController::class, 'details']);
     Route::match(['post', 'delete'], '/{slugs}/update', [ServisProductController::class, 'update']);
 });
@@ -55,7 +47,6 @@ Route::prefix('news-artikel')->group(function () {
     Route::post('/create', [NewsController::class, 'create'])->name('createNews');
     Route::match(['post', 'delete'], '/{slugs}/update', [NewsController::class, 'update']);
 });
-
 
 Route::prefix('why-choose-us')->group(function () {
     Route::get('/', [WhyChooseUsController::class, 'index'])->name('showWhyChooseUs');
@@ -72,21 +63,22 @@ Route::prefix('user-info')->group(function () {
     Route::match(['get', 'DELETE'], '/user/{id}', [UserController::class, 'show'])->name('userShow');
 });
 
-Route::prefix('contact')->group(function() {
+Route::prefix('contact')->group(function () {
     Route::get('/', [ContactController::class, 'index'])->name('getContact');
     Route::post('/post', [ContactController::class, 'create'])->name('createContact');
     // Route::delete('/{id}', [ContactController::class, 'delete'])->name('deleteContact');
-    Route::match(['get', 'delete'], '/{id}',[ContactController::class, 'delete']);
+    Route::match(['get', 'delete'], '/{id}', [ContactController::class, 'delete']);
 });
 
-Route::prefix('our-client')->group(function(){
+Route::prefix('our-client')->group(function () {
     Route::match(['get', 'post'], '/', [OurClientController::class, 'index'])->name('ourClient');
     Route::match(['post', 'delete'], '/{slugs}', [OurClientController::class, 'update'])->name('ourClientUpdate');
 });
 
-Route::prefix('product-management')->group(function(){
+Route::prefix('product-management')->group(function () {
     // get and create data function
     Route::match(['get', 'post'], '/kategori', [ProdukController::class, 'kat_index']);
+    Route::match(['get', 'post', 'delete'], '/{slugs}/kategori', [ProdukController::class, 'updateData']);
 });
 
 // login

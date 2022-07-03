@@ -33,6 +33,26 @@ class ProdukController extends Controller
 // update dan get Sepesial Data
     public function updateData(Request $req, $slugs = null)
     {
-        $data = FilesHandling::find($slugs);
+        $dataParsing = $req->all();
+        $imageParse = $req->file('images_kat_produk');
+        $data = KategoriProduk::find($slugs);
+        $fileHandling = new FilesHandling();
+        if ($req->isMethod('GET')) {
+            return response()->json(['data' => $data, 'message' => 'Data Berhasil di Ambil'], 200);
+        } else if ($req->isMethod('POST')) {
+            $data->slugs = Str::slug($dataParsing['nama_kat_produk']);
+            $data->nama_kat_produk = $dataParsing['nama_kat_produk'];
+            $data->deskripsi_kat_produk = $dataParsing['deskripsi_kat_produk'];
+            if ($imageParse) {
+                $fileHandling->update($data->images_kat_produk, 'kategori-produk');
+                $data->images_kat_produk = $fileHandling->upload($req->file('images_kat_produk'), 'kategori-produk', 'IMG-KAT-PRODUK');
+            }
+            $data->update();
+            return response()->json(['data' => $data, 'message' => 'Data Berhasil di Update'], 201);
+        } else if ($req->isMethod('DELETE')) {
+            $fileHandling->update($data->images_kat_produk, 'kategori-produk');
+            $data->delete();
+            return response()->json(['data' => $data, 'message' => 'Data Berhasil di Hapus'], 200);
+        }
     }
 }
