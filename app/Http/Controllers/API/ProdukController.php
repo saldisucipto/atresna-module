@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Classes\FilesHandling;
 use App\Http\Controllers\Controller;
 use App\Models\KategoriProduk;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Str;
 
@@ -55,4 +56,28 @@ class ProdukController extends Controller
             return response()->json(['data' => $data, 'message' => 'Data Berhasil di Hapus'], 200);
         }
     }
+
+    // produk
+    public function pdk_index(Request $req)
+    {
+        if ($req->isMethod('get')) {
+            $data = Produk::get()->all();
+            if (empty($data)) {{
+                return response()->json(['data' => 'Belum Ada Datanya', 'message' => 'berhasil memperoleh data'], 200);
+            }}
+            return response()->json(['data' => $data, 'message' => 'berhasil memperoleh data'], 200);
+        } else {
+            $dataParsing = $req->all();
+            $fileHandling = new FilesHandling();
+            $katProduk = new Produk();
+            $katProduk->slugs = Str::slug($dataParsing['nama_kat_produk']);
+            $katProduk->nama_kat_produk = $dataParsing['nama_kat_produk'];
+            $katProduk->deskripsi_kat_produk = $dataParsing['deskripsi_kat_produk'];
+            $katProduk->images_kat_produk = $fileHandling->upload($req->file('images_kat_produk'), 'kategori-produk', 'IMG-KAT-PRODUK');
+            $katProduk->save();
+            return response()->json(['data' => $dataParsing, 'message' => 'berhasil Membuat data'], 201);
+        }
+
+    }
+
 }

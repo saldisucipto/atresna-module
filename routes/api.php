@@ -79,6 +79,10 @@ Route::prefix('product-management')->group(function () {
     // get and create data function
     Route::match(['get', 'post'], '/kategori', [ProdukController::class, 'kat_index']);
     Route::match(['get', 'post', 'delete'], '/{slugs}/kategori', [ProdukController::class, 'updateData']);
+
+    // produk
+    Route::match(['get', 'post'], '/produk', [ProdukController::class, 'pdk_index']);
+
 });
 
 // login
