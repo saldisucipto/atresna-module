@@ -51,7 +51,7 @@
                     <template v-slot:desc>
                         <div class="flex flex-col justify-center text-white">
                             <h1 class="font-bold justify-center my-1">
-                                {{ konten.nama_kat_produk }}
+                                {{ strLimitTitle(konten.nama_kat_produk) }}
                             </h1>
                             <div
                                 class="px-5 text-xs bg-green-500 text-white my-2 w-28 rounded-2xl"
@@ -275,7 +275,15 @@ export default {
             slugs: null,
         };
     },
+    computed: {},
     methods: {
+        strLimitTitle(dataTitle) {
+            if (dataTitle.length <= 25) {
+                return dataTitle;
+            } else {
+                return dataTitle.slice(0, 25) + " ...";
+            }
+        },
         modalController() {
             this.modal = !this.modal;
             this.title = null;
@@ -332,7 +340,7 @@ export default {
             this.images = data.images_kat_produk;
             this.slugs = slugs;
         },
-        updateAction() {
+        async updateAction() {
             let form = new FormData();
             form.append("nama_kat_produk", this.title);
             form.append("deskripsi_kat_produk", this.description);
@@ -343,7 +351,11 @@ export default {
                 },
             };
             return http
-                .post("servis/" + this.slugs + "/update", form, config)
+                .post(
+                    "product-management/" + this.slugs + "/kategori",
+                    form,
+                    config
+                )
                 .then((response) => {
                     // console.log(response.data.message);
                     this.message = response.data.message;
@@ -361,14 +373,17 @@ export default {
                 })
                 .catch((e) => console.log(e));
         },
-        deleteAction() {
+        async deleteAction() {
             const config = {
                 headers: {
                     "Content-type": "multipart/form-data",
                 },
             };
             return http
-                .delete("servis/" + this.slugs + "/update", config)
+                .delete(
+                    "product-management/" + this.slugs + "/kategori",
+                    config
+                )
                 .then((response) => {
                     this.message = response.data.message;
                     this.getData();

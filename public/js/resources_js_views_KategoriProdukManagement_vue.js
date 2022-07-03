@@ -3496,14 +3496,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Notifications/SuccesNotifications.vue */ "./resources/js/components/Notifications/SuccesNotifications.vue");
-/* harmony import */ var _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layouts/Admin.vue */ "./resources/js/layouts/Admin.vue");
-/* harmony import */ var _services_http_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http-config */ "./resources/js/services/http-config.js");
-/* harmony import */ var _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Cards/CardLarge.vue */ "./resources/js/components/Cards/CardLarge.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
-/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Notifications/SuccesNotifications.vue */ "./resources/js/components/Notifications/SuccesNotifications.vue");
+/* harmony import */ var _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/Admin.vue */ "./resources/js/layouts/Admin.vue");
+/* harmony import */ var _services_http_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/http-config */ "./resources/js/services/http-config.js");
+/* harmony import */ var _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Cards/CardLarge.vue */ "./resources/js/components/Cards/CardLarge.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -3513,13 +3521,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "KategoriProdukManagement",
   components: {
-    SuccesNotifications: _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Admin: _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    CardLarge: _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    SuccesNotifications: _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Admin: _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CardLarge: _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      editor: (_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5___default()),
+      editor: (_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6___default()),
       description: "Deksripsi Kategori Produk",
       editorConfig: {
         // The configuration of the editor.
@@ -3529,7 +3537,7 @@ __webpack_require__.r(__webpack_exports__);
       message: null,
       dbData: [],
       modal: false,
-      moment: (moment__WEBPACK_IMPORTED_MODULE_4___default()),
+      moment: (moment__WEBPACK_IMPORTED_MODULE_5___default()),
       images: null,
       modalUpdate: false,
       previewImage: null,
@@ -3538,7 +3546,15 @@ __webpack_require__.r(__webpack_exports__);
       slugs: null
     };
   },
+  computed: {},
   methods: {
+    strLimitTitle: function strLimitTitle(dataTitle) {
+      if (dataTitle.length <= 25) {
+        return dataTitle;
+      } else {
+        return dataTitle.slice(0, 25) + " ...";
+      }
+    },
     modalController: function modalController() {
       this.modal = !this.modal;
       this.title = null;
@@ -3551,7 +3567,7 @@ __webpack_require__.r(__webpack_exports__);
     getData: function getData() {
       var _this = this;
 
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].get("/product-management/kategori").then(function (response) {
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("/product-management/kategori").then(function (response) {
         _this.dbData = response.data.data;
       });
     },
@@ -3567,7 +3583,7 @@ __webpack_require__.r(__webpack_exports__);
           "Content-type": "multipart/form-data"
         }
       };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].post("/product-management/kategori", form, config).then(function (res) {
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("/product-management/kategori", form, config).then(function (res) {
         _this2.message = res.data.message;
 
         _this2.getData();
@@ -3603,59 +3619,87 @@ __webpack_require__.r(__webpack_exports__);
     updateAction: function updateAction() {
       var _this3 = this;
 
-      var form = new FormData();
-      form.append("nama_kat_produk", this.title);
-      form.append("deskripsi_kat_produk", this.description);
-      form.append("images_kat_produk", this.curenntImage);
-      var config = {
-        headers: {
-          "Content-type": "multipart/form-data"
-        }
-      };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].post("servis/" + this.slugs + "/update", form, config).then(function (response) {
-        // console.log(response.data.message);
-        _this3.message = response.data.message;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var form, config;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                form = new FormData();
+                form.append("nama_kat_produk", _this3.title);
+                form.append("deskripsi_kat_produk", _this3.description);
+                form.append("images_kat_produk", _this3.curenntImage);
+                config = {
+                  headers: {
+                    "Content-type": "multipart/form-data"
+                  }
+                };
+                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("product-management/" + _this3.slugs + "/kategori", form, config).then(function (response) {
+                  // console.log(response.data.message);
+                  _this3.message = response.data.message;
 
-        _this3.getData();
+                  _this3.getData();
 
-        setTimeout(function () {
-          _this3.message = null;
-          _this3.title = "";
-          _this3.editorData = "";
-          _this3.currentImage = "";
-          _this3.previewImage = null;
-          _this3.description = null;
-          _this3.modalUpdate = false;
-        }, 2000);
-        _this3.modal = false;
-      })["catch"](function (e) {
-        return console.log(e);
-      });
+                  setTimeout(function () {
+                    _this3.message = null;
+                    _this3.title = "";
+                    _this3.editorData = "";
+                    _this3.currentImage = "";
+                    _this3.previewImage = null;
+                    _this3.description = null;
+                    _this3.modalUpdate = false;
+                  }, 2000);
+                  _this3.modal = false;
+                })["catch"](function (e) {
+                  return console.log(e);
+                }));
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     deleteAction: function deleteAction() {
       var _this4 = this;
 
-      var config = {
-        headers: {
-          "Content-type": "multipart/form-data"
-        }
-      };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("servis/" + this.slugs + "/update", config).then(function (response) {
-        _this4.message = response.data.message;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var config;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                config = {
+                  headers: {
+                    "Content-type": "multipart/form-data"
+                  }
+                };
+                return _context2.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("product-management/" + _this4.slugs + "/kategori", config).then(function (response) {
+                  _this4.message = response.data.message;
 
-        _this4.getData();
+                  _this4.getData();
 
-        setTimeout(function () {
-          _this4.message = null;
-          _this4.title = "";
-          _this4.editorData = "";
-          _this4.currentImage = "";
-          _this4.previewImage = null;
-          _this4.description = null;
-          _this4.modalUpdate = false;
-        }, 2000);
-        _this4.modal = false;
-      });
+                  setTimeout(function () {
+                    _this4.message = null;
+                    _this4.title = "";
+                    _this4.editorData = "";
+                    _this4.currentImage = "";
+                    _this4.previewImage = null;
+                    _this4.description = null;
+                    _this4.modalUpdate = false;
+                  }, 2000);
+                  _this4.modal = false;
+                }));
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   mounted: function mounted() {
@@ -4815,7 +4859,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             , _hoisted_9))])];
           }),
           desc: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(konten.nama_kat_produk), 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.strLimitTitle(konten.nama_kat_produk)), 1
             /* TEXT */
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.moment(konten.created_at).format("DD-MM-YYYY")), 1
             /* TEXT */
