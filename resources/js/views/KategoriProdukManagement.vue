@@ -246,6 +246,7 @@ import http from "../services/http-config";
 import CardLarge from "../components/Cards/CardLarge.vue";
 import moment from "moment";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { strLimitTitle } from "../utils/utility";
 
 export default {
     name: "KategoriProdukManagement",
@@ -277,13 +278,7 @@ export default {
     },
     computed: {},
     methods: {
-        strLimitTitle(dataTitle) {
-            if (dataTitle.length <= 25) {
-                return dataTitle;
-            } else {
-                return dataTitle.slice(0, 25) + " ...";
-            }
-        },
+        strLimitTitle: strLimitTitle,
         modalController() {
             this.modal = !this.modal;
             this.title = null;

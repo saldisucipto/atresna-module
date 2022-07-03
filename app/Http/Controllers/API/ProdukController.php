@@ -66,18 +66,17 @@ class ProdukController extends Controller
                 return response()->json(['data' => 'Belum Ada Datanya', 'message' => 'berhasil memperoleh data'], 200);
             }}
             return response()->json(['data' => $data, 'message' => 'berhasil memperoleh data'], 200);
-        } else {
+        } else if ($req->isMethod('POST')) {
             $dataParsing = $req->all();
-            $fileHandling = new FilesHandling();
-            $katProduk = new Produk();
-            $katProduk->slugs = Str::slug($dataParsing['nama_kat_produk']);
-            $katProduk->nama_kat_produk = $dataParsing['nama_kat_produk'];
-            $katProduk->deskripsi_kat_produk = $dataParsing['deskripsi_kat_produk'];
-            $katProduk->images_kat_produk = $fileHandling->upload($req->file('images_kat_produk'), 'kategori-produk', 'IMG-KAT-PRODUK');
-            $katProduk->save();
-            return response()->json(['data' => $dataParsing, 'message' => 'berhasil Membuat data'], 201);
+            $produkData = new Produk();
+            $produkData->slugs = Str::slug($dataParsing['nama_produk']);
+            $produkData->id_kat_produk = $dataParsing['id_kat_produk'];
+            $produkData->nama_produk = $dataParsing['nama_produk'];
+            $produkData->deskripsi_produk = $dataParsing['deskripsi_produk'];
+            $produkData->link_produk_tokopedia = $dataParsing['link_produk_tokopedia'];
+            $produkData->save();
+            return response()->json(['data' => $dataParsing, 'message' => 'Berhasil Membuat Produk Baru'], 201);
         }
-
     }
 
 }

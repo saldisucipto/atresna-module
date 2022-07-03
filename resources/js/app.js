@@ -4,7 +4,6 @@ import router from "./router";
 import store from "./module/store";
 import createPersistedState from "vuex-persistedstate";
 import CKEditor from "@ckeditor/ckeditor5-vue";
-
 // font awesome
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
