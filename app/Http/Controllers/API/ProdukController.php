@@ -67,7 +67,7 @@ class ProdukController extends Controller
                 return response()->json(['data' => [], 'message' => 'Belum Ada Data'], 200);
             }}
             return response()->json(['data' => $data, 'message' => 'berhasil memperoleh data'], 200);
-        } else {
+        } else if ($req->isMethod('POST')) {
             $dataParsing = $req->all();
             $imagesFile = $req->file('images_produk');
             $fileHandling = new FilesHandling();
@@ -88,7 +88,6 @@ class ProdukController extends Controller
             }
             return response()->json(['data' => $dataParsing, 'message' => 'berhasil Membuat data'], 201);
         }
-
     }
 
     // get images produk

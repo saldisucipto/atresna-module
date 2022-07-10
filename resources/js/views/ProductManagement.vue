@@ -24,8 +24,40 @@
                     </button>
                 </div>
             </section>
-            <div v-if="dbData.length != 0" class="grid grid-cols-5 gap-4">
-                <card-large
+            <div class="flex gap-2">
+                <div
+                    class="flex-1 py-1 px-2 flex justify-start gap-2 text-gray-900 border-b-2 border-primary-color"
+                >
+                    <b>Show</b>
+                    <select
+                        v-model="curentEntries"
+                        class="outline-none"
+                        name=""
+                        id=""
+                        @change="paginateEntries"
+                    >
+                        <option
+                            v-for="showEnt in showEntries"
+                            :key="showEnt"
+                            :value="showEnt"
+                        >
+                            {{ showEnt }}
+                        </option>
+                    </select>
+                    <b>Entries</b>
+                </div>
+                <div class="flex-1 py-1 border-b-2 border-primary-color">
+                    <div class="py-1">
+                        <input
+                            class="text-base placeholder:text-xs border border-secondary-color focus:outline-none px-2"
+                            type="text"
+                            placeholder="Search Data"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div v-if="dbData.length != 0" class="">
+                <!-- <card-large
                     v-for="konten in dbData"
                     :key="konten.slugs"
                     class="overflow-hidden"
@@ -47,7 +79,11 @@
                     <template v-slot:desc>
                         <div class="flex flex-col justify-center text-white">
                             <h1 class="font-bold justify-center my-1">
+<<<<<<< HEAD
                                 {{ konten.nama_product }}
+=======
+                                {{ strLimitTitle(konten.nama_produk) }}
+>>>>>>> c817092329b020b15799d9f5b4b278f137a69873
                             </h1>
                             <div
                                 class="px-5 text-xs bg-green-500 text-white my-2 w-28 rounded-2xl"
@@ -66,7 +102,8 @@
                             </button>
                         </div>
                     </template>
-                </card-large>
+                </card-large> -->
+                <TableBase :column="columns" :entries="dbData" />
             </div>
             <div v-else class="h-full text-center py-2 font-bold">
                 <h1><i>'Belum Ada Data Pada Server'</i></h1>
@@ -285,7 +322,12 @@ import http from "../services/http-config";
 import CardLarge from "../components/Cards/CardLarge.vue";
 import moment from "moment";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+<<<<<<< HEAD
 import uploadImagesServices from "../services/UploadImageServices";
+=======
+import { strLimitTitle } from "../utils/utility";
+import TableBase from "../components/Table/TableBase.vue";
+>>>>>>> c817092329b020b15799d9f5b4b278f137a69873
 
 export default {
     name: "ProductManagement",
@@ -293,6 +335,7 @@ export default {
         SuccesNotifications,
         Admin,
         CardLarge,
+        TableBase,
     },
     data() {
         return {
@@ -313,16 +356,32 @@ export default {
             curenntImage: null,
             nama_produk: null,
             slugs: null,
+<<<<<<< HEAD
             link_produk_tokopedia: null,
             id_kat_produk: null,
             imageProduct: [],
+=======
+            columns: [
+                { name: "slugs", text: "ID" },
+                { name: "nama_produk", text: "Nama Produk" },
+                { name: "kat_produk", text: "Kategori Produk" },
+                { name: "link_produk", text: "Link Ecommerce Produk" },
+            ],
+            showEntries: [5, 10, 20, 30, 50],
+            curentEntries: 10,
+            filterEntries: [],
+>>>>>>> c817092329b020b15799d9f5b4b278f137a69873
         };
     },
     computed: {},
     methods: {
+<<<<<<< HEAD
         previewImages(imagesData) {
             return URL.createObjectURL(imagesData);
         },
+=======
+        strLimitTitle: strLimitTitle,
+>>>>>>> c817092329b020b15799d9f5b4b278f137a69873
         modalController() {
             this.modal = !this.modal;
             this.nama_produk = null;
@@ -332,9 +391,14 @@ export default {
             this.images = null;
             this.curenntImage = null;
             this.previewImage = null;
+            this.modalUpdate = false;
         },
         getData() {
+<<<<<<< HEAD
             return http.get("product-management/produk").then((response) => {
+=======
+            return http.get("/product-management/produk").then((response) => {
+>>>>>>> c817092329b020b15799d9f5b4b278f137a69873
                 this.dbData = response.data.data;
             });
         },
@@ -445,10 +509,15 @@ export default {
                     this.modal = false;
                 });
         },
+<<<<<<< HEAD
         async getDataKategori() {
             return http.get("product-management/kategori").then((response) => {
                 this.dbKatData = response.data.data;
             });
+=======
+        paginateEntries() {
+            this.filterEntries = dbData.filterEntries;
+>>>>>>> c817092329b020b15799d9f5b4b278f137a69873
         },
     },
     mounted() {
