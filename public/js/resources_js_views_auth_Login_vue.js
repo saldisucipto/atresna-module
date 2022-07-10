@@ -87,7 +87,7 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "container mx-auto px-4 h-screen bg-secondary-color"
+  "class": "w-full mx-auto px-4 h-screen bg-secondary-color"
 };
 var _hoisted_2 = {
   "class": "flex content-center items-center justify-center h-full"

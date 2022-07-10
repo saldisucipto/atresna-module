@@ -7,6 +7,14 @@
         </Transition>
         <admin>
             <section class="mb-10">
+                <div class="">
+                    <h1 class="text-xl uppercase font-bold text-dark-secondary">
+                        Produk
+                    </h1>
+                    <span class="text-sm text-gray-800"
+                        >| Ini Adalah Halaman Untuk Mengatur Produk</span
+                    >
+                </div>
                 <div>
                     <button
                         @click="modalController()"
@@ -92,7 +100,7 @@
                                 Update {{ this.title }}
                             </p>
                             <p v-else class="text-2xl font-bold">
-                                Buat Data Baru
+                                Buat Produk Baru
                             </p>
 
                             <!-- Modal Close Button -->
@@ -102,12 +110,12 @@
                                 </button>
                             </div>
                         </div>
-                        <img
+                        <!-- <img
                             v-if="this.images != null"
                             :src="'servis/' + this.images"
                             alt=""
                             class="max-h-56 mx-auto my-2"
-                        />
+                        /> -->
 
                         <form
                             enctype="multipart/form-data"
@@ -123,64 +131,109 @@
                             <div
                                 class="w-full bg-gray-200 h-full mb-4 rounded-md flex flex-col justify-evenly text-center"
                             >
-                                <div
-                                    v-if="previewImage == null"
-                                    class="mx-auto mt-5"
-                                >
-                                    <i class="fas fa-plus"></i>
-                                    <span>Tambahkan Gambar Utama</span>
-                                </div>
-
-                                <div
-                                    v-else
-                                    class="flex justify-center gap-2 mx-3 my-2"
-                                >
-                                    <div>
-                                        <img
-                                            :src="previewImage"
-                                            alt="Image"
-                                            class="max-h-52"
-                                        />
+                                <div class="my-2 mx-3">
+                                    <div class="flex gap-1 text-left mt-5">
+                                        <div class="flex-1 flex flex-col">
+                                            <label for="title"
+                                                >Nama Produk</label
+                                            >
+                                            <input
+                                                class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
+                                                placeholder="Nama Produk"
+                                                type="text"
+                                                name=""
+                                                id=""
+                                                v-model="title"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="flex-1 flex flex-col">
+                                            <label for="title"
+                                                >Pilih Kategori Produk</label
+                                            >
+                                            <select
+                                                class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
+                                                name=""
+                                                id=""
+                                                placeholder="Plih Kategori Produk"
+                                            >
+                                                <option
+                                                    selected
+                                                    aria-readonly="true"
+                                                    disabled
+                                                >
+                                                    Pilih Kategori Produk
+                                                </option>
+                                                <option
+                                                    aria-readonly="true"
+                                                    value=""
+                                                >
+                                                    Kategori Produk
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
-
-                                    <div
-                                        class="flex h-52 flex-col justify-center"
-                                    >
-                                        <h1
-                                            class="text-gray-900 text-sm font-bold"
+                                    <div class="flex gap-1 text-left my-5">
+                                        <div class="flex-1 flex flex-col">
+                                            <label for="title"
+                                                >Link Produk Tokopedia</label
+                                            >
+                                            <input
+                                                class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
+                                                placeholder="Link Produk Tokopedia "
+                                                type="text"
+                                                name=""
+                                                id=""
+                                                v-model="title"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-1 text-left my-5">
+                                        <div class="flex-1 flex flex-col">
+                                            <label for="title"
+                                                >Select Images</label
+                                            >
+                                            <input
+                                                class="py-1 rounded-md active:outline-none focus:outline-none my-1"
+                                                type="file"
+                                                @change="selectImage()"
+                                                accept="image/*"
+                                                ref="imagesInput"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="my-1 flex gap-1">
+                                        <div
+                                            v-for="images in imageProduct"
+                                            :key="images"
+                                            class="h-32 w-32 rounded-xl bg-white relative"
                                         >
-                                            <i class="fas fa-info"></i> Gambar
-                                            Baru Sebelum di Upload Ke Server
-                                        </h1>
+                                            <img
+                                                :src="previewImages(images)"
+                                                class="object-cover rounded-xl"
+                                                alt=""
+                                            />
+                                            <div
+                                                class="absolute h-32 w-32 bg-black bg-opacity-40 rounded-xl top-0"
+                                            >
+                                                <div
+                                                    class="flex flex-col justify-center text-center h-full text-white"
+                                                >
+                                                    <button>
+                                                        <i
+                                                            class="fas fa-trash"
+                                                        ></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <input
-                                    type="file"
-                                    class="mx-3 mb-1"
-                                    accept="image/*"
-                                    ref="imagesInput"
-                                    @change="selectImage()"
-                                    required
-                                />
-                                <div class="my-2 flex flex-col mx-3">
-                                    <div class="flex flex-col text-left">
-                                        <label for="title">Judul Posting</label>
-                                        <input
-                                            class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
-                                            placeholder="Judul Posting Konten"
-                                            type="text"
-                                            name=""
-                                            id=""
-                                            v-model="title"
-                                            required
-                                        />
-                                    </div>
-                                    <div class="flex flex-col text-left">
+                                    <div class="flex flex-col text-left my-5">
                                         <label for="title"
-                                            >Isi Konten Posting</label
+                                            >Deksripsi Produk</label
                                         >
                                         <ckeditor
-                                            class="h-28"
                                             :editor="editor"
                                             v-model="description"
                                             :config="editorConfig"
@@ -213,7 +266,7 @@
                                 v-else
                                 class="block w-full bg-dark-secondary text-white py-1.5 px-3 rounded transition hover:bg-primary-color"
                             >
-                                Create Konten
+                                Create Produk
                             </button>
                         </form>
                     </div>
@@ -249,17 +302,22 @@ export default {
             },
             message: null,
             dbData: [],
-            modal: false,
+            modal: true,
             moment: moment,
             images: null,
             modalUpdate: false,
-            previewImage: null,
+            previewImage: [],
             curenntImage: null,
             title: null,
             slugs: null,
+            imageProduct: [],
         };
     },
+    computed: {},
     methods: {
+        previewImages(imagesData) {
+            return URL.createObjectURL(imagesData);
+        },
         modalController() {
             this.modal = !this.modal;
             this.title = null;
@@ -301,8 +359,9 @@ export default {
                 .catch((e) => console.log(e));
         },
         selectImage() {
-            this.curenntImage = this.$refs.imagesInput.files.item(0);
-            this.previewImage = URL.createObjectURL(this.curenntImage);
+            this.imageProduct.push(this.$refs.imagesInput.files.item(0));
+            // this.previewImage.push(URL.createObjectURL(this.imageProduct));
+            // console.log(this.imageProduct);
         },
         updateData(slugs) {
             this.modal = !this.modal;
