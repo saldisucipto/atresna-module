@@ -47,7 +47,7 @@
                     <template v-slot:desc>
                         <div class="flex flex-col justify-center text-white">
                             <h1 class="font-bold justify-center my-1">
-                                {{ konten.title }}
+                                {{ konten.nama_product }}
                             </h1>
                             <div
                                 class="px-5 text-xs bg-green-500 text-white my-2 w-28 rounded-2xl"
@@ -95,9 +95,9 @@
                         <div class="flex justify-between items-center pb-4">
                             <p
                                 class="text-2xl font-bold"
-                                v-if="this.title != null"
+                                v-if="this.nama_produk != null"
                             >
-                                Update {{ this.title }}
+                                Update {{ this.nama_produk }}
                             </p>
                             <p v-else class="text-2xl font-bold">
                                 Buat Produk Baru
@@ -110,13 +110,6 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- <img
-                            v-if="this.images != null"
-                            :src="'servis/' + this.images"
-                            alt=""
-                            class="max-h-56 mx-auto my-2"
-                        /> -->
-
                         <form
                             enctype="multipart/form-data"
                             method="POST"
@@ -134,7 +127,7 @@
                                 <div class="my-2 mx-3">
                                     <div class="flex gap-1 text-left mt-5">
                                         <div class="flex-1 flex flex-col">
-                                            <label for="title"
+                                            <label for="nama_produk"
                                                 >Nama Produk</label
                                             >
                                             <input
@@ -143,18 +136,19 @@
                                                 type="text"
                                                 name=""
                                                 id=""
-                                                v-model="title"
+                                                v-model="nama_produk"
                                                 required
                                             />
                                         </div>
                                         <div class="flex-1 flex flex-col">
-                                            <label for="title"
+                                            <label for="id_kat_produk"
                                                 >Pilih Kategori Produk</label
                                             >
                                             <select
                                                 class="py-1 rounded-md px-2 active:outline-none focus:outline-none my-1"
                                                 name=""
                                                 id=""
+                                                v-model="id_kat_produk"
                                                 placeholder="Plih Kategori Produk"
                                             >
                                                 <option
@@ -165,17 +159,20 @@
                                                     Pilih Kategori Produk
                                                 </option>
                                                 <option
+                                                    v-for="kategori in dbKatData"
                                                     aria-readonly="true"
-                                                    value=""
+                                                    :value="kategori.slugs"
                                                 >
-                                                    Kategori Produk
+                                                    {{
+                                                        kategori.nama_kat_produk
+                                                    }}
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="flex gap-1 text-left my-5">
                                         <div class="flex-1 flex flex-col">
-                                            <label for="title"
+                                            <label for="link_produk_tokopedia"
                                                 >Link Produk Tokopedia</label
                                             >
                                             <input
@@ -184,7 +181,7 @@
                                                 type="text"
                                                 name=""
                                                 id=""
-                                                v-model="title"
+                                                v-model="link_produk_tokopedia"
                                                 required
                                             />
                                         </div>
@@ -215,14 +212,18 @@
                                                 alt=""
                                             />
                                             <div
-                                                class="absolute h-32 w-32 bg-black bg-opacity-40 rounded-xl top-0"
+                                                class="absolute h-32 w-32 bg-white bg-opacity-40 rounded-xl top-0"
                                             >
                                                 <div
                                                     class="flex flex-col justify-center text-center h-full text-white"
                                                 >
-                                                    <button>
+                                                    <button
+                                                        @click.prevent="
+                                                            deletePict(images)
+                                                        "
+                                                    >
                                                         <i
-                                                            class="fas fa-trash"
+                                                            class="fa fa-trash-alt text-black fa-2x"
                                                         ></i>
                                                     </button>
                                                 </div>
@@ -284,6 +285,7 @@ import http from "../services/http-config";
 import CardLarge from "../components/Cards/CardLarge.vue";
 import moment from "moment";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import uploadImagesServices from "../services/UploadImageServices";
 
 export default {
     name: "ProductManagement",
@@ -302,14 +304,17 @@ export default {
             },
             message: null,
             dbData: [],
-            modal: true,
+            dbKatData: [],
+            modal: false,
             moment: moment,
             images: null,
             modalUpdate: false,
             previewImage: [],
             curenntImage: null,
-            title: null,
+            nama_produk: null,
             slugs: null,
+            link_produk_tokopedia: null,
+            id_kat_produk: null,
             imageProduct: [],
         };
     },
@@ -320,29 +325,40 @@ export default {
         },
         modalController() {
             this.modal = !this.modal;
-            this.title = null;
+            this.nama_produk = null;
+            this.link_produk_tokopedia = null;
+            this.id_kat_produk = null;
             this.description = null;
             this.images = null;
             this.curenntImage = null;
             this.previewImage = null;
         },
         getData() {
-            return http.get("servis").then((response) => {
+            return http.get("product-management/produk").then((response) => {
                 this.dbData = response.data.data;
             });
         },
-        createPOST() {
+        deletePict(pictData) {
+            uploadImagesServices.remove_array_value(
+                this.imageProduct,
+                pictData
+            );
+            this.$refs.imagesInput.value = null;
+        },
+        async createPOST() {
             let form = new FormData();
-            form.append("title", this.title);
-            form.append("description", this.description);
-            form.append("images", this.curenntImage);
+            form.append("nama_produk", this.nama_produk);
+            form.append("id_kat_produk", this.id_kat_produk);
+            form.append("link_produk_tokopedia", this.link_produk_tokopedia);
+            form.append("deskripsi_produk", this.description);
+            form.append("images_produk[]", this.imageProduct);
             const config = {
                 headers: {
                     "Content-type": "multipart/form-data",
                 },
             };
             return http
-                .post("servis", form, config)
+                .post("product-management/produk", form, config)
                 .then((res) => {
                     this.message = res.data.message;
                     this.getData();
@@ -350,8 +366,11 @@ export default {
                         this.message = null;
                         this.title = "";
                         this.editorData = "";
-                        this.currentImage = "";
+                        this.imageProduct = [];
                         this.previewImage = null;
+                        this.nama_produk = null;
+                        this.link_produk_tokopedia = null;
+                        this.id_kat_produk = null;
                         this.description = null;
                     }, 2000);
                     this.modal = !this.modal;
@@ -374,7 +393,7 @@ export default {
             this.images = data.images_utama;
             this.slugs = slugs;
         },
-        updateAction() {
+        async updateAction() {
             let form = new FormData();
             form.append("title", this.title);
             form.append("description", this.description);
@@ -403,7 +422,7 @@ export default {
                 })
                 .catch((e) => console.log(e));
         },
-        deleteAction() {
+        async deleteAction() {
             const config = {
                 headers: {
                     "Content-type": "multipart/form-data",
@@ -426,9 +445,15 @@ export default {
                     this.modal = false;
                 });
         },
+        async getDataKategori() {
+            return http.get("product-management/kategori").then((response) => {
+                this.dbKatData = response.data.data;
+            });
+        },
     },
     mounted() {
         this.getData();
+        this.getDataKategori();
     },
 };
 </script>

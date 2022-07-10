@@ -13,6 +13,20 @@ class uploadImagesServices {
         // console.log(file);
         return http.post("/com-info/update", data, config);
     }
+    remove_array_value(array, value) {
+        var index = array.indexOf(value);
+        if (index >= 0) {
+            array.splice(index, 1);
+            this.reindex_array(array);
+        }
+    }
+    reindex_array(array) {
+        var result = [];
+        for (var key in array) {
+            result.push(array[key]);
+        }
+        return result;
+    }
 }
 
 export default new uploadImagesServices();

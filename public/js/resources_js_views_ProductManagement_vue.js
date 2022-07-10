@@ -3496,14 +3496,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Notifications/SuccesNotifications.vue */ "./resources/js/components/Notifications/SuccesNotifications.vue");
-/* harmony import */ var _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layouts/Admin.vue */ "./resources/js/layouts/Admin.vue");
-/* harmony import */ var _services_http_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/http-config */ "./resources/js/services/http-config.js");
-/* harmony import */ var _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Cards/CardLarge.vue */ "./resources/js/components/Cards/CardLarge.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
-/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Notifications/SuccesNotifications.vue */ "./resources/js/components/Notifications/SuccesNotifications.vue");
+/* harmony import */ var _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/Admin.vue */ "./resources/js/layouts/Admin.vue");
+/* harmony import */ var _services_http_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/http-config */ "./resources/js/services/http-config.js");
+/* harmony import */ var _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Cards/CardLarge.vue */ "./resources/js/components/Cards/CardLarge.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _services_UploadImageServices__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/UploadImageServices */ "./resources/js/services/UploadImageServices.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -3513,13 +3523,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ProductManagement",
   components: {
-    SuccesNotifications: _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Admin: _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    CardLarge: _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    SuccesNotifications: _components_Notifications_SuccesNotifications_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Admin: _layouts_Admin_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CardLarge: _components_Cards_CardLarge_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      editor: (_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_5___default()),
+      editor: (_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_6___default()),
       description: "isi posting",
       editorConfig: {
         // The configuration of the editor.
@@ -3527,14 +3537,17 @@ __webpack_require__.r(__webpack_exports__);
       },
       message: null,
       dbData: [],
-      modal: true,
-      moment: (moment__WEBPACK_IMPORTED_MODULE_4___default()),
+      dbKatData: [],
+      modal: false,
+      moment: (moment__WEBPACK_IMPORTED_MODULE_5___default()),
       images: null,
       modalUpdate: false,
       previewImage: [],
       curenntImage: null,
-      title: null,
+      nama_produk: null,
       slugs: null,
+      link_produk_tokopedia: null,
+      id_kat_produk: null,
       imageProduct: []
     };
   },
@@ -3545,7 +3558,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     modalController: function modalController() {
       this.modal = !this.modal;
-      this.title = null;
+      this.nama_produk = null;
+      this.link_produk_tokopedia = null;
+      this.id_kat_produk = null;
       this.description = null;
       this.images = null;
       this.curenntImage = null;
@@ -3554,39 +3569,62 @@ __webpack_require__.r(__webpack_exports__);
     getData: function getData() {
       var _this = this;
 
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].get("servis").then(function (response) {
+      return _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("product-management/produk").then(function (response) {
         _this.dbData = response.data.data;
       });
+    },
+    deletePict: function deletePict(pictData) {
+      _services_UploadImageServices__WEBPACK_IMPORTED_MODULE_7__["default"].remove_array_value(this.imageProduct, pictData);
+      this.$refs.imagesInput.value = null;
     },
     createPOST: function createPOST() {
       var _this2 = this;
 
-      var form = new FormData();
-      form.append("title", this.title);
-      form.append("description", this.description);
-      form.append("images", this.curenntImage);
-      var config = {
-        headers: {
-          "Content-type": "multipart/form-data"
-        }
-      };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].post("servis", form, config).then(function (res) {
-        _this2.message = res.data.message;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var form, config;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                form = new FormData();
+                form.append("nama_produk", _this2.nama_produk);
+                form.append("id_kat_produk", _this2.id_kat_produk);
+                form.append("link_produk_tokopedia", _this2.link_produk_tokopedia);
+                form.append("deskripsi_produk", _this2.description);
+                form.append("images_produk[]", _this2.imageProduct);
+                config = {
+                  headers: {
+                    "Content-type": "multipart/form-data"
+                  }
+                };
+                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("product-management/produk", form, config).then(function (res) {
+                  _this2.message = res.data.message;
 
-        _this2.getData();
+                  _this2.getData();
 
-        setTimeout(function () {
-          _this2.message = null;
-          _this2.title = "";
-          _this2.editorData = "";
-          _this2.currentImage = "";
-          _this2.previewImage = null;
-          _this2.description = null;
-        }, 2000);
-        _this2.modal = !_this2.modal;
-      })["catch"](function (e) {
-        return console.log(e);
-      });
+                  setTimeout(function () {
+                    _this2.message = null;
+                    _this2.title = "";
+                    _this2.editorData = "";
+                    _this2.imageProduct = [];
+                    _this2.previewImage = null;
+                    _this2.nama_produk = null;
+                    _this2.link_produk_tokopedia = null;
+                    _this2.id_kat_produk = null;
+                    _this2.description = null;
+                  }, 2000);
+                  _this2.modal = !_this2.modal;
+                })["catch"](function (e) {
+                  return console.log(e);
+                }));
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     selectImage: function selectImage() {
       this.imageProduct.push(this.$refs.imagesInput.files.item(0)); // this.previewImage.push(URL.createObjectURL(this.imageProduct));
@@ -3606,63 +3644,112 @@ __webpack_require__.r(__webpack_exports__);
     updateAction: function updateAction() {
       var _this3 = this;
 
-      var form = new FormData();
-      form.append("title", this.title);
-      form.append("description", this.description);
-      form.append("images", this.curenntImage);
-      var config = {
-        headers: {
-          "Content-type": "multipart/form-data"
-        }
-      };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"].post("servis/" + this.slugs + "/update", form, config).then(function (response) {
-        // console.log(response.data.message);
-        _this3.message = response.data.message;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var form, config;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                form = new FormData();
+                form.append("title", _this3.title);
+                form.append("description", _this3.description);
+                form.append("images", _this3.curenntImage);
+                config = {
+                  headers: {
+                    "Content-type": "multipart/form-data"
+                  }
+                };
+                return _context2.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("servis/" + _this3.slugs + "/update", form, config).then(function (response) {
+                  // console.log(response.data.message);
+                  _this3.message = response.data.message;
 
-        _this3.getData();
+                  _this3.getData();
 
-        setTimeout(function () {
-          _this3.message = null;
-          _this3.title = "";
-          _this3.editorData = "";
-          _this3.currentImage = "";
-          _this3.previewImage = null;
-          _this3.description = null;
-          _this3.modalUpdate = false;
-        }, 2000);
-        _this3.modal = false;
-      })["catch"](function (e) {
-        return console.log(e);
-      });
+                  setTimeout(function () {
+                    _this3.message = null;
+                    _this3.title = "";
+                    _this3.editorData = "";
+                    _this3.currentImage = "";
+                    _this3.previewImage = null;
+                    _this3.description = null;
+                    _this3.modalUpdate = false;
+                  }, 2000);
+                  _this3.modal = false;
+                })["catch"](function (e) {
+                  return console.log(e);
+                }));
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     deleteAction: function deleteAction() {
       var _this4 = this;
 
-      var config = {
-        headers: {
-          "Content-type": "multipart/form-data"
-        }
-      };
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"]("servis/" + this.slugs + "/update", config).then(function (response) {
-        _this4.message = response.data.message;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var config;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                config = {
+                  headers: {
+                    "Content-type": "multipart/form-data"
+                  }
+                };
+                return _context3.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("servis/" + _this4.slugs + "/update", config).then(function (response) {
+                  _this4.message = response.data.message;
 
-        _this4.getData();
+                  _this4.getData();
 
-        setTimeout(function () {
-          _this4.message = null;
-          _this4.title = "";
-          _this4.editorData = "";
-          _this4.currentImage = "";
-          _this4.previewImage = null;
-          _this4.description = null;
-          _this4.modalUpdate = false;
-        }, 2000);
-        _this4.modal = false;
-      });
+                  setTimeout(function () {
+                    _this4.message = null;
+                    _this4.title = "";
+                    _this4.editorData = "";
+                    _this4.currentImage = "";
+                    _this4.previewImage = null;
+                    _this4.description = null;
+                    _this4.modalUpdate = false;
+                  }, 2000);
+                  _this4.modal = false;
+                }));
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    getDataKategori: function getDataKategori() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("product-management/kategori").then(function (response) {
+                  _this5.dbKatData = response.data.data;
+                }));
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
   },
   mounted: function mounted() {
     this.getData();
+    this.getDataKategori();
   }
 });
 
@@ -4718,26 +4805,30 @@ var _hoisted_34 = {
 };
 
 var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "title"
+  "for": "nama_produk"
 }, "Nama Produk", -1
 /* HOISTED */
 );
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex-1 flex flex-col\"><label for=\"title\">Pilih Kategori Produk</label><select class=\"py-1 rounded-md px-2 active:outline-none focus:outline-none my-1\" name=\"\" id=\"\" placeholder=\"Plih Kategori Produk\"><option selected aria-readonly=\"true\" disabled> Pilih Kategori Produk </option><option aria-readonly=\"true\" value=\"\"> Kategori Produk </option></select></div>", 1);
-
-var _hoisted_37 = {
-  "class": "flex gap-1 text-left my-5"
-};
-var _hoisted_38 = {
+var _hoisted_36 = {
   "class": "flex-1 flex flex-col"
 };
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "title"
-}, "Link Produk Tokopedia", -1
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "id_kat_produk"
+}, "Pilih Kategori Produk", -1
 /* HOISTED */
 );
 
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  selected: "",
+  "aria-readonly": "true",
+  disabled: ""
+}, " Pilih Kategori Produk ", -1
+/* HOISTED */
+);
+
+var _hoisted_39 = ["value"];
 var _hoisted_40 = {
   "class": "flex gap-1 text-left my-5"
 };
@@ -4746,37 +4837,54 @@ var _hoisted_41 = {
 };
 
 var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "link_produk_tokopedia"
+}, "Link Produk Tokopedia", -1
+/* HOISTED */
+);
+
+var _hoisted_43 = {
+  "class": "flex gap-1 text-left my-5"
+};
+var _hoisted_44 = {
+  "class": "flex-1 flex flex-col"
+};
+
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "title"
 }, "Select Images", -1
 /* HOISTED */
 );
 
-var _hoisted_43 = {
+var _hoisted_46 = {
   "class": "my-1 flex gap-1"
 };
-var _hoisted_44 = ["src"];
-
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "absolute h-32 w-32 bg-black bg-opacity-40 rounded-xl top-0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_47 = ["src"];
+var _hoisted_48 = {
+  "class": "absolute h-32 w-32 bg-white bg-opacity-40 rounded-xl top-0"
+};
+var _hoisted_49 = {
   "class": "flex flex-col justify-center text-center h-full text-white"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-trash"
-})])])], -1
+};
+var _hoisted_50 = ["onClick"];
+
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-trash-alt text-black fa-2x"
+}, null, -1
 /* HOISTED */
 );
 
-var _hoisted_46 = {
+var _hoisted_52 = [_hoisted_51];
+var _hoisted_53 = {
   "class": "flex flex-col text-left my-5"
 };
 
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "title"
 }, "Deksripsi Produk", -1
 /* HOISTED */
 );
 
-var _hoisted_48 = {
+var _hoisted_55 = {
   key: 1,
   "class": "flex gap-4"
 };
@@ -4831,7 +4939,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             , _hoisted_9))])];
           }),
           desc: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(konten.title), 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(konten.nama_product), 1
             /* TEXT */
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.moment(konten.created_at).format("DD-MM-YYYY")), 1
             /* TEXT */
@@ -4857,13 +4965,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), $data.modal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This element is to trick the browser into centering the modal contents. "), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Add margin if you want to see some of the overlay behind the modal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Title"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [this.title != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_24, " Update " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.title), 1
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), $data.modal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This element is to trick the browser into centering the modal contents. "), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Add margin if you want to see some of the overlay behind the modal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Title"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [this.nama_produk != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_24, " Update " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.nama_produk), 1
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_25, " Buat Produk Baru ")), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal Close Button "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.modalController();
     })
-  }, _hoisted_28)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img\n                            v-if=\"this.images != null\"\n                            :src=\"'servis/' + this.images\"\n                            alt=\"\"\n                            class=\"max-h-56 mx-auto my-2\"\n                        /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_29, [this.message != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
+  }, _hoisted_28)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_29, [this.message != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "py-1 rounded-md px-2 active:outline-none focus:outline-none my-1",
@@ -4872,34 +4980,53 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "",
     id: "",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.title = $event;
+      return $data.nama_produk = $event;
     }),
     required: ""
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.title]])]), _hoisted_36]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.nama_produk]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "py-1 rounded-md px-2 active:outline-none focus:outline-none my-1",
+    name: "",
+    id: "",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.id_kat_produk = $event;
+    }),
+    placeholder: "Plih Kategori Produk"
+  }, [_hoisted_38, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dbKatData, function (kategori) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+      "aria-readonly": "true",
+      value: kategori.slugs
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(kategori.nama_kat_produk), 9
+    /* TEXT, PROPS */
+    , _hoisted_39);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.id_kat_produk]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "py-1 rounded-md px-2 active:outline-none focus:outline-none my-1",
     placeholder: "Link Produk Tokopedia ",
     type: "text",
     name: "",
     id: "",
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $data.title = $event;
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.link_produk_tokopedia = $event;
     }),
     required: ""
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.title]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.link_produk_tokopedia]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "py-1 rounded-md active:outline-none focus:outline-none my-1",
     type: "file",
-    onChange: _cache[4] || (_cache[4] = function ($event) {
+    onChange: _cache[5] || (_cache[5] = function ($event) {
       return $options.selectImage();
     }),
     accept: "image/*",
     ref: "imagesInput"
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imageProduct, function (images) {
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imageProduct, function (images) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: images,
       "class": "h-32 w-32 rounded-xl bg-white relative"
@@ -4909,34 +5036,40 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       alt: ""
     }, null, 8
     /* PROPS */
-    , _hoisted_44), _hoisted_45]);
+    , _hoisted_47), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.deletePict(images);
+      }, ["prevent"])
+    }, _hoisted_52, 8
+    /* PROPS */
+    , _hoisted_50)])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [_hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ckeditor, {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ckeditor, {
     editor: $data.editor,
     modelValue: $data.description,
-    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.description = $event;
     }),
     config: $data.editorConfig,
     "aria-required": "true"
   }, null, 8
   /* PROPS */
-  , ["editor", "modelValue", "config"])])])]), $data.modalUpdate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[6] || (_cache[6] = function ($event) {
+  , ["editor", "modelValue", "config"])])])]), $data.modalUpdate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[7] || (_cache[7] = function ($event) {
       return $options.updateAction();
     }),
     type: "button",
     "class": "block w-full bg-primary-color text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
   }, " Update Konten "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[7] || (_cache[7] = function ($event) {
+    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.deleteAction();
     }),
     type: "button",
     "class": "block w-full bg-red-600 text-white py-1.5 px-3 rounded transition hover:bg-dark-secondary"
   }, " Delete Post ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 2,
-    onClick: _cache[8] || (_cache[8] = function ($event) {
+    onClick: _cache[9] || (_cache[9] = function ($event) {
       return $options.createPOST();
     }),
     type: "button",
@@ -4994,6 +5127,76 @@ var CompanyInfoDataServices = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new CompanyInfoDataServices());
+
+/***/ }),
+
+/***/ "./resources/js/services/UploadImageServices.js":
+/*!******************************************************!*\
+  !*** ./resources/js/services/UploadImageServices.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _http_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http-config */ "./resources/js/services/http-config.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+
+
+var uploadImagesServices = /*#__PURE__*/function () {
+  function uploadImagesServices() {
+    _classCallCheck(this, uploadImagesServices);
+  }
+
+  _createClass(uploadImagesServices, [{
+    key: "upload",
+    value: function upload(file) {
+      // console.log("This Is Form Upload Images Class");
+      // console.log(file);
+      var config = {
+        headers: {
+          "Content-type": "multipart/form-data"
+        }
+      };
+      var data = new FormData();
+      data.append("files", file); // console.log(file);
+
+      return _http_config__WEBPACK_IMPORTED_MODULE_0__["default"].post("/com-info/update", data, config);
+    }
+  }, {
+    key: "remove_array_value",
+    value: function remove_array_value(array, value) {
+      var index = array.indexOf(value);
+
+      if (index >= 0) {
+        array.splice(index, 1);
+        this.reindex_array(array);
+      }
+    }
+  }, {
+    key: "reindex_array",
+    value: function reindex_array(array) {
+      var result = [];
+
+      for (var key in array) {
+        result.push(array[key]);
+      }
+
+      return result;
+    }
+  }]);
+
+  return uploadImagesServices;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new uploadImagesServices());
 
 /***/ }),
 

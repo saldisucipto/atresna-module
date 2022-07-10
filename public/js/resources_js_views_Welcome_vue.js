@@ -5071,6 +5071,27 @@ var uploadImagesServices = /*#__PURE__*/function () {
 
       return _http_config__WEBPACK_IMPORTED_MODULE_0__["default"].post("/com-info/update", data, config);
     }
+  }, {
+    key: "remove_array_value",
+    value: function remove_array_value(array, value) {
+      var index = array.indexOf(value);
+
+      if (index >= 0) {
+        array.splice(index, 1);
+        this.reindex_array(array);
+      }
+    }
+  }, {
+    key: "reindex_array",
+    value: function reindex_array(array) {
+      var result = [];
+
+      for (var key in array) {
+        result.push(array[key]);
+      }
+
+      return result;
+    }
   }]);
 
   return uploadImagesServices;

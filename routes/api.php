@@ -82,6 +82,7 @@ Route::prefix('product-management')->group(function () {
 
     // produk
     Route::match(['get', 'post'], '/produk', [ProdukController::class, 'pdk_index']);
+    Route::get('/images-product/{id_produk}', [ProdukController::class, 'getImagesProduk']);
 
 });
 

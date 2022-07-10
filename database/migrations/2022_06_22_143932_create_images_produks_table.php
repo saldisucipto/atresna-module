@@ -16,7 +16,7 @@ class CreateImagesProduksTable extends Migration
         Schema::create('images_produk', function (Blueprint $table) {
             $table->id();
             $table->string('id_produk');
-            $table->string('images_produk');
+            $table->string('images_produk_file');
 
             $table->foreign('id_produk')->references('slugs')->on('produk');
             $table->timestamps();
