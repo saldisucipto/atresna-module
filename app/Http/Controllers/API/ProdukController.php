@@ -70,6 +70,8 @@ class ProdukController extends Controller
         } else if ($req->isMethod('POST')) {
             $dataParsing = $req->all();
             $imagesFile = $req->file('images_produk');
+            // return response()->json(['data' => $imagesFile, 'message' => 'Belum Ada Data'], 200);
+            // die;
             $fileHandling = new FilesHandling();
             $produkData = new Produk();
             $produkData->slugs = Str::slug($dataParsing['nama_produk']);
@@ -79,14 +81,19 @@ class ProdukController extends Controller
             $produkData->link_produk_tokopedia = $dataParsing['link_produk_tokopedia'];
             $produkData->save();
             if ($imagesFile) {
-                foreach ($imagesFile as $imagesProduk) {
-                    $produkImagesDB = new ImagesProduk();
-                    $produkImagesDB->id_produk = Str::slug($dataParsing['nama_produk']);
-                    $produkImagesDB->images_produk_file = $fileHandling->upload($imagesProduk, 'produk-images', 'IMG-PRODUK');
-                    $produkImagesDB->save();
+                $image = array();
+                if ($files = $req->file('images_produk')) {
+                    foreach ($files as $file) {
+                        // $name = 'IMG-PRODUK' . "-" . \time() . "." . $file->getClientOriginalName();
+                        // $file->move(public_path() . '/produk-images/', $name);
+                        ImagesProduk::insert([
+                            'id_produk' => Str::slug($dataParsing['nama_produk']),
+                            'images_produk_file' => $fileHandling->upload($file, 'produk-images', 'IMG-PRODUK', true),
+                        ]);
+                    }
                 }
             }
-            return response()->json(['data' => $dataParsing, 'message' => 'berhasil Membuat data'], 201);
+            return response()->json(['data' => $dataParsing, 'message' => 'Berhasil Membuat Produk Baru'], 201);
         }
     }
 

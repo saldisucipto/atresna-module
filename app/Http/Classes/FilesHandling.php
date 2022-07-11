@@ -3,8 +3,9 @@ namespace App\Http\Classes;
 
 class FilesHandling
 {
+
     // upload function
-    public function upload(Object $image, String $directory, String $image_name)
+    public function upload(Object $image, String $directory, String $image_name, Bool $multiple = false)
     {
         /**
          * Uploaded Files
@@ -13,7 +14,11 @@ class FilesHandling
         // Path
         $folder_target = $directory . '/';
         // Nama Images Baru
-        $image_name_finall = $image_name . "-" . \time() . "." . $uploadedFiles->getClientOriginalExtension();
+        if ($multiple) {
+            $image_name_finall = $image_name . "-" . \time() . $uploadedFiles->getClientOriginalName();
+        } else {
+            $image_name_finall = $image_name . "-" . \time() . "." . $uploadedFiles->getClientOriginalExtension();
+        }
         // Move To Folder
         $image->move($folder_target, $image_name_finall);
         // Mengembalikan Nama Image Baru

@@ -57,52 +57,6 @@
                 </div>
             </div>
             <div v-if="dbData.length != 0" class="">
-                <!-- <card-large
-                    v-for="konten in dbData"
-                    :key="konten.slugs"
-                    class="overflow-hidden"
-                >
-                    <template v-slot:images>
-                        <div class="flex flex-col justify-center mt-3 h-32">
-                            <i
-                                v-if="konten.images_utama == null"
-                                class="fas fa-image fa-4x text-gray-50"
-                            ></i>
-                            <img
-                                v-else
-                                :src="'/servis/' + konten.images_utama"
-                                alt=""
-                                class="object-cover rounded-lg max-h-36 mx-2 mt-2"
-                            />
-                        </div>
-                    </template>
-                    <template v-slot:desc>
-                        <div class="flex flex-col justify-center text-white">
-                            <h1 class="font-bold justify-center my-1">
-<<<<<<< HEAD
-                                {{ konten.nama_product }}
-=======
-                                {{ strLimitTitle(konten.nama_produk) }}
->>>>>>> c817092329b020b15799d9f5b4b278f137a69873
-                            </h1>
-                            <div
-                                class="px-5 text-xs bg-green-500 text-white my-2 w-28 rounded-2xl"
-                            >
-                                {{
-                                    moment(konten.created_at).format(
-                                        "DD-MM-YYYY"
-                                    )
-                                }}
-                            </div>
-                            <button
-                                class="my-1 rounded-md font-thin bg-gray-50 text-xs py-1 text-dark-secondary"
-                                @click="updateData(konten.slugs)"
-                            >
-                                update
-                            </button>
-                        </div>
-                    </template>
-                </card-large> -->
                 <TableBase :column="columns" :entries="dbData" />
             </div>
             <div v-else class="h-full text-center py-2 font-bold">
@@ -132,7 +86,7 @@
                         <div class="flex justify-between items-center pb-4">
                             <p
                                 class="text-2xl font-bold"
-                                v-if="this.nama_produk != null"
+                                v-if="this.nama_produk !== null"
                             >
                                 Update {{ this.nama_produk }}
                             </p>
@@ -322,12 +276,9 @@ import http from "../services/http-config";
 import CardLarge from "../components/Cards/CardLarge.vue";
 import moment from "moment";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-<<<<<<< HEAD
 import uploadImagesServices from "../services/UploadImageServices";
-=======
 import { strLimitTitle } from "../utils/utility";
 import TableBase from "../components/Table/TableBase.vue";
->>>>>>> c817092329b020b15799d9f5b4b278f137a69873
 
 export default {
     name: "ProductManagement",
@@ -356,11 +307,11 @@ export default {
             curenntImage: null,
             nama_produk: null,
             slugs: null,
-<<<<<<< HEAD
             link_produk_tokopedia: null,
             id_kat_produk: null,
             imageProduct: [],
-=======
+            imageProductFile: [],
+            indexImage: 0,
             columns: [
                 { name: "slugs", text: "ID" },
                 { name: "nama_produk", text: "Nama Produk" },
@@ -370,18 +321,14 @@ export default {
             showEntries: [5, 10, 20, 30, 50],
             curentEntries: 10,
             filterEntries: [],
->>>>>>> c817092329b020b15799d9f5b4b278f137a69873
         };
     },
     computed: {},
     methods: {
-<<<<<<< HEAD
         previewImages(imagesData) {
             return URL.createObjectURL(imagesData);
         },
-=======
         strLimitTitle: strLimitTitle,
->>>>>>> c817092329b020b15799d9f5b4b278f137a69873
         modalController() {
             this.modal = !this.modal;
             this.nama_produk = null;
@@ -394,11 +341,7 @@ export default {
             this.modalUpdate = false;
         },
         getData() {
-<<<<<<< HEAD
-            return http.get("product-management/produk").then((response) => {
-=======
             return http.get("/product-management/produk").then((response) => {
->>>>>>> c817092329b020b15799d9f5b4b278f137a69873
                 this.dbData = response.data.data;
             });
         },
@@ -415,7 +358,9 @@ export default {
             form.append("id_kat_produk", this.id_kat_produk);
             form.append("link_produk_tokopedia", this.link_produk_tokopedia);
             form.append("deskripsi_produk", this.description);
-            form.append("images_produk[]", this.imageProduct);
+            this.imageProduct.forEach((element, index) => {
+                form.append("images_produk[" + index + "]", element);
+            });
             const config = {
                 headers: {
                     "Content-type": "multipart/form-data",
@@ -424,6 +369,7 @@ export default {
             return http
                 .post("product-management/produk", form, config)
                 .then((res) => {
+                    // console.log(form);
                     this.message = res.data.message;
                     this.getData();
                     setTimeout(() => {
@@ -437,14 +383,16 @@ export default {
                         this.id_kat_produk = null;
                         this.description = null;
                     }, 2000);
-                    this.modal = !this.modal;
+                    // this.modal = !this.modal;
                 })
                 .catch((e) => console.log(e));
         },
         selectImage() {
             this.imageProduct.push(this.$refs.imagesInput.files.item(0));
-            // this.previewImage.push(URL.createObjectURL(this.imageProduct));
-            // console.log(this.imageProduct);
+            this.imageProduct.forEach((element) => {
+                console.log(element, index);
+            });
+            console.log(this.imageProduct);
         },
         updateData(slugs) {
             this.modal = !this.modal;
@@ -509,15 +457,13 @@ export default {
                     this.modal = false;
                 });
         },
-<<<<<<< HEAD
         async getDataKategori() {
             return http.get("product-management/kategori").then((response) => {
                 this.dbKatData = response.data.data;
             });
-=======
+        },
         paginateEntries() {
             this.filterEntries = dbData.filterEntries;
->>>>>>> c817092329b020b15799d9f5b4b278f137a69873
         },
     },
     mounted() {
