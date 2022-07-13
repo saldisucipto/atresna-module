@@ -6,7 +6,7 @@ class LoginScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void login() {
-      print("Login");
+      Navigator.pushNamed(context, '/dashboard');
     }
 
     var screenHight = MediaQuery.of(context).size.height;
