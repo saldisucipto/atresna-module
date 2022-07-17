@@ -239,14 +239,103 @@
             </div>
           </div>
         </div>
-        <div class="h-28">tes</div>
+        <div class="h-28 bg-white rounded-md m-1 mx-1 px-2 py-3">
+          <div class="bg-primary-background m-1 rounded-md h-full">
+            <div class="flex flex-col justify-center text-center h-full py-2">
+              <div class="mx-2 leading-3">
+                <i class="fas fa-bug text-red-500"></i>
+                <span class="text-text-primary text-xs"
+                  >Menemukan Kesalahan/Bug Program ?
+                </span>
+              </div>
+              <div class="text-xs text-primary-color">
+                <a href="mailto:atresnacreative@gmail.com">
+                  <i class="fas fa-envelope"></i> Kirimkan Email Ke Kami Dengan
+                  Screenshoot Error Program
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="bg-primary-background col-span-10">
       <div class="flex flex-col justify-start h-full">
-        <div class="h-14">tes</div>
-        <div class="h-full">tes</div>
-        <div class="h-12">tes</div>
+        <div class="h-16 bg-white mt-2 mx-2 rounded-md">
+          <div class="mx-3 flex flex-col justify-center h-full">
+            <div class="flex justify-between my-auto">
+              <div>
+                <input
+                  class="w-72 text-sm border-2 border-primary-color py-1 focus:border-primary-color focus-within:border-primary-color focus:outline-none rounded-md outline-none my-auto px-2"
+                  type="search"
+                  name=""
+                  id=""
+                  placeholder="Search"
+                />
+                <button
+                  class="bg-primary-color px-6 py-1 rounded-md text-white"
+                >
+                  Cari
+                </button>
+              </div>
+              <div class="flex justify-end gap-2 py-1">
+                <span class="text-text-primary font-semibold"
+                  >Saldi Sucipto</span
+                >
+                <button class="text-primary-color">
+                  <i class="fas fa-arrow-alt-circle-down py-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="h-full bg-white rounded-md m-2">
+          <div class="m-3 grid grid-flow-row grid-cols-4 gap-2">
+            <div class="bg-primary-color bg-opacity-80 h-28 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+            <div class="bg-primary-color bg-opacity-80 h-28 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+            <div class="bg-primary-color bg-opacity-80 h-28 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+            <div class="bg-primary-color bg-opacity-80 h-28 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+          </div>
+          <div class="m-3 grid grid-flow-row grid-cols-2 gap-2">
+            <div class="bg-secondary-color bg-opacity-80 h-60 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+            <div class="bg-secondary-color bg-opacity-80 h-60 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+            <div class="bg-secondary-color bg-opacity-80 h-60 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+            <div class="bg-secondary-color bg-opacity-80 h-60 rounded-md">
+              <div class="m-3">
+                <i class="fas text-white fa-2x fa-chart-pie"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="h-12 bg-white rounded-md mx-2 mb-2">tes</div> -->
       </div>
     </div>
   </div>
