@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <table class="min-w-full">
                         <thead class="bg-white border-b">
@@ -37,12 +37,35 @@
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                                 >
-                                    {{ td.id_kat_produk }}
+                                    {{ td.kategori_product.nama_kat_produk }}
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                                 >
                                     {{ td.link_produk_tokopedia }}
+                                </td>
+                                <td
+                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                                >
+                                    <div class="flex justify-between">
+                                        <div>
+                                            <button
+                                                class="text-blue-500 drop-shadow-lg"
+                                            >
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button class="text-yellow-400">
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button class="text-red-400">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

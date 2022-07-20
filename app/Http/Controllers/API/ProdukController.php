@@ -62,7 +62,7 @@ class ProdukController extends Controller
     public function pdk_index(Request $req)
     {
         if ($req->isMethod('get')) {
-            $data = Produk::get()->all();
+            $data = Produk::with(['kategoriProduct', 'imagesGallery'])->get()->all();
             if (empty($data)) {{
                 return response()->json(['data' => [], 'message' => 'Belum Ada Data'], 200);
             }}

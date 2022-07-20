@@ -288,7 +288,7 @@ export default {
             this.previewImage = null;
             this.modalUpdate = false;
         },
-        getData() {
+        async getData() {
             return http.get("/product-management/kategori").then((response) => {
                 this.dbData = response.data.data;
             });

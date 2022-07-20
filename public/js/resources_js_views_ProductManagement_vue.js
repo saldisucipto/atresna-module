@@ -3597,6 +3597,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         name: "link_produk",
         text: "Link Ecommerce Produk"
+      }, {
+        name: "actions",
+        text: "Actions"
       }],
       showEntries: [5, 10, 20, 30, 50],
       curentEntries: 10,
@@ -3623,9 +3626,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getData: function getData() {
       var _this = this;
 
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("/product-management/produk").then(function (response) {
-        _this.dbData = response.data.data;
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("/product-management/produk").then(function (response) {
+                  _this.dbData = response.data.data;
+                }));
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     deletePict: function deletePict(pictData) {
       _services_UploadImageServices__WEBPACK_IMPORTED_MODULE_7__["default"].remove_array_value(this.imageProduct, pictData);
@@ -3634,11 +3650,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     createPOST: function createPOST() {
       var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var form, config;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 form = new FormData();
                 form.append("nama_produk", _this2.nama_produk);
@@ -3655,7 +3671,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     "Content-type": "multipart/form-data"
                   }
                 };
-                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("product-management/produk", form, config).then(function (res) {
+                return _context2.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("product-management/produk", form, config).then(function (res) {
                   // console.log(form);
                   _this2.message = res.data.message;
 
@@ -3671,25 +3687,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this2.link_produk_tokopedia = null;
                     _this2.id_kat_produk = null;
                     _this2.description = null;
-                  }, 2000); // this.modal = !this.modal;
+                  }, 2000);
+                  _this2.modal = !_this2.modal;
                 })["catch"](function (e) {
                   return console.log(e);
                 }));
 
               case 8:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
     },
     selectImage: function selectImage() {
       this.imageProduct.push(this.$refs.imagesInput.files.item(0));
       this.imageProduct.forEach(function (element) {
         console.log(element, index);
-      });
-      console.log(this.imageProduct);
+      }); // console.log(this.imageProduct);
     },
     updateData: function updateData(slugs) {
       this.modal = !this.modal;
@@ -3705,11 +3721,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateAction: function updateAction() {
       var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         var form, config;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 form = new FormData();
                 form.append("title", _this3.title);
@@ -3720,7 +3736,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     "Content-type": "multipart/form-data"
                   }
                 };
-                return _context2.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("servis/" + _this3.slugs + "/update", form, config).then(function (response) {
+                return _context3.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("servis/" + _this3.slugs + "/update", form, config).then(function (response) {
                   // console.log(response.data.message);
                   _this3.message = response.data.message;
 
@@ -3742,27 +3758,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     deleteAction: function deleteAction() {
       var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         var config;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 config = {
                   headers: {
                     "Content-type": "multipart/form-data"
                   }
                 };
-                return _context3.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("servis/" + _this4.slugs + "/update", config).then(function (response) {
+                return _context4.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("servis/" + _this4.slugs + "/update", config).then(function (response) {
                   _this4.message = response.data.message;
 
                   _this4.getData();
@@ -3781,30 +3797,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     },
     getDataKategori: function getDataKategori() {
       var _this5 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                return _context4.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("product-management/kategori").then(function (response) {
+                return _context5.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("product-management/kategori").then(function (response) {
                   _this5.dbKatData = response.data.data;
                 }));
 
               case 1:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     },
     paginateEntries: function paginateEntries() {
@@ -4710,7 +4726,7 @@ var _hoisted_2 = {
   "class": "overflow-x-auto sm:-mx-6 lg:-mx-8"
 };
 var _hoisted_3 = {
-  "class": "py-2 inline-block min-w-full sm:px-6 lg:px-8"
+  "class": "inline-block min-w-full sm:px-6 lg:px-8"
 };
 var _hoisted_4 = {
   "class": "overflow-hidden"
@@ -4736,6 +4752,27 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
 };
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex justify-between"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "text-blue-500 drop-shadow-lg"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fas fa-eye"
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "text-yellow-400"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fas fa-pen"
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "text-red-400"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fas fa-trash"
+})])])])], -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.tableHeader, function (th) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", {
@@ -4755,11 +4792,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(td.nama_produk), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(td.id_kat_produk), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(td.kategori_product.nama_kat_produk), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(td.link_produk_tokopedia), 1
     /* TEXT */
-    )]);
+    ), _hoisted_12]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])])])])]);
@@ -4818,7 +4855,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "mb-10"
+  "class": "mb-5"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {

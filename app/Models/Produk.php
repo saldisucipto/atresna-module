@@ -18,11 +18,11 @@ class Produk extends Model
 
     public function kategoriProduct()
     {
-        return $this->belongsTo(KategoriProduk::class, 'id_kat_produk', 'slugs');
+        return $this->hasOne(KategoriProduk::class, 'slugs', 'id_kat_produk');
     }
 
     public function imagesGallery()
     {
-        return $this->hasMany(ImagesProduk::class);
+        return $this->hasMany(ImagesProduk::class, 'id_produk', 'slugs');
     }
 }

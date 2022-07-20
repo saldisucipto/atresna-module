@@ -6,7 +6,7 @@
             </succes-notifications>
         </Transition>
         <admin>
-            <section class="mb-10">
+            <section class="mb-5">
                 <div class="">
                     <h1 class="text-xl uppercase font-bold text-dark-secondary">
                         Produk
@@ -317,6 +317,7 @@ export default {
                 { name: "nama_produk", text: "Nama Produk" },
                 { name: "kat_produk", text: "Kategori Produk" },
                 { name: "link_produk", text: "Link Ecommerce Produk" },
+                { name: "actions", text: "Actions" },
             ],
             showEntries: [5, 10, 20, 30, 50],
             curentEntries: 10,
@@ -340,7 +341,7 @@ export default {
             this.previewImage = null;
             this.modalUpdate = false;
         },
-        getData() {
+        async getData() {
             return http.get("/product-management/produk").then((response) => {
                 this.dbData = response.data.data;
             });
@@ -383,7 +384,7 @@ export default {
                         this.id_kat_produk = null;
                         this.description = null;
                     }, 2000);
-                    // this.modal = !this.modal;
+                    this.modal = !this.modal;
                 })
                 .catch((e) => console.log(e));
         },
@@ -392,7 +393,7 @@ export default {
             this.imageProduct.forEach((element) => {
                 console.log(element, index);
             });
-            console.log(this.imageProduct);
+            // console.log(this.imageProduct);
         },
         updateData(slugs) {
             this.modal = !this.modal;

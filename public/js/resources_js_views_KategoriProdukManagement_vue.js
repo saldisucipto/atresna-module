@@ -3563,9 +3563,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getData: function getData() {
       var _this = this;
 
-      return _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("/product-management/kategori").then(function (response) {
-        _this.dbData = response.data.data;
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].get("/product-management/kategori").then(function (response) {
+                  _this.dbData = response.data.data;
+                }));
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     createPOST: function createPOST() {
       var _this2 = this;
@@ -3615,11 +3628,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateAction: function updateAction() {
       var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var form, config;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 form = new FormData();
                 form.append("nama_kat_produk", _this3.title);
@@ -3630,7 +3643,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     "Content-type": "multipart/form-data"
                   }
                 };
-                return _context.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("product-management/" + _this3.slugs + "/kategori", form, config).then(function (response) {
+                return _context2.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"].post("product-management/" + _this3.slugs + "/kategori", form, config).then(function (response) {
                   // console.log(response.data.message);
                   _this3.message = response.data.message;
 
@@ -3652,27 +3665,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
     },
     deleteAction: function deleteAction() {
       var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         var config;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 config = {
                   headers: {
                     "Content-type": "multipart/form-data"
                   }
                 };
-                return _context2.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("product-management/" + _this4.slugs + "/kategori", config).then(function (response) {
+                return _context3.abrupt("return", _services_http_config__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("product-management/" + _this4.slugs + "/kategori", config).then(function (response) {
                   _this4.message = response.data.message;
 
                   _this4.getData();
@@ -3691,10 +3704,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   },
