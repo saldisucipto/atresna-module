@@ -27,11 +27,6 @@
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                                 >
-                                    {{ td.slugs }}
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                                >
                                     {{ td.nama_produk }}
                                 </td>
                                 <td
@@ -42,7 +37,13 @@
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                                 >
-                                    {{ td.link_produk_tokopedia }}
+                                    <a
+                                        class="text-green-700"
+                                        :href="td.link_produk_tokopedia"
+                                    >
+                                        <i class="fas fa-cart-shopping"></i>
+                                        Tokopedia Shop
+                                    </a>
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -50,6 +51,9 @@
                                     <div class="flex justify-between">
                                         <div>
                                             <button
+                                                @click.prevent="
+                                                    buttonShow(td.slugs)
+                                                "
                                                 class="text-blue-500 drop-shadow-lg"
                                             >
                                                 <i class="fas fa-eye"></i>
@@ -82,6 +86,7 @@ export default {
     props: {
         column: Array,
         entries: Array,
+        buttonShow: Function,
     },
     computed: {
         tableHeader() {

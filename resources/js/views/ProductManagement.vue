@@ -57,7 +57,11 @@
                 </div>
             </div>
             <div v-if="dbData.length != 0" class="">
-                <TableBase :column="columns" :entries="dbData" />
+                <TableBase
+                    :column="columns"
+                    :entries="dbData"
+                    :buttonShow="showProduct"
+                />
             </div>
             <div v-else class="h-full text-center py-2 font-bold">
                 <h1><i>'Belum Ada Data Pada Server'</i></h1>
@@ -266,6 +270,106 @@
             </div>
         </div>
         <!-- End Modal -->
+        <!-- Modal -->
+        <div
+            v-if="productShow"
+            class="fixed z-10 inset-0 overflow-y-auto"
+            id="modal"
+        >
+            <div
+                class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            >
+                <div class="fixed inset-0 transition-opacity">
+                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                    >&#8203;</span
+                >
+
+                <div
+                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
+                >
+                    <!-- Add margin if you want to see some of the overlay behind the modal-->
+                    <div class="py-4 text-left px-6">
+                        <!--Title-->
+                        <div
+                            class="flex justify-between items-center pb-4 text-gray-700"
+                        >
+                            <p class="text-2xl font-bold">Detail Produk</p>
+
+                            <!-- Modal Close Button -->
+                            <div class="modal-close cursor-pointer z-50">
+                                <button @click="this.productShow = false">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <form
+                            enctype="multipart/form-data"
+                            method="POST"
+                            ref="formrEF"
+                        >
+                            <span
+                                v-if="this.message != null"
+                                class="text-xs text-red-600 my-3"
+                            >
+                                {{ message }}
+                            </span>
+                            <div
+                                class="w-full bg-gray-200 h-full mb-4 rounded-md flex flex-col justify-evenly text-center"
+                            >
+                                <div class="my-2 mx-2">
+                                    <div class="flex gap-2">
+                                        <div class="flex-1 flex flex-col gap-2">
+                                            <div
+                                                class="w-full bg-white rounded-md h-52"
+                                            ></div>
+                                            <div
+                                                class="w-full bg-white rounded-md h-20"
+                                            ></div>
+                                        </div>
+                                        <div class="flex-1 text-gray-700">
+                                            <div class="flex flex-col">
+                                                <h1
+                                                    class="my-1 font-bold uppercase"
+                                                >
+                                                    Deskripsi Produk
+                                                </h1>
+                                                <div
+                                                    class="flex flex-col text-left"
+                                                >
+                                                    <span
+                                                        class="font-bold text-sm"
+                                                        >Nama Produk :</span
+                                                    >
+                                                    <span class="text-sm">{{
+                                                        this.nama_produk
+                                                    }}</span>
+                                                </div>
+                                                <div
+                                                    class="flex flex-col text-left"
+                                                >
+                                                    <span
+                                                        class="font-bold text-sm"
+                                                        >Kategori Produk :</span
+                                                    >
+                                                    <span class="text-sm">{{
+                                                        this.kategori_produk
+                                                    }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
     </div>
 </template>
 
@@ -306,6 +410,7 @@ export default {
             previewImage: [],
             curenntImage: null,
             nama_produk: null,
+            kategori_produk: null,
             slugs: null,
             link_produk_tokopedia: null,
             id_kat_produk: null,
@@ -313,7 +418,6 @@ export default {
             imageProductFile: [],
             indexImage: 0,
             columns: [
-                { name: "slugs", text: "ID" },
                 { name: "nama_produk", text: "Nama Produk" },
                 { name: "kat_produk", text: "Kategori Produk" },
                 { name: "link_produk", text: "Link Ecommerce Produk" },
@@ -322,6 +426,7 @@ export default {
             showEntries: [5, 10, 20, 30, 50],
             curentEntries: 10,
             filterEntries: [],
+            productShow: false,
         };
     },
     computed: {},
@@ -465,6 +570,14 @@ export default {
         },
         paginateEntries() {
             this.filterEntries = dbData.filterEntries;
+        },
+        showProduct(slugs) {
+            this.productShow = true;
+            let data = this.dbData.find(
+                (element) => element.slugs.toLowerCase() === slugs
+            );
+            this.nama_produk = data.nama_produk;
+            this.kategori_produk = data.kategori_product.nama_kat_produk;
         },
     },
     mounted() {
